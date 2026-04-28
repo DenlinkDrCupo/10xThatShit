@@ -21,7 +21,7 @@ const MODULES = [
       "Understand why now is the right time to learn this",
       "Clear up the biggest misconceptions"
     ],
-    systemPrompt: (profile) => `You are an expert AI teacher named Nova. You are teaching a business owner named ${profile.name || 'the student'} who runs ${profile.business} in the ${profile.industry} industry. Their goal is: ${profile.goal}.
+    systemPrompt: (profile) => `You are an expert AI teacher named Kai. You are teaching a business owner named ${profile.name || 'the student'} who runs ${profile.business} in the ${profile.industry} industry. Their goal is: ${profile.goal}.
 
 You are teaching Module 1: What AI Actually Is.
 
@@ -56,7 +56,7 @@ Start by introducing yourself briefly and asking what they currently think AI is
       "Understand memory and artifacts",
       "Upload files and use Claude's interface"
     ],
-    systemPrompt: (profile) => `You are Nova, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}.
+    systemPrompt: (profile) => `You are Kai, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}.
 
 You are teaching Module 2: Setting Up Claude the Right Way.
 
@@ -84,7 +84,7 @@ Keep each message under 150 words. Use specific examples for their ${profile.ind
       "Write a great prompt for their own business",
       "Learn to iterate and improve prompts"
     ],
-    systemPrompt: (profile) => `You are Nova, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
+    systemPrompt: (profile) => `You are Kai, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
 
 You are teaching Module 3: Writing Prompts That Actually Work.
 
@@ -112,7 +112,7 @@ Be encouraging but specific. Keep messages under 150 words.`
       "Learn to use Claude Projects as a prompt library",
       "Create a weekly AI workflow"
     ],
-    systemPrompt: (profile) => `You are Nova, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
+    systemPrompt: (profile) => `You are Kai, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
 
 You are teaching Module 4: Automate Your Repetitive Work.
 
@@ -140,7 +140,7 @@ Keep messages under 150 words. Build real prompts they can copy immediately.`
       "Write outreach messages",
       "Build a follow-up sequence"
     ],
-    systemPrompt: (profile) => `You are Nova, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
+    systemPrompt: (profile) => `You are Kai, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
 
 You are teaching Module 5: Generate More Leads with AI.
 
@@ -169,7 +169,7 @@ Keep messages under 150 words. Build real assets they can use today.`
       "Use Cowork for task and file automation",
       "Build team AI workflows"
     ],
-    systemPrompt: (profile) => `You are Nova, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
+    systemPrompt: (profile) => `You are Kai, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
 
 You are teaching Module 6: Claude for Teams and Cowork.
 
@@ -197,7 +197,7 @@ Keep messages under 150 words. Focus on practical ${profile.industry} examples.`
       "Build a simple automation for their business",
       "Know when to use Claude Code vs other tools"
     ],
-    systemPrompt: (profile) => `You are Nova, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
+    systemPrompt: (profile) => `You are Kai, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
 
 You are teaching Module 7: Claude Code — Build Without Coding.
 
@@ -225,7 +225,7 @@ Keep messages under 150 words. Make coding feel accessible, not scary.`
       "Connect Claude to other tools",
       "Deploy a system that runs without them"
     ],
-    systemPrompt: (profile) => `You are Nova, an expert AI teacher AND agent. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
+    systemPrompt: (profile) => `You are Kai, an expert AI teacher AND agent. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
 
 You are teaching AND DOING Module 8: Build Your Agentic AI Workflow. This module is different — you act as their AI AGENT, not just a teacher.
 
@@ -358,7 +358,7 @@ function ChatLesson({ module, profile, onComplete }) {
 
       <div style={{ borderTop: `1px solid ${G2}`, padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '8px', background: G1, flexShrink: 0 }}>
         <div style={{ display: 'flex', gap: '8px' }}>
-          <textarea value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }} placeholder="Reply to Nova..." rows={2}
+          <textarea value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }} placeholder="Reply to Kai..." rows={2}
             style={{ flex: 1, background: G2, border: `1px solid ${G3}`, borderRadius: '10px', color: W, padding: '10px 14px', fontSize: '16px', resize: 'none', lineHeight: '1.5', fontFamily: '-apple-system,sans-serif', outline: 'none' }} />
           <button onClick={send} disabled={loading || !input.trim()} style={{ background: loading || !input.trim() ? G3 : Y, color: loading || !input.trim() ? GM : BG, border: 'none', borderRadius: '10px', padding: '0 16px', cursor: loading || !input.trim() ? 'not-allowed' : 'pointer', fontWeight: '800', fontSize: '13px', flexShrink: 0 }}>
             Send
@@ -401,8 +401,8 @@ function Onboarding({ onComplete }) {
       <style>{CSS}</style>
       <div style={{ maxWidth: '440px', width: '100%', animation: 'up 0.4s ease' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '48px' }}>
-          <div style={{ width: '32px', height: '32px', background: Y, borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '13px', color: BG, fontFamily: 'monospace' }}>N</div>
-          <span style={{ fontWeight: '700', fontSize: '16px' }}>Nova — Your AI Teacher</span>
+          <div style={{ width: '32px', height: '32px', background: Y, borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '13px', color: BG, fontFamily: 'monospace' }}>K</div>
+          <span style={{ fontWeight: '700', fontSize: '16px' }}>Kai — Your AI Teacher</span>
         </div>
 
         <div style={{ marginBottom: '8px' }}>
@@ -416,7 +416,7 @@ function Onboarding({ onComplete }) {
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', marginBottom: '32px' }}>
           <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: G2, border: `1px solid ${G3}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '9px', fontWeight: '900', color: Y, flexShrink: 0, marginTop: '2px' }}>N</div>
           <div style={{ background: G2, padding: '14px 16px', borderRadius: '14px 14px 14px 4px', fontSize: '15px', lineHeight: '1.6', flex: 1 }}>
-            {step === 0 ? `Hey! I'm Nova, your AI teacher. I'm going to teach you everything about AI and how to use it to grow your business. Before we start — ${questions[step].q}` : questions[step].q}
+            {step === 0 ? `Hey! I'm Kai, your AI teacher. I'm going to teach you everything about AI and how to use it to grow your business. Before we start — ${questions[step].q}` : questions[step].q}
           </div>
         </div>
 
@@ -435,13 +435,30 @@ function Onboarding({ onComplete }) {
 }
 
 export default function App() {
-  const [phase, setPhase] = useState('onboarding'); // onboarding | course | lesson
+  const [phase, setPhase] = useState('onboarding');
   const [profile, setProfile] = useState(null);
   const [activeIdx, setActiveIdx] = useState(null);
   const [completed, setCompleted] = useState({});
   const totalDone = Object.values(completed).filter(Boolean).length;
 
-  const completeOnboarding = (p) => { setProfile(p); setPhase('course'); };
+  // Load saved progress on mount
+  useEffect(() => {
+    try {
+      const savedProfile = localStorage.getItem('kai_profile');
+      const savedCompleted = localStorage.getItem('kai_completed');
+      if (savedProfile) {
+        setProfile(JSON.parse(savedProfile));
+        setCompleted(savedCompleted ? JSON.parse(savedCompleted) : {});
+        setPhase('course');
+      }
+    } catch(e) {}
+  }, []);
+
+  const completeOnboarding = (p) => {
+    setProfile(p);
+    setPhase('course');
+    try { localStorage.setItem('kai_profile', JSON.stringify(p)); } catch(e) {}
+  };
 
   const openModule = (idx) => {
     if (idx > 0 && !completed[idx - 1]) return;
@@ -450,13 +467,16 @@ export default function App() {
   };
 
   const completeModule = () => {
-    setCompleted(p => ({ ...p, [activeIdx]: true }));
+    const updated = { ...completed, [activeIdx]: true };
+    setCompleted(updated);
+    try { localStorage.setItem('kai_completed', JSON.stringify(updated)); } catch(e) {}
     const next = activeIdx + 1;
-    if (next < MODULES.length) {
-      setActiveIdx(next);
-    } else {
-      setPhase('course');
-    }
+    if (next < MODULES.length) { setActiveIdx(next); } else { setPhase('course'); }
+  };
+
+  const resetProgress = () => {
+    try { localStorage.removeItem('kai_profile'); localStorage.removeItem('kai_completed'); } catch(e) {}
+    setProfile(null); setCompleted({}); setPhase('onboarding');
   };
 
   const base = { minHeight: '100dvh', background: BG, color: W, fontFamily: "-apple-system,'Helvetica Neue',sans-serif" };
@@ -487,10 +507,10 @@ export default function App() {
       <style>{CSS}</style>
       <div style={{ background: G1, borderBottom: `1px solid ${G2}`, padding: '14px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 10 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '9px' }}>
-          <div style={{ width: '28px', height: '28px', background: Y, borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '11px', color: BG, fontFamily: 'monospace' }}>N</div>
+          <div style={{ width: '28px', height: '28px', background: Y, borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '11px', color: BG, fontFamily: 'monospace' }}>K</div>
           <div>
             <div style={{ fontWeight: '700', fontSize: '14px' }}>AI Mastery</div>
-            <div style={{ color: GM, fontSize: '11px' }}>with Nova</div>
+            <div style={{ color: GM, fontSize: '11px' }}>with Kai</div>
           </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -509,7 +529,7 @@ export default function App() {
         </div>
 
         <h2 style={{ fontSize: '18px', fontWeight: '800', marginBottom: '4px' }}>Your Modules</h2>
-        <p style={{ color: GM, fontSize: '12px', marginBottom: '16px' }}>Nova teaches each module through conversation — personalized to your business.</p>
+        <p style={{ color: GM, fontSize: '12px', marginBottom: '16px' }}>Kai teaches each module through conversation — personalized to your business.</p>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
           {MODULES.map((mod, idx) => {

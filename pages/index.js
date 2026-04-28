@@ -4,274 +4,544 @@ const Y = "#FFE500";
 const BG = "#000";
 const W = "#fff";
 const G1 = "#111";
-const G2 = "#1c1c1c";
-const G3 = "#333";
+const G2 = "#1a1a1a";
+const G3 = "#2a2a2a";
 const GM = "#666";
+const CSS = `*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}html,body{background:#000;height:100%}input,textarea,select{font-size:16px!important}@keyframes pulse{0%,100%{opacity:.2;transform:scale(.65)}50%{opacity:1;transform:scale(1)}}@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}::-webkit-scrollbar{width:0}`;
 
 const MODULES = [
   {
-    id: 1, title: "What AI Actually Is", tagline: "Stop being confused. Start being in control.", duration: "15 min", icon: "01",
-    lesson: `AI is not magic. It's not a robot. It's not going to take your job.\n\nHere's what AI actually is: a very smart assistant that does exactly what you tell it to do.\n\nThink of it like hiring the most patient, fastest employee in the world. They never sleep, never complain, and will rewrite something 50 times without rolling their eyes.\n\nThe catch? You have to learn how to give good instructions. That's the whole skill.\n\nWHAT IS A PROMPT?\nA prompt is just the message you type to AI. The better your instructions, the better your result. A bad prompt gives you bad results. A good prompt gives you something you can use in your business today.\n\nTHE 3-PART FORMULA\n\n1. Role — Tell AI who to be\n"Act as a marketing expert for small businesses..."\n\n2. Task — Tell it exactly what to do\n"Write a follow-up email for a lead who didn't respond..."\n\n3. Context — Give it your details\n"I run a dental practice in Miami Beach. My service is Invisalign. My price is $4,500..."\n\nRole + Task + Context = results you can actually use.`,
-    exercise: "Tell me about your business in 2–3 sentences. I'll write your first AI prompt — one you can copy and use today.",
-    placeholder: "I have a dental office in Miami Beach. I do Invisalign, veneers, whitening. At $45k/month and want to reach $100k..."
+    id: 1,
+    icon: "01",
+    title: "What AI Actually Is",
+    subtitle: "How it thinks, what it can't do, why it matters now",
+    teachingGoals: [
+      "Understand AI is a prediction engine, not magic",
+      "Know the difference between AI types",
+      "Understand why now is the right time to learn this",
+      "Clear up the biggest misconceptions"
+    ],
+    systemPrompt: (profile) => `You are an expert AI teacher named Nova. You are teaching a business owner named ${profile.name || 'the student'} who runs ${profile.business} in the ${profile.industry} industry. Their goal is: ${profile.goal}.
+
+You are teaching Module 1: What AI Actually Is.
+
+Your teaching style:
+- Conversational, never lecture-style
+- Use examples from THEIR specific industry (${profile.industry}) constantly
+- Ask one question at a time
+- Check understanding before moving forward
+- Keep each message under 150 words
+- Use analogies they can relate to as a business owner
+
+Teaching flow for this module:
+1. Start by asking what they think AI is (gauge their starting point)
+2. Correct misconceptions warmly, explain AI is a prediction/pattern engine
+3. Use a ${profile.industry} specific analogy to explain how it works
+4. Explain the difference between AI tools (Claude, ChatGPT, etc)
+5. Explain why RIGHT NOW is the critical time for business owners to learn this
+6. Check their understanding with a simple question
+7. When they demonstrate understanding, tell them they're ready for Module 2 and to click "Complete Module"
+
+Start by introducing yourself briefly and asking what they currently think AI is.`
   },
   {
-    id: 2, title: "Build Your AI Assistant", tagline: "One setup. Works for you forever.", duration: "20 min", icon: "02",
-    lesson: `Here's the game-changer most people miss: you don't have to explain your business every single time you use AI.\n\nYou build a Business Profile Prompt — a saved instruction set that tells AI everything about your business once. Then every time you need something, AI already knows who you are.\n\nWHAT GOES IN YOUR BUSINESS PROFILE\n- What your business does\n- Who your ideal customer is\n- Your tone (professional? casual? friendly?)\n- Your top 3 services or products\n- Your city and market\n- Your biggest business goal right now\n\nEXAMPLE\n"You are a marketing assistant for [Business Name], a [type of business] in [city]. Our ideal client is [description]. We offer [services]. Our tone is [friendly/professional]. Our current goal is [goal]. Always write in a way that speaks directly to our ideal client."\n\nOnce you save this, every output AI gives you will sound like YOU — not a generic robot.`,
-    exercise: "Let's build your Business Profile right now. Tell me: What does your business do? Who is your ideal customer? What's your #1 goal this year?",
-    placeholder: "I run a bookkeeping firm for restaurant owners. My goal is to get 5 new clients this quarter..."
+    id: 2,
+    icon: "02",
+    title: "Setting Up Claude Properly",
+    subtitle: "Account, plans, Projects, memory, and custom instructions",
+    teachingGoals: [
+      "Choose the right Claude plan",
+      "Set up a Project for their business",
+      "Configure custom instructions",
+      "Understand memory and artifacts",
+      "Upload files and use Claude's interface"
+    ],
+    systemPrompt: (profile) => `You are Nova, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}.
+
+You are teaching Module 2: Setting Up Claude the Right Way.
+
+Teaching flow:
+1. Ask if they have a Claude account yet
+2. Explain Claude plans: Free (limited), Pro ($20/mo - best for most business owners), Team (for multiple people). Recommend Pro for them.
+3. Teach Projects: explain it's like a dedicated workspace for a specific purpose. Walk them through creating one for their ${profile.industry} business.
+4. Teach Custom Instructions: this is where you tell Claude about yourself ONCE. Help them write their own custom instruction based on their ${profile.business}.
+5. Teach Memory: Claude can remember things across conversations in Projects
+6. Teach Artifacts: Claude can create documents, code, charts directly
+7. Teach file uploads: they can upload PDFs, images, documents for Claude to analyze
+8. Give them a specific setup checklist for their ${profile.industry} business
+9. When done, tell them to click "Complete Module"
+
+Keep each message under 150 words. Use specific examples for their ${profile.industry} business throughout.`
   },
   {
-    id: 3, title: "Automate Repetitive Work", tagline: "Stop doing the same tasks twice.", duration: "25 min", icon: "03",
-    lesson: `Every business owner has tasks they do over and over. Answering the same questions. Writing the same emails. Creating the same content.\n\nAI eliminates most of these. Here's how.\n\nTHE 5 TASKS OWNERS AUTOMATE MOST\n\n1. Email responses\n"Write a professional response to a customer asking about pricing for [service]. Under 150 words. End with a call to book a call."\n\n2. Social media content\n"Write 5 Instagram captions for a [type of business]. Under 150 characters, sound human, end with a question."\n\n3. Follow-up sequences\n"Write a 3-email follow-up for a lead who filled out my form but hasn't responded. Each email shorter than the last."\n\n4. FAQ answers\n"Here are the 10 most common questions my customers ask: [list]. Write clear, friendly answers I can paste on my website."\n\n5. Sales call prep\n"I have a call with a [type of business owner]. Give me 5 questions to ask and 3 ways to position my service."\n\nTHE KEY HABIT\nOnce you write a prompt that works — save it. You now have a reusable tool. Run it every week in 30 seconds.`,
-    exercise: "Tell me the #1 most repetitive task in your business right now. I'll build you a reusable prompt you can save and run every week.",
-    placeholder: "Every Monday I write a newsletter. Or: I spend an hour a day answering the same customer questions..."
+    id: 3,
+    icon: "03",
+    title: "Writing Prompts That Actually Work",
+    subtitle: "The Role + Task + Context formula with live practice",
+    teachingGoals: [
+      "Understand the 3-part prompt formula",
+      "Know why vague prompts give bad results",
+      "Write a great prompt for their own business",
+      "Learn to iterate and improve prompts"
+    ],
+    systemPrompt: (profile) => `You are Nova, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
+
+You are teaching Module 3: Writing Prompts That Actually Work.
+
+Teaching flow:
+1. Ask them to type a prompt they might actually use for their ${profile.industry} business RIGHT NOW (don't explain anything yet — see what they naturally write)
+2. Show them what's missing from their prompt using the Role + Task + Context formula
+3. Rewrite their prompt using the formula, showing each part clearly
+4. Explain WHY each part matters with a ${profile.industry} example
+5. Have them try writing an improved prompt themselves
+6. Give specific feedback on their attempt
+7. Teach prompt iteration: how to follow up and refine
+8. Give them 3 ready-to-use prompt templates for ${profile.industry}
+9. When they've written a good prompt, tell them to click "Complete Module"
+
+Be encouraging but specific. Keep messages under 150 words.`
   },
   {
-    id: 4, title: "Generate More Leads", tagline: "More customers. Less cold calling.", duration: "25 min", icon: "04",
-    lesson: `This is where AI starts making you money directly.\n\nSTEP 1 — DEFINE YOUR IDEAL LEAD\nBe specific. "Small business owners" is bad. "Restaurant owners in Miami doing $500k–$2M who struggle with bookkeeping" is great.\n\nSTEP 2 — CREATE A LEAD MAGNET\nA lead magnet is something free you give away to get someone's contact info.\n\nPrompt: "Create a 1-page guide called [title] for [ideal client]. It solves one specific problem, is easy to read, and ends with a reason to contact me."\n\nSTEP 3 — WRITE YOUR OUTREACH\n"Write a cold DM for Instagram targeting [ideal client]. Not salesy. Acknowledge a specific pain point. Offer a free resource or call. Under 5 sentences."\n\nSTEP 4 — QUALIFY YOUR LEADS\n"Create 5 conversational questions to ask a new lead to find out if they're a good fit for my [service]."\n\nSTEP 5 — BUILD YOUR FOLLOW-UP\nMost sales happen on follow-up 5 through 8. AI writes your entire sequence in 5 minutes — you set it once, it runs automatically.`,
-    exercise: "Tell me your service and who your ideal lead is. I'll write you a lead magnet concept AND an outreach message you can use this week.",
-    placeholder: "I do social media management for chiropractors. My ideal lead wants more patients but has no time for social media..."
+    id: 4,
+    icon: "04",
+    title: "Automate Your Repetitive Work",
+    subtitle: "Build a reusable prompt library for your business",
+    teachingGoals: [
+      "Identify their top 5 repetitive tasks",
+      "Build a saved prompt for each",
+      "Learn to use Claude Projects as a prompt library",
+      "Create a weekly AI workflow"
+    ],
+    systemPrompt: (profile) => `You are Nova, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
+
+You are teaching Module 4: Automate Your Repetitive Work.
+
+Teaching flow:
+1. Ask: "What's the most repetitive thing you do every week in your ${profile.industry} business?" 
+2. After they answer, build a reusable prompt for that exact task LIVE in the conversation
+3. Explain how to save it in Claude Projects
+4. Ask about their second most repetitive task, build that prompt too
+5. Teach the concept of a "prompt library" — a collection of saved, tested prompts
+6. Suggest 3 more prompts specific to ${profile.industry} they should build
+7. Teach the "Monday morning AI routine" — a 20-minute weekly workflow
+8. Make sure they have at least 2 actual saved prompts by the end
+9. Tell them to click "Complete Module" when ready
+
+Keep messages under 150 words. Build real prompts they can copy immediately.`
   },
   {
-    id: 5, title: "Workflows That Run Without You", tagline: "Work less. Grow more.", duration: "30 min", icon: "05",
-    lesson: `You've learned how to prompt, automate tasks, and generate leads. The final step: connect everything into a workflow — a system that runs even when you're not working.\n\nWHAT IS AN AI WORKFLOW?\nA sequence of prompts and actions that handles a business process from start to finish — automatically.\n\nAN EXAMPLE: LEAD GENERATION ON AUTOPILOT\n1. Someone sees your Instagram post — written by AI\n2. They download your free guide — written by AI\n3. They get a welcome email — written by AI, sent automatically\n4. 3 days later: follow-up email — written by AI\n5. If they reply: AI has pre-written your response options\n\nYou set it up once. It runs without you.\n\nTHE 3 WORKFLOWS EVERY BUSINESS SHOULD BUILD\n1. Lead capture and follow-up — Never lose a lead again\n2. Content calendar — 30 days of posts in one sitting\n3. Customer onboarding — New clients get everything automatically\n\nTOOLS THAT MAKE IT WORK\n- Claude or ChatGPT — Writing and thinking\n- Zapier — Connects apps without any code\n- Mailchimp or ActiveCampaign — Email sequences`,
-    exercise: "Tell me one business process you wish ran automatically. I'll map out the full AI workflow — step by step — that you can start building this week.",
-    placeholder: "When someone fills out my contact form, I want them to get a welcome email, then a follow-up 3 days later..."
+    id: 5,
+    icon: "05",
+    title: "Generate More Leads with AI",
+    subtitle: "Lead magnets, outreach, follow-up sequences",
+    teachingGoals: [
+      "Define their ideal lead precisely",
+      "Create a lead magnet concept",
+      "Write outreach messages",
+      "Build a follow-up sequence"
+    ],
+    systemPrompt: (profile) => `You are Nova, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
+
+You are teaching Module 5: Generate More Leads with AI.
+
+Teaching flow:
+1. Ask: "Who is your ideal customer for ${profile.business}? Describe them in detail."
+2. Help them get MORE specific — push for demographics, pain points, where they hang out
+3. Teach the lead magnet concept: something free that solves one problem
+4. BUILD a specific lead magnet concept for their business live
+5. Write an actual Instagram DM outreach message for their ${profile.industry} business
+6. Explain follow-up sequences: most sales happen on follow-up 5-8
+7. Write a 3-email follow-up sequence for their specific business
+8. Teach them how to use Claude to generate 30 days of content in one session
+9. By the end they should have: ideal customer definition, lead magnet idea, outreach message, email sequence
+10. Tell them to click "Complete Module"
+
+Keep messages under 150 words. Build real assets they can use today.`
+  },
+  {
+    id: 6,
+    icon: "06",
+    title: "Claude for Teams & Cowork",
+    subtitle: "Collaborate, share projects, automate with Cowork",
+    teachingGoals: [
+      "Understand Claude Team plan benefits",
+      "Share Projects with team members",
+      "Use Cowork for task and file automation",
+      "Build team AI workflows"
+    ],
+    systemPrompt: (profile) => `You are Nova, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
+
+You are teaching Module 6: Claude for Teams and Cowork.
+
+Teaching flow:
+1. Ask: "Do you have a team, or is it just you right now?"
+2. Even if solo — teach why setting up team-ready systems now matters
+3. Teach Claude Team plan: shared Projects, usage analytics, centralized billing
+4. Teach how to share a Project: invite team members, set permissions
+5. Teach Cowork: Anthropic's desktop tool for non-developers to automate file and task management. Explain specific use cases for ${profile.industry}
+6. Build a specific team workflow for their ${profile.business}: who does what, which AI tools, how it connects
+7. Teach prompt standardization: making sure everyone on the team uses the same great prompts
+8. Give them a "Team AI Setup Checklist" specific to ${profile.industry}
+9. Tell them to click "Complete Module"
+
+Keep messages under 150 words. Focus on practical ${profile.industry} examples.`
+  },
+  {
+    id: 7,
+    icon: "07",
+    title: "Claude Code — Build Without Coding",
+    subtitle: "Create real tools for your business, no developer needed",
+    teachingGoals: [
+      "Understand what Claude Code can build",
+      "Install and set up Claude Code",
+      "Build a simple automation for their business",
+      "Know when to use Claude Code vs other tools"
+    ],
+    systemPrompt: (profile) => `You are Nova, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
+
+You are teaching Module 7: Claude Code — Build Without Coding.
+
+Teaching flow:
+1. Start with a mind-shift: "You don't need to learn to code. You need to learn to direct." 
+2. Explain what Claude Code is: a command-line tool where Claude writes and runs code FOR you
+3. Explain what it can build for a ${profile.industry} business: automation scripts, data processors, simple apps, website tools, email automation
+4. Walk through installation: it requires Node.js, installed via npm
+5. Teach the mental model: describe what you want in plain English, Claude Code figures out the code
+6. Give them 3 specific things they could build for ${profile.business} using Claude Code
+7. Walk through one example prompt they'd give Claude Code for their specific business
+8. Teach when to use Claude Code vs Zapier vs Make vs manual Claude
+9. Tell them to click "Complete Module"
+
+Keep messages under 150 words. Make coding feel accessible, not scary.`
+  },
+  {
+    id: 8,
+    icon: "08",
+    title: "Build Your Agentic AI Workflow",
+    subtitle: "Your AI works for you 24/7 — we build it together now",
+    teachingGoals: [
+      "Understand what agentic AI means",
+      "Map a full automated workflow",
+      "Connect Claude to other tools",
+      "Deploy a system that runs without them"
+    ],
+    systemPrompt: (profile) => `You are Nova, an expert AI teacher AND agent. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
+
+You are teaching AND DOING Module 8: Build Your Agentic AI Workflow. This module is different — you act as their AI AGENT, not just a teacher.
+
+Agent mode flow:
+1. Explain: "This module is different. I'm going to act as your AI agent and we're going to BUILD your actual workflow together right now."
+2. Ask: "What's the one business process you most want to automate?" 
+3. After they answer, map the FULL workflow step by step:
+   - What triggers it?
+   - What happens at each step?
+   - What tools connect it? (Claude, Zapier, email, CRM, etc)
+   - What's the output?
+4. Write every AI prompt needed in the workflow
+5. Give specific Zapier/Make connection instructions
+6. Identify where Claude Code would help
+7. Give them a complete deployment checklist
+8. Write a "maintenance prompt" — how to update and improve the workflow monthly
+9. End with: "You now have a working agentic workflow. This runs 24/7 without you."
+
+Be specific. Build the ACTUAL workflow for their ${profile.business}. This is the graduation module — make it powerful.`
   }
 ];
 
-const SKILLS = [
-  { id: "s1", title: "Prompt Enhancer", icon: "PE", desc: "Paste any rough prompt — I'll rewrite it to be 10x more effective.", how: "Give me your basic prompt. I'll rebuild it with Role + Task + Context so AI gives you a much better result.", placeholder: "Write me a social media post about my dental office", system: "You are an expert AI prompt engineer. Rewrite the user's prompt using Role + Task + Context formula. Show the improved version clearly. Explain what changed. Under 300 words." },
-  { id: "s2", title: "Content Machine", icon: "CM", desc: "Tell me about your business — I'll write 30 days of social media posts.", how: "Give me your business type, top service, and ideal customer. I'll generate a full month of post ideas.", placeholder: "My business is a dental office in Miami Beach. My top service is Invisalign. My ideal customer is adults 25–45.", system: "You are a social media strategist. Create a 30-day content calendar. Format as Day 1:, Day 2:, etc. One clear post idea per day. Group into 4 weekly themes. Be specific to their business." },
-  { id: "s3", title: "Lead Magnet Builder", icon: "LM", desc: "Creates a free guide concept that attracts your ideal customer.", how: "Tell me your business and your ideal customer's biggest problem.", placeholder: "I run a dental office. My ideal customer's biggest problem is fear of the dentist and not knowing what treatments cost.", system: "You are a lead generation expert. Create: 1) A compelling lead magnet title, 2) A 5-point outline, 3) A short promotional hook. Make it specific. Under 300 words." },
-  { id: "s4", title: "Follow-Up Writer", icon: "FU", desc: "Writes a complete 5-email follow-up sequence for cold leads.", how: "Tell me your service and what the lead originally asked about.", placeholder: "My service is Invisalign at $4,500. The lead asked about pricing 2 weeks ago and hasn't responded.", system: "You are an expert email copywriter. Write a 5-email follow-up sequence. Each email: Subject line, 3–5 sentence body, call to action. Emails get shorter. Human tone, not salesy." },
-  { id: "s5", title: "Review Responder", icon: "RR", desc: "Writes professional responses to Google reviews in your voice.", how: "Paste the review and your business name.", placeholder: "Business: Cupo Dental Miami Beach\n\nReview: I had a great experience! Dr. Cupo was gentle and explained everything. Highly recommend!", system: "Write a warm professional response to this Google review. If positive: thank them and invite them back. If negative: acknowledge, apologize without admitting fault, offer to resolve offline. Under 100 words." },
-  { id: "s6", title: "Sales Script Builder", icon: "SS", desc: "Word-for-word sales script for phone or in-person conversations.", how: "Tell me your service, price, and the objections you hear most.", placeholder: "My service is Invisalign at $4,500. Patients say it's too expensive or need to think about it.", system: "Write a word-for-word sales script. Include: opening, 3 discovery questions, service presentation, handling top 2 objections, natural close. Format clearly so they can follow along." }
-];
-
 async function askAI(messages, system) {
-  const res = await fetch("/api/chat", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+  const res = await fetch('/api/chat', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ messages, system })
   });
   if (!res.ok) throw new Error(`${res.status}`);
   const data = await res.json();
-  if (data.error) throw new Error(data.error);
+  if (!data.text) throw new Error('No response');
   return data.text;
 }
 
-function TutorChat({ mod, onClose }) {
-  const [msgs, setMsgs] = useState([{ role: "assistant", content: mod.exercise }]);
-  const [input, setInput] = useState("");
+function TypingIndicator() {
+  return (
+    <div style={{ display: 'flex', gap: '5px', padding: '12px 16px', background: G2, borderRadius: '16px', width: 'fit-content' }}>
+      {[0,1,2].map(i => <div key={i} style={{ width: '7px', height: '7px', borderRadius: '50%', background: Y, animation: 'pulse 1.2s ease-in-out infinite', animationDelay: `${i*0.18}s` }} />)}
+    </div>
+  );
+}
+
+function ChatLesson({ module, profile, onComplete }) {
+  const [msgs, setMsgs] = useState([]);
+  const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [started, setStarted] = useState(false);
   const listRef = useRef(null);
-  useEffect(() => { if (listRef.current) listRef.current.scrollTop = listRef.current.scrollHeight; }, [msgs, loading]);
+
+  useEffect(() => {
+    if (listRef.current) listRef.current.scrollTop = listRef.current.scrollHeight;
+  }, [msgs, loading]);
+
+  const startLesson = async () => {
+    setStarted(true);
+    setLoading(true);
+    try {
+      const reply = await askAI(
+        [{ role: 'user', content: 'Start the lesson.' }],
+        module.systemPrompt(profile)
+      );
+      setMsgs([{ role: 'assistant', content: reply }]);
+    } catch (e) {
+      setMsgs([{ role: 'assistant', content: 'Something went wrong. Please refresh and try again.' }]);
+    }
+    setLoading(false);
+  };
 
   const send = async () => {
     const text = input.trim();
     if (!text || loading) return;
-    setError("");
-    const history = [...msgs, { role: "user", content: text }];
-    setMsgs(history); setInput(""); setLoading(true);
+    const updated = [...msgs, { role: 'user', content: text }];
+    setMsgs(updated);
+    setInput('');
+    setLoading(true);
     try {
-      const reply = await askAI(history.map(m => ({ role: m.role, content: m.content })), `You are an expert AI business coach teaching Module ${mod.id}: "${mod.title}" in a $99 course called "AI for Business Owners." Student is a total beginner. Be warm, direct, practical. Zero jargon. Task: ${mod.exercise}. Deliver a concrete copyable output they can use TODAY. Max 300 words. End with one next step.`);
-      setMsgs(p => [...p, { role: "assistant", content: reply }]);
-    } catch (e) { setError("Couldn't reach AI. Tap retry."); }
+      const reply = await askAI(
+        updated.map(m => ({ role: m.role, content: m.content })),
+        module.systemPrompt(profile)
+      );
+      setMsgs(p => [...p, { role: 'assistant', content: reply }]);
+    } catch (e) {
+      setMsgs(p => [...p, { role: 'assistant', content: 'Connection error. Please try again.' }]);
+    }
     setLoading(false);
   };
 
-  const retry = () => { const u = [...msgs].reverse().find(m => m.role === "user"); if (!u) return; setError(""); setMsgs(p => p.slice(0,-1)); setInput(u.content); };
-
-  return (
-    <div style={{ position:"fixed", inset:0, zIndex:300, background:BG, display:"flex", flexDirection:"column", height:"100dvh" }}>
-      <div style={{ background:G1, borderBottom:`1px solid ${G2}`, padding:"14px 18px", display:"flex", alignItems:"center", justifyContent:"space-between", flexShrink:0 }}>
-        <div>
-          <div style={{ color:Y, fontSize:"10px", letterSpacing:"2px", marginBottom:"3px", fontWeight:"800", fontFamily:"monospace" }}>AI TUTOR · MODULE {mod.id}</div>
-          <div style={{ color:W, fontWeight:"700", fontSize:"15px" }}>{mod.title}</div>
-        </div>
-        <button onClick={onClose} style={{ background:G2, border:"none", color:"#aaa", width:"36px", height:"36px", borderRadius:"8px", cursor:"pointer", fontSize:"20px", display:"flex", alignItems:"center", justifyContent:"center" }}>×</button>
-      </div>
-      <div ref={listRef} style={{ flex:1, overflowY:"auto", padding:"16px", display:"flex", flexDirection:"column", gap:"12px" }}>
-        {msgs.map((m,i) => (
-          <div key={i} style={{ display:"flex", justifyContent:m.role==="user"?"flex-end":"flex-start" }}>
-            <div style={{ maxWidth:"85%", padding:"13px 16px", background:m.role==="user"?Y:G2, color:m.role==="user"?BG:W, borderRadius:m.role==="user"?"18px 18px 4px 18px":"18px 18px 18px 4px", fontSize:"15px", lineHeight:"1.6", whiteSpace:"pre-wrap", wordBreak:"break-word" }}>{m.content}</div>
+  if (!started) return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 1, padding: '40px 24px', textAlign: 'center' }}>
+      <div style={{ width: '64px', height: '64px', borderRadius: '16px', background: G2, border: `1px solid ${G3}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '18px', fontWeight: '900', color: Y, marginBottom: '24px' }}>{module.icon}</div>
+      <h2 style={{ fontSize: '22px', fontWeight: '800', marginBottom: '8px', letterSpacing: '-0.5px' }}>{module.title}</h2>
+      <p style={{ color: GM, fontSize: '14px', marginBottom: '32px', lineHeight: '1.6' }}>{module.subtitle}</p>
+      <div style={{ background: G1, border: `1px solid ${G2}`, borderRadius: '12px', padding: '20px', marginBottom: '32px', textAlign: 'left', width: '100%', maxWidth: '400px' }}>
+        <div style={{ color: Y, fontSize: '9px', letterSpacing: '2px', fontFamily: 'monospace', fontWeight: '800', marginBottom: '12px' }}>YOU'LL LEARN</div>
+        {module.teachingGoals.map((g, i) => (
+          <div key={i} style={{ display: 'flex', gap: '10px', marginBottom: '8px', alignItems: 'flex-start' }}>
+            <div style={{ width: '16px', height: '16px', borderRadius: '50%', background: '#0f0f00', border: `1px solid ${Y}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '1px' }}>
+              <span style={{ color: Y, fontSize: '8px' }}>✓</span>
+            </div>
+            <span style={{ color: '#bbb', fontSize: '13px', lineHeight: '1.5' }}>{g}</span>
           </div>
         ))}
-        {loading && <div style={{ display:"flex", gap:"6px", padding:"13px 16px", background:G2, borderRadius:"18px", width:"fit-content" }}>{[0,1,2].map(i=><div key={i} style={{ width:"8px", height:"8px", borderRadius:"50%", background:Y, animation:"pulse 1.2s ease-in-out infinite", animationDelay:`${i*0.18}s` }}/>)}</div>}
-        {error && <div style={{ display:"flex", alignItems:"center", gap:"10px", padding:"12px 16px", background:"#180000", border:"1px solid #500", borderRadius:"12px" }}><span style={{ color:"#f88", fontSize:"14px", flex:1 }}>{error}</span><button onClick={retry} style={{ background:Y, color:BG, border:"none", borderRadius:"8px", padding:"6px 14px", fontWeight:"800", fontSize:"13px", cursor:"pointer" }}>Retry</button></div>}
       </div>
-      <div style={{ borderTop:`1px solid ${G2}`, padding:"12px 16px", display:"flex", gap:"10px", background:G1, flexShrink:0 }}>
-        <textarea value={input} onChange={e=>setInput(e.target.value)} onKeyDown={e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();send();}}} placeholder={mod.placeholder} rows={2} style={{ flex:1, background:G2, border:`1px solid ${G3}`, borderRadius:"10px", color:W, padding:"10px 14px", fontSize:"16px", resize:"none", lineHeight:"1.5", fontFamily:"-apple-system,sans-serif", outline:"none" }}/>
-        <button onClick={send} disabled={loading||!input.trim()} style={{ background:loading||!input.trim()?G2:Y, color:loading||!input.trim()?G3:BG, border:"none", borderRadius:"10px", padding:"0 18px", cursor:loading||!input.trim()?"not-allowed":"pointer", fontWeight:"800", fontSize:"14px", flexShrink:0, minWidth:"64px" }}>Send</button>
+      <button onClick={startLesson} style={{ background: Y, color: BG, border: 'none', padding: '16px 40px', borderRadius: '12px', fontSize: '15px', fontWeight: '800', cursor: 'pointer' }}>
+        Start Lesson →
+      </button>
+    </div>
+  );
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
+      <div ref={listRef} style={{ flex: 1, overflowY: 'auto', padding: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        {msgs.map((m, i) => (
+          <div key={i} style={{ display: 'flex', justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start', animation: 'up 0.2s ease' }}>
+            {m.role === 'assistant' && (
+              <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: G2, border: `1px solid ${G3}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '9px', fontWeight: '900', color: Y, flexShrink: 0, marginRight: '8px', marginTop: '2px' }}>N</div>
+            )}
+            <div style={{ maxWidth: '80%', padding: '12px 16px', background: m.role === 'user' ? Y : G2, color: m.role === 'user' ? BG : W, borderRadius: m.role === 'user' ? '16px 16px 4px 16px' : '16px 16px 16px 4px', fontSize: '14px', lineHeight: '1.65', whiteSpace: 'pre-wrap', wordBreak: 'break-word', fontWeight: m.role === 'user' ? '600' : '400' }}>
+              {m.content}
+            </div>
+          </div>
+        ))}
+        {loading && (
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+            <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: G2, border: `1px solid ${G3}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '9px', fontWeight: '900', color: Y, flexShrink: 0 }}>N</div>
+            <TypingIndicator />
+          </div>
+        )}
+      </div>
+
+      <div style={{ borderTop: `1px solid ${G2}`, padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '8px', background: G1, flexShrink: 0 }}>
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <textarea value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }} placeholder="Reply to Nova..." rows={2}
+            style={{ flex: 1, background: G2, border: `1px solid ${G3}`, borderRadius: '10px', color: W, padding: '10px 14px', fontSize: '16px', resize: 'none', lineHeight: '1.5', fontFamily: '-apple-system,sans-serif', outline: 'none' }} />
+          <button onClick={send} disabled={loading || !input.trim()} style={{ background: loading || !input.trim() ? G3 : Y, color: loading || !input.trim() ? GM : BG, border: 'none', borderRadius: '10px', padding: '0 16px', cursor: loading || !input.trim() ? 'not-allowed' : 'pointer', fontWeight: '800', fontSize: '13px', flexShrink: 0 }}>
+            Send
+          </button>
+        </div>
+        <button onClick={onComplete} style={{ background: 'transparent', color: GM, border: `1px solid ${G3}`, padding: '10px', borderRadius: '8px', fontSize: '12px', cursor: 'pointer', fontFamily: 'monospace', letterSpacing: '1px' }}>
+          MARK COMPLETE & CONTINUE →
+        </button>
       </div>
     </div>
   );
 }
 
-function SkillTool({ skill, onClose }) {
-  const [input, setInput] = useState("");
-  const [result, setResult] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+function Onboarding({ onComplete }) {
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState({ name: '', business: '', industry: '', goal: '' });
+  const [input, setInput] = useState('');
 
-  const run = async () => {
-    if (!input.trim()||loading) return;
-    setError(""); setResult(""); setLoading(true);
-    try { const reply = await askAI([{ role:"user", content:input }], skill.system); setResult(reply); }
-    catch(e) { setError("Something went wrong. Try again."); }
-    setLoading(false);
+  const questions = [
+    { key: 'name', q: "First — what's your name?", placeholder: 'David' },
+    { key: 'business', q: `Nice to meet you! What's your business? Describe it in one sentence.`, placeholder: 'I run a dental office in Miami Beach specializing in cosmetic dentistry' },
+    { key: 'industry', q: `Got it. What industry would you say you're in?`, placeholder: 'Healthcare / Dental' },
+    { key: 'goal', q: `Last one — what's your #1 business goal right now?`, placeholder: 'Double my revenue from $45k to $100k/month' }
+  ];
+
+  const next = () => {
+    if (!input.trim()) return;
+    const updated = { ...answers, [questions[step].key]: input.trim() };
+    setAnswers(updated);
+    setInput('');
+    if (step < questions.length - 1) {
+      setStep(s => s + 1);
+    } else {
+      onComplete(updated);
+    }
   };
 
   return (
-    <div style={{ position:"fixed", inset:0, zIndex:300, background:BG, display:"flex", flexDirection:"column", height:"100dvh" }}>
-      <div style={{ background:G1, borderBottom:`1px solid ${G2}`, padding:"14px 18px", display:"flex", alignItems:"center", justifyContent:"space-between", flexShrink:0 }}>
-        <div>
-          <div style={{ color:Y, fontSize:"10px", letterSpacing:"2px", marginBottom:"3px", fontWeight:"800", fontFamily:"monospace" }}>AI SKILL TOOL</div>
-          <div style={{ color:W, fontWeight:"700", fontSize:"15px" }}>{skill.title}</div>
+    <div style={{ minHeight: '100dvh', background: BG, color: W, fontFamily: "-apple-system,'Helvetica Neue',sans-serif", display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
+      <style>{CSS}</style>
+      <div style={{ maxWidth: '440px', width: '100%', animation: 'up 0.4s ease' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '48px' }}>
+          <div style={{ width: '32px', height: '32px', background: Y, borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '13px', color: BG, fontFamily: 'monospace' }}>N</div>
+          <span style={{ fontWeight: '700', fontSize: '16px' }}>Nova — Your AI Teacher</span>
         </div>
-        <button onClick={onClose} style={{ background:G2, border:"none", color:"#aaa", width:"36px", height:"36px", borderRadius:"8px", cursor:"pointer", fontSize:"20px", display:"flex", alignItems:"center", justifyContent:"center" }}>×</button>
-      </div>
-      <div style={{ flex:1, overflowY:"auto", padding:"20px 16px" }}>
-        <div style={{ background:G1, border:`1px solid ${G2}`, borderRadius:"12px", padding:"16px", marginBottom:"16px" }}>
-          <div style={{ color:Y, fontSize:"9px", letterSpacing:"2px", fontFamily:"monospace", fontWeight:"800", marginBottom:"8px" }}>HOW IT WORKS</div>
-          <div style={{ color:"#bbb", fontSize:"14px", lineHeight:"1.6" }}>{skill.how}</div>
+
+        <div style={{ marginBottom: '8px' }}>
+          {step > 0 && Object.entries(answers).slice(0, step).map(([k, v]) => v && (
+            <div key={k} style={{ marginBottom: '8px', display: 'flex', justifyContent: 'flex-end' }}>
+              <div style={{ background: Y, color: BG, padding: '10px 14px', borderRadius: '14px 14px 4px 14px', fontSize: '14px', fontWeight: '600', maxWidth: '80%' }}>{v}</div>
+            </div>
+          ))}
         </div>
-        <textarea value={input} onChange={e=>setInput(e.target.value)} placeholder={skill.placeholder} rows={4} style={{ width:"100%", background:G2, border:`1px solid ${G3}`, borderRadius:"10px", color:W, padding:"14px", fontSize:"16px", resize:"none", lineHeight:"1.55", fontFamily:"-apple-system,sans-serif", outline:"none", marginBottom:"12px" }}/>
-        <button onClick={run} disabled={loading||!input.trim()} style={{ width:"100%", background:loading||!input.trim()?G2:Y, color:loading||!input.trim()?G3:BG, border:"none", padding:"16px", borderRadius:"12px", fontSize:"16px", fontWeight:"800", cursor:loading||!input.trim()?"not-allowed":"pointer", marginBottom:"16px" }}>{loading?"Working...":"Generate →"}</button>
-        {loading && <div style={{ display:"flex", gap:"6px", padding:"16px", background:G2, borderRadius:"12px", width:"fit-content", marginBottom:"12px" }}>{[0,1,2].map(i=><div key={i} style={{ width:"8px", height:"8px", borderRadius:"50%", background:Y, animation:"pulse 1.2s ease-in-out infinite", animationDelay:`${i*0.18}s` }}/>)}</div>}
-        {error && <div style={{ color:"#f88", fontSize:"14px", padding:"12px", background:"#180000", border:"1px solid #400", borderRadius:"10px", marginBottom:"12px" }}>{error}</div>}
-        {result && <div style={{ background:G1, border:`1px solid ${G2}`, borderRadius:"12px", padding:"20px" }}><div style={{ color:Y, fontSize:"9px", letterSpacing:"2px", fontFamily:"monospace", fontWeight:"800", marginBottom:"12px" }}>YOUR RESULT — COPY AND USE THIS</div><div style={{ color:W, fontSize:"14px", lineHeight:"1.75", whiteSpace:"pre-wrap" }}>{result}</div></div>}
+
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', marginBottom: '32px' }}>
+          <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: G2, border: `1px solid ${G3}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '9px', fontWeight: '900', color: Y, flexShrink: 0, marginTop: '2px' }}>N</div>
+          <div style={{ background: G2, padding: '14px 16px', borderRadius: '14px 14px 14px 4px', fontSize: '15px', lineHeight: '1.6', flex: 1 }}>
+            {step === 0 ? `Hey! I'm Nova, your AI teacher. I'm going to teach you everything about AI and how to use it to grow your business. Before we start — ${questions[step].q}` : questions[step].q}
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') next(); }} placeholder={questions[step].placeholder}
+            style={{ flex: 1, background: G2, border: `1px solid ${G3}`, borderRadius: '10px', color: W, padding: '14px 16px', fontSize: '16px', fontFamily: '-apple-system,sans-serif', outline: 'none' }} autoFocus />
+          <button onClick={next} disabled={!input.trim()} style={{ background: !input.trim() ? G3 : Y, color: !input.trim() ? GM : BG, border: 'none', borderRadius: '10px', padding: '0 20px', cursor: !input.trim() ? 'not-allowed' : 'pointer', fontWeight: '800', fontSize: '14px', flexShrink: 0 }}>→</button>
+        </div>
+
+        <div style={{ display: 'flex', gap: '6px', marginTop: '24px', justifyContent: 'center' }}>
+          {questions.map((_, i) => <div key={i} style={{ width: i === step ? '20px' : '6px', height: '6px', borderRadius: '3px', background: i === step ? Y : G3, transition: 'all 0.3s' }} />)}
+        </div>
       </div>
     </div>
   );
 }
 
 export default function App() {
-  const [screen, setScreen] = useState("home");
-  const [active, setActive] = useState(null);
-  const [done, setDone] = useState({});
-  const [tutor, setTutor] = useState(false);
-  const [activeTool, setActiveTool] = useState(null);
-  const [tab, setTab] = useState("modules");
-  const totalDone = Object.values(done).filter(Boolean).length;
+  const [phase, setPhase] = useState('onboarding'); // onboarding | course | lesson
+  const [profile, setProfile] = useState(null);
+  const [activeIdx, setActiveIdx] = useState(null);
+  const [completed, setCompleted] = useState({});
+  const totalDone = Object.values(completed).filter(Boolean).length;
 
-  const goModule = (mod, idx) => { if (idx > 0 && !done[idx-1]) return; setActive({ mod, idx }); setScreen("lesson"); };
-  const markDone = () => { const {idx} = active; setDone(p=>({...p,[idx]:true})); const next=MODULES[idx+1]; if(next) setActive({mod:next,idx:idx+1}); else {setScreen("list");setTab("skills");} };
-  const base = { minHeight:"100dvh", background:BG, color:W, fontFamily:"-apple-system,'Helvetica Neue',sans-serif" };
-  const css = `*{box-sizing:border-box;margin:0;padding:0} input,textarea{font-size:16px!important} @keyframes pulse{0%,100%{opacity:.2;transform:scale(.65)}50%{opacity:1;transform:scale(1)}} @keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}} ::-webkit-scrollbar{width:0}`;
+  const completeOnboarding = (p) => { setProfile(p); setPhase('course'); };
 
-  if (screen === "home") return (
-    <div style={base}><style>{css}</style>
-      <div style={{ maxWidth:"440px", margin:"0 auto", padding:"52px 22px 72px", animation:"up .5s ease" }}>
-        <div style={{ display:"inline-flex", alignItems:"center", gap:"8px", background:"#0f0f00", border:`1px solid ${Y}`, borderRadius:"20px", padding:"5px 14px", marginBottom:"32px" }}>
-          <div style={{ width:"6px", height:"6px", borderRadius:"50%", background:Y }}/><span style={{ color:Y, fontSize:"10px", letterSpacing:"2px", fontWeight:"800", fontFamily:"monospace" }}>5 MODULES · 6 AI SKILL TOOLS</span>
-        </div>
-        <h1 style={{ fontSize:"42px", fontWeight:"800", lineHeight:"1.05", marginBottom:"16px", letterSpacing:"-1px" }}>AI for<br/><span style={{ color:Y }}>Business Owners</span></h1>
-        <p style={{ color:GM, fontSize:"16px", lineHeight:"1.7", marginBottom:"36px" }}>Automate your work and generate more leads — even if you've never used AI before.</p>
-        <div style={{ display:"flex", flexDirection:"column", gap:"14px", marginBottom:"40px" }}>
-          {["No tech experience needed — if you can type, you can do this","Walk away with real prompts you use in your business today","Every module has a live AI tutor built for your specific business","6 AI skill tools you keep forever: emails, content, scripts & more"].map((t,i)=>(
-            <div key={i} style={{ display:"flex", gap:"12px", alignItems:"flex-start" }}>
-              <div style={{ width:"20px", height:"20px", borderRadius:"50%", background:"#0f0f00", border:`1px solid ${Y}`, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, marginTop:"1px" }}><span style={{ color:Y, fontSize:"10px" }}>✓</span></div>
-              <span style={{ color:"#ccc", fontSize:"15px", lineHeight:"1.55" }}>{t}</span>
-            </div>
-          ))}
-        </div>
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:"10px", marginBottom:"32px" }}>
-          {[["2,400+","Students"],["4.9","Rating"],["$99","One-time"]].map(([v,l])=>(
-            <div key={l} style={{ background:G1, border:`1px solid ${G2}`, borderRadius:"10px", padding:"16px 10px", textAlign:"center" }}>
-              <div style={{ fontSize:"20px", fontWeight:"800", color:W, marginBottom:"4px" }}>{v}</div>
-              <div style={{ color:GM, fontSize:"9px", letterSpacing:"1px", fontFamily:"monospace" }}>{l.toUpperCase()}</div>
-            </div>
-          ))}
-        </div>
-        <button onClick={()=>setScreen("list")} style={{ width:"100%", background:Y, color:BG, border:"none", padding:"18px", borderRadius:"12px", fontSize:"16px", fontWeight:"800", cursor:"pointer" }}>Start the Course →</button>
-        <div style={{ textAlign:"center", color:G3, fontSize:"11px", marginTop:"10px" }}>~2 hours · self-paced · yours forever</div>
-      </div>
-    </div>
-  );
+  const openModule = (idx) => {
+    if (idx > 0 && !completed[idx - 1]) return;
+    setActiveIdx(idx);
+    setPhase('lesson');
+  };
 
-  if (screen === "list") return (
-    <div style={base}><style>{css}</style>
-      <div style={{ background:G1, borderBottom:`1px solid ${G2}`, padding:"14px 18px", display:"flex", alignItems:"center", justifyContent:"space-between", position:"sticky", top:0, zIndex:10 }}>
-        <div style={{ display:"flex", alignItems:"center", gap:"9px" }}>
-          <div style={{ width:"28px", height:"28px", background:Y, borderRadius:"6px", display:"flex", alignItems:"center", justifyContent:"center", fontWeight:"900", fontSize:"11px", color:BG, fontFamily:"monospace" }}>AI</div>
-          <span style={{ fontWeight:"700", fontSize:"15px" }}>AI for Business</span>
-        </div>
-        <div style={{ display:"flex", alignItems:"center", gap:"8px" }}>
-          <div style={{ width:"72px", height:"4px", background:G2, borderRadius:"2px" }}><div style={{ width:`${(totalDone/MODULES.length)*100}%`, height:"100%", background:Y, borderRadius:"2px", transition:"width .4s" }}/></div>
-          <span style={{ color:GM, fontSize:"12px", fontWeight:"700" }}>{totalDone}/{MODULES.length}</span>
-        </div>
-      </div>
-      <div style={{ display:"flex", background:G1, borderBottom:`1px solid ${G2}` }}>
-        {["modules","skills"].map(t=>(
-          <button key={t} onClick={()=>setTab(t)} style={{ flex:1, padding:"13px 0", background:"none", border:"none", borderBottom:`2px solid ${tab===t?Y:"transparent"}`, color:tab===t?Y:GM, fontWeight:"700", fontSize:"12px", cursor:"pointer", textTransform:"uppercase", letterSpacing:"1px", fontFamily:"monospace" }}>
-            {t==="modules"?"Modules":"Skill Tools"}
-          </button>
-        ))}
-      </div>
-      <div style={{ maxWidth:"440px", margin:"0 auto", padding:"20px 16px 60px" }}>
-        {tab==="modules" ? (
-          <div style={{ display:"flex", flexDirection:"column", gap:"10px" }}>
-            {MODULES.map((mod,idx)=>{ const locked=idx>0&&!done[idx-1]; const isDone=done[idx]; return (
-              <div key={mod.id} onClick={()=>goModule(mod,idx)} style={{ background:G1, border:`1px solid ${isDone?"#2a2a00":locked?G1:G2}`, borderRadius:"12px", padding:"16px", display:"flex", gap:"13px", alignItems:"center", cursor:locked?"not-allowed":"pointer", opacity:locked?0.35:1 }}>
-                <div style={{ width:"44px", height:"44px", borderRadius:"10px", background:isDone?"#1a1a00":G2, border:`1px solid ${isDone?Y:G3}`, display:"flex", alignItems:"center", justifyContent:"center", fontFamily:"monospace", fontSize:isDone?"16px":"13px", fontWeight:"900", color:isDone?Y:GM, flexShrink:0 }}>{isDone?"✓":mod.icon}</div>
-                <div style={{ flex:1, minWidth:0 }}>
-                  <div style={{ color:GM, fontSize:"9px", letterSpacing:"1px", marginBottom:"3px", fontFamily:"monospace" }}>MODULE {mod.id} · {mod.duration}</div>
-                  <div style={{ color:isDone?GM:W, fontWeight:"700", fontSize:"15px", marginBottom:"2px" }}>{mod.title}</div>
-                  <div style={{ color:G3, fontSize:"12px" }}>{mod.tagline}</div>
-                </div>
-                <div style={{ color:G3, fontSize:"22px", flexShrink:0 }}>{locked?"—":"›"}</div>
-              </div>
-            );})}
-          </div>
-        ) : (
-          <div style={{ display:"flex", flexDirection:"column", gap:"10px" }}>
-            <p style={{ color:GM, fontSize:"13px", marginBottom:"6px" }}>Six AI tools built for your business. Tap any to use it now.</p>
-            {SKILLS.map(skill=>(
-              <div key={skill.id} onClick={()=>setActiveTool(skill)} style={{ background:G1, border:`1px solid ${G2}`, borderRadius:"12px", padding:"16px", display:"flex", gap:"13px", alignItems:"center", cursor:"pointer" }}>
-                <div style={{ width:"44px", height:"44px", borderRadius:"10px", background:G2, border:`1px solid ${G3}`, display:"flex", alignItems:"center", justifyContent:"center", fontFamily:"monospace", fontSize:"11px", fontWeight:"900", color:Y, flexShrink:0 }}>{skill.icon}</div>
-                <div style={{ flex:1, minWidth:0 }}>
-                  <div style={{ color:W, fontWeight:"700", fontSize:"15px", marginBottom:"3px" }}>{skill.title}</div>
-                  <div style={{ color:G3, fontSize:"12px", lineHeight:"1.4" }}>{skill.desc}</div>
-                </div>
-                <div style={{ color:G3, fontSize:"22px", flexShrink:0 }}>›</div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-      {activeTool && <SkillTool skill={activeTool} onClose={()=>setActiveTool(null)}/>}
-    </div>
-  );
+  const completeModule = () => {
+    setCompleted(p => ({ ...p, [activeIdx]: true }));
+    const next = activeIdx + 1;
+    if (next < MODULES.length) {
+      setActiveIdx(next);
+    } else {
+      setPhase('course');
+    }
+  };
 
-  if (screen==="lesson" && active) {
-    const {mod,idx} = active;
+  const base = { minHeight: '100dvh', background: BG, color: W, fontFamily: "-apple-system,'Helvetica Neue',sans-serif" };
+
+  if (phase === 'onboarding') return <Onboarding onComplete={completeOnboarding} />;
+
+  if (phase === 'lesson' && activeIdx !== null) {
+    const mod = MODULES[activeIdx];
     return (
-      <div style={base}><style>{css}</style>
-        <div style={{ background:G1, borderBottom:`1px solid ${G2}`, padding:"13px 18px", display:"flex", alignItems:"center", gap:"12px", position:"sticky", top:0, zIndex:10 }}>
-          <button onClick={()=>setScreen("list")} style={{ background:G2, border:"none", color:"#aaa", width:"32px", height:"32px", borderRadius:"8px", cursor:"pointer", fontSize:"16px", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>←</button>
-          <div style={{ flex:1, minWidth:0 }}>
-            <div style={{ color:Y, fontSize:"9px", letterSpacing:"2px", marginBottom:"1px", fontFamily:"monospace", fontWeight:"800" }}>MODULE {mod.id}</div>
-            <div style={{ color:W, fontWeight:"700", fontSize:"14px", overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{mod.title}</div>
+      <div style={{ ...base, display: 'flex', flexDirection: 'column', height: '100dvh' }}>
+        <style>{CSS}</style>
+        <div style={{ background: G1, borderBottom: `1px solid ${G2}`, padding: '12px 18px', display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
+          <button onClick={() => setPhase('course')} style={{ background: G2, border: 'none', color: '#aaa', width: '30px', height: '30px', borderRadius: '8px', cursor: 'pointer', fontSize: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>←</button>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ color: Y, fontSize: '9px', letterSpacing: '2px', fontFamily: 'monospace', fontWeight: '800', marginBottom: '1px' }}>MODULE {mod.id} OF {MODULES.length}</div>
+            <div style={{ color: W, fontWeight: '700', fontSize: '14px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{mod.title}</div>
           </div>
-          <div style={{ width:"34px", height:"34px", background:G2, border:`1px solid ${G3}`, borderRadius:"8px", display:"flex", alignItems:"center", justifyContent:"center", fontFamily:"monospace", fontSize:"11px", fontWeight:"900", color:Y, flexShrink:0 }}>{mod.icon}</div>
+          <div style={{ color: GM, fontSize: '11px', fontFamily: 'monospace' }}>{profile?.name}</div>
         </div>
-        <div style={{ maxWidth:"440px", margin:"0 auto", padding:"20px 16px 64px" }}>
-          <p style={{ color:GM, fontSize:"14px", fontStyle:"italic", marginBottom:"22px", lineHeight:"1.5" }}>{mod.tagline}</p>
-          <div style={{ background:G1, border:`1px solid ${G2}`, borderRadius:"12px", padding:"22px", marginBottom:"18px" }}>
-            <div style={{ color:Y, fontSize:"9px", letterSpacing:"2px", marginBottom:"16px", fontFamily:"monospace", fontWeight:"800" }}>THE LESSON</div>
-            {mod.lesson.split('\n\n').map((para,i)=>{ const isH=para===para.toUpperCase()&&para.length<90&&!para.includes('.')&&para.trim().length>3; return <div key={i} style={{ color:isH?W:"#aaa", fontSize:isH?"10px":"15px", fontWeight:isH?"800":"400", letterSpacing:isH?"1.5px":"normal", fontFamily:isH?"monospace":"inherit", lineHeight:"1.75", marginBottom:"14px" }}>{para}</div>; })}
-          </div>
-          <button onClick={()=>setTutor(true)} style={{ width:"100%", background:Y, color:BG, border:"none", padding:"17px", borderRadius:"12px", fontSize:"16px", fontWeight:"800", cursor:"pointer", marginBottom:"10px" }}>Practice with AI Tutor →</button>
-          <button onClick={markDone} style={{ width:"100%", background:"transparent", color:GM, border:`1px solid ${G2}`, padding:"14px", borderRadius:"12px", fontSize:"14px", cursor:"pointer" }}>{done[idx]?"✓ Completed — Next Module":"Mark Complete & Continue"}</button>
-        </div>
-        {tutor && <TutorChat mod={mod} onClose={()=>setTutor(false)}/>}
+        <ChatLesson module={mod} profile={profile} onComplete={completeModule} />
       </div>
     );
   }
 
-  return null;
+  // COURSE LIST
+  return (
+    <div style={base}>
+      <style>{CSS}</style>
+      <div style={{ background: G1, borderBottom: `1px solid ${G2}`, padding: '14px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 10 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '9px' }}>
+          <div style={{ width: '28px', height: '28px', background: Y, borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '11px', color: BG, fontFamily: 'monospace' }}>N</div>
+          <div>
+            <div style={{ fontWeight: '700', fontSize: '14px' }}>AI Mastery</div>
+            <div style={{ color: GM, fontSize: '11px' }}>with Nova</div>
+          </div>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ width: '80px', height: '4px', background: G2, borderRadius: '2px' }}>
+            <div style={{ width: `${(totalDone / MODULES.length) * 100}%`, height: '100%', background: Y, borderRadius: '2px', transition: 'width 0.4s' }} />
+          </div>
+          <span style={{ color: GM, fontSize: '11px', fontFamily: 'monospace' }}>{totalDone}/{MODULES.length}</span>
+        </div>
+      </div>
+
+      <div style={{ maxWidth: '480px', margin: '0 auto', padding: '20px 16px 60px' }}>
+        <div style={{ marginBottom: '24px', padding: '16px', background: G1, borderRadius: '12px', border: `1px solid ${G2}` }}>
+          <div style={{ color: Y, fontSize: '9px', letterSpacing: '2px', fontFamily: 'monospace', fontWeight: '800', marginBottom: '8px' }}>YOUR PROFILE</div>
+          <div style={{ color: W, fontSize: '14px', fontWeight: '700', marginBottom: '2px' }}>{profile?.name} · {profile?.business}</div>
+          <div style={{ color: GM, fontSize: '12px' }}>Goal: {profile?.goal}</div>
+        </div>
+
+        <h2 style={{ fontSize: '18px', fontWeight: '800', marginBottom: '4px' }}>Your Modules</h2>
+        <p style={{ color: GM, fontSize: '12px', marginBottom: '16px' }}>Nova teaches each module through conversation — personalized to your business.</p>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          {MODULES.map((mod, idx) => {
+            const locked = idx > 0 && !completed[idx - 1];
+            const isDone = completed[idx];
+            const isNext = !isDone && (idx === 0 || completed[idx - 1]);
+            return (
+              <div key={mod.id} onClick={() => openModule(idx)} style={{ background: G1, border: `1px solid ${isNext ? Y : isDone ? '#1a2a00' : locked ? G1 : G2}`, borderRadius: '12px', padding: '14px 16px', display: 'flex', gap: '12px', alignItems: 'center', cursor: locked ? 'not-allowed' : 'pointer', opacity: locked ? 0.35 : 1, transition: 'border-color 0.2s' }}>
+                <div style={{ width: '42px', height: '42px', borderRadius: '10px', background: isDone ? '#1a2a00' : isNext ? '#1a1400' : G2, border: `1px solid ${isDone ? '#4a8a00' : isNext ? Y : G3}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: isDone ? '16px' : '12px', fontWeight: '900', color: isDone ? '#7aff00' : isNext ? Y : GM, flexShrink: 0 }}>
+                  {isDone ? '✓' : mod.icon}
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '2px' }}>
+                    <div style={{ color: isDone ? '#666' : W, fontWeight: '700', fontSize: '14px' }}>{mod.title}</div>
+                    {isNext && <div style={{ background: Y, color: BG, fontSize: '8px', fontWeight: '900', padding: '2px 6px', borderRadius: '4px', fontFamily: 'monospace', flexShrink: 0 }}>UP NEXT</div>}
+                  </div>
+                  <div style={{ color: GM, fontSize: '11px' }}>{mod.subtitle}</div>
+                </div>
+                <div style={{ color: locked ? G3 : GM, fontSize: '18px', flexShrink: 0 }}>{locked ? '—' : '›'}</div>
+              </div>
+            );
+          })}
+        </div>
+
+        {totalDone === MODULES.length && (
+          <div style={{ marginTop: '24px', padding: '24px', background: '#0a1a00', border: '1px solid #4a8a00', borderRadius: '12px', textAlign: 'center' }}>
+            <div style={{ fontSize: '32px', marginBottom: '12px' }}>🎓</div>
+            <div style={{ color: '#7aff00', fontWeight: '800', fontSize: '18px', marginBottom: '8px' }}>Course Complete!</div>
+            <div style={{ color: GM, fontSize: '13px' }}>You've mastered AI for your business. Your agentic workflow is ready to deploy.</div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }

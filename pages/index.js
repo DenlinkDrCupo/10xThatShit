@@ -267,8 +267,7 @@ function ChatLesson({ module, profile, onComplete, isCompleted, onBack, onChange
 
   const save = (m) => { try { localStorage.setItem(storageKey, JSON.stringify(m)); } catch(e) {} };
 
-  const sys = module.systemPrompt(profile) + `\n\nCRITICAL: When the student has clearly demonstrated understanding of ALL teaching goals, end your message with this exact token on its own line: ${READY}\nDo NOT include this token until they genuinely understand everything. It unlocks the Complete button.`;
-
+  const sys = module.systemPrompt(profile) + `\n\nCRITICAL INSTRUCTION: Always refer to Claude specifically, never ChatGPT or other AI tools unless directly comparing them. This is a Claude course. When telling students to practice, always say "in Claude" not "in ChatGPT".\n\nWhen the student has clearly demonstrated understanding of ALL teaching goals, end your message with this exact token on its own line: ${READY}\nDo NOT include this token until they genuinely understand everything. It unlocks the Complete button.`;
   const startLesson = async () => {
     setStarted(true); setLoading(true);
     try {

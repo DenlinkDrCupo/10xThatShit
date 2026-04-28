@@ -567,6 +567,7 @@ export default function App() {
           <div style={{ color: GM, fontSize: '12px', fontWeight: '600' }}>{profile?.name}</div>
         </div>
         <ChatLesson
+          key={activeIdx}
           module={mod}
           profile={profile}
           onComplete={completeModule}

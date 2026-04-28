@@ -15,41 +15,39 @@ const MODULES = [
   {
     id: 1, icon: "01", title: "What AI Actually Is",
     subtitle: "How it thinks, what it can't do, why it matters now",
-    teachingGoals: ["Understand AI is a prediction engine, not magic", "Know the difference between AI types", "Understand why now is the right time to learn this", "Clear up the biggest misconceptions"],
-    systemPrompt: (p) => `You are Kai, an expert AI teacher. You are teaching ${p.name} who runs ${p.business} in the ${p.industry} industry. Their goal: ${p.goal}.
+    teachingGoals: ["Understand AI is a prediction engine, not magic", "Know the difference between AI types", "Understand why now is the right time", "Clear up the biggest misconceptions"],
+    systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
 
 MODULE 1: What AI Actually Is.
-
-Rules: Conversational, never lecture. One question at a time. Use ${p.industry} examples constantly. Keep each message under 120 words.
+Rules: Conversational. One question at a time. Use ${p.industry} examples. Under 120 words per message.
 
 Flow:
 1. Ask what they think AI is
 2. Correct misconceptions — AI is a pattern/prediction engine
-3. Use a ${p.industry} analogy to explain how it works
+3. Use a ${p.industry} analogy
 4. Explain difference between AI tools
-5. Explain why NOW is critical for ${p.industry} business owners
-6. Check understanding with a question
-7. When they demonstrate solid understanding of all concepts, end your message with exactly this on its own line: ${READY}
+5. Why NOW is critical for ${p.industry} business owners
+6. Check understanding
+7. When they demonstrate solid understanding of all concepts, end your message with exactly: ${READY}
 
-Start: briefly introduce yourself and ask what they currently think AI is.`
+Start: briefly introduce yourself and ask what they think AI is.`
   },
   {
     id: 2, icon: "02", title: "Setting Up Claude Properly",
     subtitle: "Account, plans, Projects, memory, and custom instructions",
     teachingGoals: ["Choose the right Claude plan", "Set up a Project for their business", "Configure custom instructions", "Understand memory and artifacts", "Upload files and use Claude's full interface"],
-    systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name} who runs ${p.business} in ${p.industry}.
+    systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
 
 MODULE 2: Setting Up Claude the Right Way.
-
-Rules: Under 120 words per message. Use ${p.industry} examples throughout.
+Rules: Under 120 words. Use ${p.industry} examples.
 
 Flow:
 1. Ask if they have a Claude account
-2. Explain plans: Free (limited), Pro ($20/mo best for most), Team (for teams). Recommend Pro.
-3. Teach Projects: dedicated workspace. Walk through creating one for ${p.industry}
-4. Teach Custom Instructions: tell Claude about yourself once. Help them write their own for ${p.business}
-5. Teach Memory: Claude remembers across conversations in Projects
-6. Teach Artifacts: Claude creates documents, code, charts
+2. Explain plans: Free, Pro ($20/mo — best for most), Team. Recommend Pro.
+3. Teach Projects — walk through creating one for ${p.industry}
+4. Teach Custom Instructions — help them write their own for ${p.business}
+5. Teach Memory across conversations in Projects
+6. Teach Artifacts: documents, code, charts
 7. Teach file uploads: PDFs, images, documents
 8. Give setup checklist for ${p.industry}
 9. When they understand all setup steps, end with: ${READY}`
@@ -57,39 +55,37 @@ Flow:
   {
     id: 3, icon: "03", title: "Writing Prompts That Actually Work",
     subtitle: "The Role + Task + Context formula with live practice",
-    teachingGoals: ["Understand the 3-part prompt formula", "Know why vague prompts give bad results", "Write a great prompt for their own business", "Learn to iterate and improve prompts"],
+    teachingGoals: ["Understand the 3-part prompt formula", "Know why vague prompts fail", "Write a great prompt for their business", "Learn to iterate and improve"],
     systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
 
 MODULE 3: Writing Prompts That Actually Work.
-
-Rules: Under 120 words per message.
+Rules: Under 120 words.
 
 Flow:
-1. Ask them to type a prompt they might use for their ${p.industry} business right now — no explanation yet
+1. Ask them to type a prompt for their ${p.industry} business right now — no explanation yet
 2. Show what's missing using Role + Task + Context
 3. Rewrite their prompt showing each part
 4. Explain WHY each part matters with ${p.industry} example
 5. Have them write an improved prompt
 6. Give specific feedback
-7. Teach iteration: follow up and refine
+7. Teach iteration
 8. Give 3 ready-to-use templates for ${p.industry}
 9. When they've written a genuinely good prompt, end with: ${READY}`
   },
   {
     id: 4, icon: "04", title: "Automate Your Repetitive Work",
     subtitle: "Build a reusable prompt library for your business",
-    teachingGoals: ["Identify their top repetitive tasks", "Build a saved prompt for each", "Use Claude Projects as a prompt library", "Create a weekly AI workflow"],
+    teachingGoals: ["Identify top repetitive tasks", "Build a saved prompt for each", "Use Claude Projects as a prompt library", "Create a weekly AI workflow"],
     systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
 
 MODULE 4: Automate Your Repetitive Work.
-
 Rules: Under 120 words. Build real copyable prompts.
 
 Flow:
-1. Ask: what's the most repetitive thing they do weekly in ${p.industry}?
-2. Build a reusable prompt for that task live in conversation
-3. Explain how to save it in Claude Projects
-4. Ask about their second most repetitive task, build that too
+1. Ask: most repetitive weekly task in ${p.industry}?
+2. Build a reusable prompt for that task live
+3. Explain saving in Claude Projects
+4. Ask about second most repetitive task, build that too
 5. Teach the prompt library concept
 6. Suggest 3 more prompts for ${p.industry}
 7. Teach Monday morning AI routine: 20-min weekly workflow
@@ -102,31 +98,29 @@ Flow:
     systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
 
 MODULE 5: Generate More Leads with AI.
-
-Rules: Under 120 words. Build real assets they can use today.
+Rules: Under 120 words. Build real assets.
 
 Flow:
 1. Ask: who is their ideal customer for ${p.business}?
 2. Push for specificity — demographics, pain points, where they hang out
-3. Teach lead magnets: free thing that solves one problem. Build one for their business.
+3. Build a lead magnet concept for their business
 4. Write an actual outreach message for ${p.industry}
-5. Explain follow-up sequences: most sales happen at follow-up 5-8
-6. Write a 3-email follow-up sequence for their business
-7. Teach 30 days of content in one Claude session
+5. Explain follow-up sequences: most sales at follow-up 5-8
+6. Write a 3-email follow-up sequence
+7. Teach 30 days of content in one session
 8. When they have: ideal customer + lead magnet + outreach + email sequence, end with: ${READY}`
   },
   {
     id: 6, icon: "06", title: "Claude for Teams and Cowork",
     subtitle: "Collaborate, share projects, automate with Cowork",
-    teachingGoals: ["Understand Claude Team plan", "Share Projects with teammates", "Use Cowork for task and file automation", "Build team AI workflows"],
+    teachingGoals: ["Understand Claude Team plan", "Share Projects with teammates", "Use Cowork for automation", "Build team AI workflows"],
     systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
 
 MODULE 6: Claude for Teams and Cowork.
-
-Rules: Under 120 words. Focus on practical ${p.industry} examples.
+Rules: Under 120 words. Practical ${p.industry} examples.
 
 Flow:
-1. Ask: do they have a team or is it just them?
+1. Ask: do they have a team or just them?
 2. Teach Claude Team plan: shared Projects, analytics, centralized billing
 3. Teach how to share a Project and set permissions
 4. Teach Cowork: Anthropic desktop tool for non-developers to automate file/task management
@@ -139,45 +133,43 @@ Flow:
   {
     id: 7, icon: "07", title: "Claude Code — Build Without Coding",
     subtitle: "Create real tools for your business, no developer needed",
-    teachingGoals: ["Understand what Claude Code can build", "Install and set up Claude Code", "Build a simple automation for their business", "Know when to use Claude Code vs other tools"],
+    teachingGoals: ["Understand what Claude Code can build", "Install and set up Claude Code", "Build an automation for their business", "Know when to use Claude Code vs other tools"],
     systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
 
 MODULE 7: Claude Code — Build Without Coding.
-
 Rules: Under 120 words. Make coding feel accessible.
 
 Flow:
 1. Start: "You don't need to learn to code. You need to learn to direct."
 2. Explain Claude Code: command-line tool where Claude writes and runs code FOR you
-3. What it can build for ${p.industry}: automations, data tools, simple apps, website tools
-4. Walk through installation: needs Node.js. Command: npm install -g @anthropic-ai/claude-code
-5. Teach the mental model: describe what you want in plain English
+3. What it can build for ${p.industry}: automations, data tools, apps, website tools
+4. Installation: needs Node.js. Command: npm install -g @anthropic-ai/claude-code
+5. Teach mental model: describe what you want in plain English
 6. Give 3 specific things to build for ${p.business}
-7. Walk through one example prompt for their business
+7. Walk through one example prompt
 8. Teach when to use Claude Code vs Zapier vs Make
-9. When they understand Claude Code and have clear use cases, end with: ${READY}`
+9. When they understand and have clear use cases, end with: ${READY}`
   },
   {
     id: 8, icon: "08", title: "Build Your Agentic AI Workflow",
     subtitle: "Your AI works for you 24/7 — we build it together now",
-    teachingGoals: ["Understand what agentic AI means", "Map a full automated workflow", "Connect Claude to other tools", "Deploy a system that runs without them"],
-    systemPrompt: (p) => `You are Kai — expert AI teacher AND agent. Teaching ${p.name} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
+    teachingGoals: ["Understand agentic AI", "Map a full automated workflow", "Connect Claude to other tools", "Deploy a system that runs without them"],
+    systemPrompt: (p) => `You are Kai — AI teacher AND agent. Teaching ${p.name} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
 
-MODULE 8: Build Your Agentic AI Workflow. THIS MODULE IS DIFFERENT — you act as their AI AGENT, not just a teacher.
+MODULE 8: Build Your Agentic AI Workflow. YOU ARE NOW AN AGENT — not just a teacher.
+Rules: Under 150 words. Build the actual workflow.
 
-Rules: Under 150 words. Be specific. Build the actual workflow for their business.
-
-Agent mode:
-1. Explain: "This module is different. I'm acting as your AI agent — we're BUILDING your actual workflow right now."
+Flow:
+1. Explain: "I'm now acting as your AI agent — we're BUILDING your workflow right now."
 2. Ask: what's the one process they most want to automate?
 3. Map the FULL workflow: trigger, each step, tools, output
-4. Write every AI prompt needed in the workflow
-5. Give specific Zapier/Make connection instructions
+4. Write every AI prompt needed
+5. Give specific Zapier/Make instructions
 6. Identify where Claude Code would help
 7. Give complete deployment checklist
 8. Write a monthly maintenance prompt
 9. End: "You now have a working agentic workflow. This runs 24/7 without you."
-10. When the complete workflow is mapped and they understand deployment, end with: ${READY}`
+10. When complete workflow is mapped and they understand deployment, end with: ${READY}`
   }
 ];
 
@@ -201,36 +193,45 @@ function TypingIndicator() {
   );
 }
 
-function OptionsMenu({ onRestart, onBack }) {
-  const [open, setOpen] = useState(false);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const handler = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
-  }, []);
-
+// Modal for changing goal
+function ChangeGoalModal({ currentGoal, onSave, onClose }) {
+  const [val, setVal] = useState(currentGoal || '');
   return (
-    <div ref={ref} style={{ position: 'relative' }}>
-      <button onClick={() => setOpen(o => !o)} style={{ background: G2, border: `1px solid ${G3}`, color: W, width: '36px', height: '36px', borderRadius: '8px', cursor: 'pointer', fontSize: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        ⋯
-      </button>
-      {open && (
-        <div style={{ position: 'absolute', bottom: '44px', right: 0, background: G1, border: `1px solid ${G3}`, borderRadius: '10px', overflow: 'hidden', minWidth: '180px', zIndex: 50, boxShadow: '0 4px 20px rgba(0,0,0,0.6)' }}>
-          <button onClick={() => { setOpen(false); onBack(); }} style={{ width: '100%', padding: '13px 16px', background: 'none', border: 'none', color: W, fontSize: '14px', cursor: 'pointer', textAlign: 'left', borderBottom: `1px solid ${G3}` }}>
-            ← Back to Modules
-          </button>
-          <button onClick={() => { setOpen(false); onRestart(); }} style={{ width: '100%', padding: '13px 16px', background: 'none', border: 'none', color: '#ff6b6b', fontSize: '14px', cursor: 'pointer', textAlign: 'left' }}>
-            ↺ Restart This Module
-          </button>
+    <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.8)', zIndex: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
+      <div style={{ background: G1, border: `1px solid ${G3}`, borderRadius: '16px', padding: '24px', width: '100%', maxWidth: '440px' }}>
+        <div style={{ color: Y, fontSize: '10px', letterSpacing: '2px', fontFamily: 'monospace', fontWeight: '800', marginBottom: '8px' }}>UPDATE YOUR GOAL</div>
+        <div style={{ color: GM, fontSize: '13px', marginBottom: '16px', lineHeight: '1.5' }}>Your goal shapes how Kai teaches you. Update it anytime.</div>
+        <textarea value={val} onChange={e => setVal(e.target.value)}
+          placeholder="e.g. Double my revenue from $45k to $100k/month"
+          rows={3}
+          style={{ width: '100%', background: G2, border: `1px solid ${G3}`, borderRadius: '10px', color: W, padding: '12px 14px', fontSize: '16px', resize: 'none', fontFamily: '-apple-system,sans-serif', outline: 'none', marginBottom: '16px' }}
+          autoFocus
+        />
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <button onClick={onClose} style={{ flex: 1, padding: '13px', background: 'transparent', color: GM, border: `1px solid ${G3}`, borderRadius: '10px', fontSize: '14px', cursor: 'pointer' }}>Cancel</button>
+          <button onClick={() => val.trim() && onSave(val.trim())} disabled={!val.trim()} style={{ flex: 1, padding: '13px', background: val.trim() ? Y : G3, color: val.trim() ? BG : GM, border: 'none', borderRadius: '10px', fontSize: '14px', fontWeight: '800', cursor: val.trim() ? 'pointer' : 'not-allowed' }}>Save Goal</button>
         </div>
-      )}
+      </div>
     </div>
   );
 }
 
-function ChatLesson({ module, profile, onComplete, isCompleted, onBack }) {
+// Confirm modal for destructive actions
+function ConfirmModal({ message, onConfirm, onClose }) {
+  return (
+    <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.8)', zIndex: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
+      <div style={{ background: G1, border: `1px solid ${G3}`, borderRadius: '16px', padding: '24px', width: '100%', maxWidth: '380px' }}>
+        <div style={{ color: W, fontSize: '15px', lineHeight: '1.6', marginBottom: '20px' }}>{message}</div>
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <button onClick={onClose} style={{ flex: 1, padding: '13px', background: 'transparent', color: GM, border: `1px solid ${G3}`, borderRadius: '10px', fontSize: '14px', cursor: 'pointer' }}>Cancel</button>
+          <button onClick={onConfirm} style={{ flex: 1, padding: '13px', background: '#ff4444', color: W, border: 'none', borderRadius: '10px', fontSize: '14px', fontWeight: '800', cursor: 'pointer' }}>Yes, do it</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ChatLesson({ module, profile, onComplete, isCompleted, onBack, onChangeGoal, onResetAll }) {
   const storageKey = `kai_msgs_${module.id}`;
   const [msgs, setMsgs] = useState(() => {
     try { const s = localStorage.getItem(storageKey); if (s) return JSON.parse(s); } catch(e) {}
@@ -242,20 +243,31 @@ function ChatLesson({ module, profile, onComplete, isCompleted, onBack }) {
     try { return !!localStorage.getItem(storageKey); } catch(e) { return false; }
   });
   const [readyToAdvance, setReadyToAdvance] = useState(isCompleted || false);
+  const [showMenu, setShowMenu] = useState(false);
+  const [showChangeGoal, setShowChangeGoal] = useState(false);
+  const [showConfirmRestart, setShowConfirmRestart] = useState(false);
+  const [showConfirmReset, setShowConfirmReset] = useState(false);
   const listRef = useRef(null);
   const inputRef = useRef(null);
+  const menuRef = useRef(null);
 
   useEffect(() => {
     if (listRef.current) listRef.current.scrollTop = listRef.current.scrollHeight;
   }, [msgs, loading]);
 
   useEffect(() => {
-    if (started && inputRef.current) inputRef.current.focus();
+    if (started && inputRef.current) setTimeout(() => inputRef.current?.focus(), 100);
   }, [started]);
+
+  useEffect(() => {
+    const handler = (e) => { if (menuRef.current && !menuRef.current.contains(e.target)) setShowMenu(false); };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
 
   const save = (m) => { try { localStorage.setItem(storageKey, JSON.stringify(m)); } catch(e) {} };
 
-  const sys = module.systemPrompt(profile) + `\n\nCRITICAL INSTRUCTION: When the student has clearly demonstrated understanding of ALL teaching goals for this module, end your message with this exact token on its own line: ${READY}\nDo NOT include this token prematurely. It unlocks the Complete Module button for the student.`;
+  const sys = module.systemPrompt(profile) + `\n\nCRITICAL: When the student has clearly demonstrated understanding of ALL teaching goals, end your message with this exact token on its own line: ${READY}\nDo NOT include this token until they genuinely understand everything. It unlocks the Complete button.`;
 
   const startLesson = async () => {
     setStarted(true); setLoading(true);
@@ -291,15 +303,15 @@ function ChatLesson({ module, profile, onComplete, isCompleted, onBack }) {
     setLoading(false);
   };
 
-  const restart = () => {
+  const doRestart = () => {
     try { localStorage.removeItem(storageKey); } catch(e) {}
     setMsgs([]); setStarted(false); setReadyToAdvance(false);
+    setShowConfirmRestart(false);
   };
 
-  // Pre-lesson screen
   if (!started) return (
     <div style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '32px 24px', textAlign: 'center', animation: 'up 0.3s ease', overflowY: 'auto' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '32px 24px', textAlign: 'center', overflowY: 'auto' }}>
         <div style={{ width: '64px', height: '64px', borderRadius: '16px', background: G2, border: `1px solid ${G3}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '20px', fontWeight: '900', color: Y, marginBottom: '20px' }}>{module.icon}</div>
         <h2 style={{ fontSize: '22px', fontWeight: '800', marginBottom: '8px', letterSpacing: '-0.5px' }}>{module.title}</h2>
         <p style={{ color: GM, fontSize: '14px', marginBottom: '28px', lineHeight: '1.6' }}>{module.subtitle}</p>
@@ -321,7 +333,6 @@ function ChatLesson({ module, profile, onComplete, isCompleted, onBack }) {
     </div>
   );
 
-  // Active lesson
   return (
     <div style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
       {/* Messages */}
@@ -344,15 +355,11 @@ function ChatLesson({ module, profile, onComplete, isCompleted, onBack }) {
         )}
       </div>
 
-      {/* Bottom bar — always visible */}
+      {/* Bottom bar */}
       <div style={{ borderTop: `1px solid ${G2}`, padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '10px', background: G1, flexShrink: 0 }}>
-
-        {/* Input row — always shown */}
+        {/* Input row */}
         <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-end' }}>
-          <textarea
-            ref={inputRef}
-            value={input}
-            onChange={e => setInput(e.target.value)}
+          <textarea ref={inputRef} value={input} onChange={e => setInput(e.target.value)}
             onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }}
             placeholder="Type your answer here..."
             rows={2}
@@ -366,36 +373,72 @@ function ChatLesson({ module, profile, onComplete, isCompleted, onBack }) {
 
         {/* Action row */}
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-          <OptionsMenu onRestart={restart} onBack={onBack} />
-
-          {/* Complete button — locked until Kai unlocks, hidden if already completed */}
-          {!isCompleted && (
-            <button
-              onClick={readyToAdvance ? onComplete : undefined}
-              disabled={!readyToAdvance}
-              style={{
-                flex: 1, padding: '13px', borderRadius: '10px', fontSize: '13px',
-                fontWeight: '800', fontFamily: 'monospace', letterSpacing: '0.5px',
-                cursor: readyToAdvance ? 'pointer' : 'not-allowed',
-                border: readyToAdvance ? 'none' : `1px solid ${G3}`,
-                background: readyToAdvance ? Y : 'transparent',
-                color: readyToAdvance ? BG : GM,
-                transition: 'all 0.4s',
-                animation: readyToAdvance ? 'glow 2s ease-in-out infinite' : 'none'
-              }}>
-              {readyToAdvance ? '✓ COMPLETE & CONTINUE →' : 'Kai will unlock this when you\'re ready'}
+          {/* Options button */}
+          <div ref={menuRef} style={{ position: 'relative', flexShrink: 0 }}>
+            <button onClick={() => setShowMenu(o => !o)}
+              style={{ background: showMenu ? G3 : G2, border: `1px solid ${G3}`, color: W, width: '40px', height: '40px', borderRadius: '8px', cursor: 'pointer', fontSize: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              ⋯
             </button>
-          )}
+            {showMenu && (
+              <div style={{ position: 'absolute', bottom: '48px', left: 0, background: G1, border: `1px solid ${G3}`, borderRadius: '12px', overflow: 'hidden', minWidth: '210px', zIndex: 50, boxShadow: '0 -4px 24px rgba(0,0,0,0.7)' }}>
+                <div style={{ padding: '10px 14px', color: GM, fontSize: '10px', letterSpacing: '1px', fontFamily: 'monospace', borderBottom: `1px solid ${G3}` }}>OPTIONS</div>
+                <button onClick={() => { setShowMenu(false); onBack(); }}
+                  style={{ width: '100%', padding: '13px 16px', background: 'none', border: 'none', borderBottom: `1px solid ${G3}`, color: W, fontSize: '14px', cursor: 'pointer', textAlign: 'left', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span>←</span><span>Back to Modules</span>
+                </button>
+                <button onClick={() => { setShowMenu(false); setShowConfirmRestart(true); }}
+                  style={{ width: '100%', padding: '13px 16px', background: 'none', border: 'none', borderBottom: `1px solid ${G3}`, color: W, fontSize: '14px', cursor: 'pointer', textAlign: 'left', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span>↺</span><span>Restart This Module</span>
+                </button>
+                <button onClick={() => { setShowMenu(false); setShowChangeGoal(true); }}
+                  style={{ width: '100%', padding: '13px 16px', background: 'none', border: 'none', borderBottom: `1px solid ${G3}`, color: W, fontSize: '14px', cursor: 'pointer', textAlign: 'left', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span>✎</span><span>Change My Goal</span>
+                </button>
+                <button onClick={() => { setShowMenu(false); setShowConfirmReset(true); }}
+                  style={{ width: '100%', padding: '13px 16px', background: 'none', border: 'none', color: '#ff6b6b', fontSize: '14px', cursor: 'pointer', textAlign: 'left', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span>⚠</span><span>Start Over Completely</span>
+                </button>
+              </div>
+            )}
+          </div>
 
-          {/* Next module button — only shown on already-completed modules */}
-          {isCompleted && (
+          {/* Complete button */}
+          {!isCompleted ? (
+            <button onClick={readyToAdvance ? onComplete : undefined} disabled={!readyToAdvance}
+              style={{ flex: 1, padding: '12px', borderRadius: '10px', fontSize: '13px', fontWeight: '800', fontFamily: 'monospace', letterSpacing: '0.3px', cursor: readyToAdvance ? 'pointer' : 'not-allowed', border: readyToAdvance ? 'none' : `1px solid ${G3}`, background: readyToAdvance ? Y : 'transparent', color: readyToAdvance ? BG : GM, transition: 'all 0.4s', animation: readyToAdvance ? 'glow 2s ease-in-out infinite' : 'none' }}>
+              {readyToAdvance ? '✓ COMPLETE & CONTINUE →' : "Kai will unlock this when you're ready"}
+            </button>
+          ) : (
             <button onClick={onComplete}
-              style={{ flex: 1, padding: '13px', borderRadius: '10px', fontSize: '13px', fontWeight: '800', fontFamily: 'monospace', cursor: 'pointer', border: 'none', background: Y, color: BG }}>
+              style={{ flex: 1, padding: '12px', borderRadius: '10px', fontSize: '13px', fontWeight: '800', fontFamily: 'monospace', cursor: 'pointer', border: 'none', background: Y, color: BG }}>
               NEXT MODULE →
             </button>
           )}
         </div>
       </div>
+
+      {/* Modals */}
+      {showChangeGoal && (
+        <ChangeGoalModal
+          currentGoal={profile.goal}
+          onSave={(newGoal) => { onChangeGoal(newGoal); setShowChangeGoal(false); }}
+          onClose={() => setShowChangeGoal(false)}
+        />
+      )}
+      {showConfirmRestart && (
+        <ConfirmModal
+          message="This will clear your conversation for this module and start it fresh. Your progress on other modules is safe."
+          onConfirm={doRestart}
+          onClose={() => setShowConfirmRestart(false)}
+        />
+      )}
+      {showConfirmReset && (
+        <ConfirmModal
+          message="This will erase ALL your progress — every module, every conversation — and take you back to the beginning. Are you sure?"
+          onConfirm={() => { setShowConfirmReset(false); onResetAll(); }}
+          onClose={() => setShowConfirmReset(false)}
+        />
+      )}
     </div>
   );
 }
@@ -487,11 +530,14 @@ export default function App() {
     setCompleted(updated);
     try { localStorage.setItem('kai_completed', JSON.stringify(updated)); } catch(e) {}
     const next = activeIdx + 1;
-    if (next < MODULES.length) {
-      setActiveIdx(next); // auto-advance to next module, stay in lesson phase
-    } else {
-      setPhase('course'); // finished all modules
-    }
+    if (next < MODULES.length) { setActiveIdx(next); }
+    else { setPhase('course'); }
+  };
+
+  const changeGoal = (newGoal) => {
+    const updated = { ...profile, goal: newGoal };
+    setProfile(updated);
+    try { localStorage.setItem('kai_profile', JSON.stringify(updated)); } catch(e) {}
   };
 
   const resetAll = () => {
@@ -526,12 +572,13 @@ export default function App() {
           onComplete={completeModule}
           isCompleted={!!completed[activeIdx]}
           onBack={() => setPhase('course')}
+          onChangeGoal={changeGoal}
+          onResetAll={resetAll}
         />
       </div>
     );
   }
 
-  // Course list
   return (
     <div style={base}>
       <style>{CSS}</style>

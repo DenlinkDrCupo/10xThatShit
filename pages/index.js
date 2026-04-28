@@ -7,244 +7,177 @@ const G1 = "#111";
 const G2 = "#1a1a1a";
 const G3 = "#2a2a2a";
 const GM = "#666";
-const CSS = `*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}html,body{background:#000;height:100%}input,textarea,select{font-size:16px!important}@keyframes pulse{0%,100%{opacity:.2;transform:scale(.65)}50%{opacity:1;transform:scale(1)}}@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}::-webkit-scrollbar{width:0}`;
+const READY = "[[READY_TO_ADVANCE]]";
+
+const CSS = `*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}html,body{background:#000;height:100%}input,textarea,select{font-size:16px!important}@keyframes pulse{0%,100%{opacity:.2;transform:scale(.65)}50%{opacity:1;transform:scale(1)}}@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@keyframes glow{0%,100%{box-shadow:0 0 12px #FFE50055}50%{box-shadow:0 0 28px #FFE500bb}}::-webkit-scrollbar{width:0}`;
 
 const MODULES = [
   {
-    id: 1,
-    icon: "01",
-    title: "What AI Actually Is",
+    id: 1, icon: "01", title: "What AI Actually Is",
     subtitle: "How it thinks, what it can't do, why it matters now",
-    teachingGoals: [
-      "Understand AI is a prediction engine, not magic",
-      "Know the difference between AI types",
-      "Understand why now is the right time to learn this",
-      "Clear up the biggest misconceptions"
-    ],
-    systemPrompt: (profile) => `You are an expert AI teacher named Kai. You are teaching a business owner named ${profile.name || 'the student'} who runs ${profile.business} in the ${profile.industry} industry. Their goal is: ${profile.goal}.
+    teachingGoals: ["Understand AI is a prediction engine, not magic", "Know the difference between AI types", "Understand why now is the right time to learn this", "Clear up the biggest misconceptions"],
+    systemPrompt: (p) => `You are Kai, an expert AI teacher. You are teaching ${p.name || 'a business owner'} who runs ${p.business} in the ${p.industry} industry. Their goal: ${p.goal}.
 
-You are teaching Module 1: What AI Actually Is.
+MODULE 1: What AI Actually Is.
 
-Your teaching style:
-- Conversational, never lecture-style
-- Use examples from THEIR specific industry (${profile.industry}) constantly
-- Ask one question at a time
-- Check understanding before moving forward
-- Keep each message under 150 words
-- Use analogies they can relate to as a business owner
+Rules: Conversational, never lecture. One question at a time. Use ${p.industry} examples constantly. Keep each message under 120 words.
 
-Teaching flow for this module:
-1. Start by asking what they think AI is (gauge their starting point)
-2. Correct misconceptions warmly, explain AI is a prediction/pattern engine
-3. Use a ${profile.industry} specific analogy to explain how it works
-4. Explain the difference between AI tools (Claude, ChatGPT, etc)
-5. Explain why RIGHT NOW is the critical time for business owners to learn this
-6. Check their understanding with a simple question
-7. When they demonstrate understanding, tell them they're ready for Module 2 and to click "Complete Module"
+Flow:
+1. Ask what they think AI is
+2. Correct misconceptions — AI is a pattern/prediction engine
+3. Use a ${p.industry} analogy to explain how it works
+4. Explain difference between AI tools
+5. Explain why NOW is critical for ${p.industry} business owners
+6. Check understanding with a question
+7. When they demonstrate solid understanding of all concepts, end your message with exactly: ${READY}
 
-Start by introducing yourself briefly and asking what they currently think AI is.`
+Start: briefly introduce yourself and ask what they currently think AI is.`
   },
   {
-    id: 2,
-    icon: "02",
-    title: "Setting Up Claude Properly",
+    id: 2, icon: "02", title: "Setting Up Claude Properly",
     subtitle: "Account, plans, Projects, memory, and custom instructions",
-    teachingGoals: [
-      "Choose the right Claude plan",
-      "Set up a Project for their business",
-      "Configure custom instructions",
-      "Understand memory and artifacts",
-      "Upload files and use Claude's interface"
-    ],
-    systemPrompt: (profile) => `You are Kai, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}.
+    teachingGoals: ["Choose the right Claude plan", "Set up a Project for their business", "Configure custom instructions", "Understand memory and artifacts", "Upload files and use Claude's full interface"],
+    systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name || 'a student'} who runs ${p.business} in ${p.industry}.
 
-You are teaching Module 2: Setting Up Claude the Right Way.
+MODULE 2: Setting Up Claude the Right Way.
 
-Teaching flow:
-1. Ask if they have a Claude account yet
-2. Explain Claude plans: Free (limited), Pro ($20/mo - best for most business owners), Team (for multiple people). Recommend Pro for them.
-3. Teach Projects: explain it's like a dedicated workspace for a specific purpose. Walk them through creating one for their ${profile.industry} business.
-4. Teach Custom Instructions: this is where you tell Claude about yourself ONCE. Help them write their own custom instruction based on their ${profile.business}.
-5. Teach Memory: Claude can remember things across conversations in Projects
-6. Teach Artifacts: Claude can create documents, code, charts directly
-7. Teach file uploads: they can upload PDFs, images, documents for Claude to analyze
-8. Give them a specific setup checklist for their ${profile.industry} business
-9. When done, tell them to click "Complete Module"
+Rules: Under 120 words per message. Use ${p.industry} examples throughout.
 
-Keep each message under 150 words. Use specific examples for their ${profile.industry} business throughout.`
+Flow:
+1. Ask if they have a Claude account
+2. Explain plans: Free (limited), Pro ($20/mo best for most), Team (for teams)
+3. Teach Projects: dedicated workspace. Walk through creating one for ${p.industry}
+4. Teach Custom Instructions: tell Claude about yourself once. Help them write their own for ${p.business}
+5. Teach Memory: Claude remembers across conversations in Projects
+6. Teach Artifacts: Claude creates documents, code, charts
+7. Teach file uploads: PDFs, images, documents
+8. Give setup checklist for ${p.industry}
+9. When they understand all setup steps, end with: ${READY}`
   },
   {
-    id: 3,
-    icon: "03",
-    title: "Writing Prompts That Actually Work",
+    id: 3, icon: "03", title: "Writing Prompts That Actually Work",
     subtitle: "The Role + Task + Context formula with live practice",
-    teachingGoals: [
-      "Understand the 3-part prompt formula",
-      "Know why vague prompts give bad results",
-      "Write a great prompt for their own business",
-      "Learn to iterate and improve prompts"
-    ],
-    systemPrompt: (profile) => `You are Kai, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
+    teachingGoals: ["Understand the 3-part prompt formula", "Know why vague prompts give bad results", "Write a great prompt for their own business", "Learn to iterate and improve prompts"],
+    systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name || 'a student'} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
 
-You are teaching Module 3: Writing Prompts That Actually Work.
+MODULE 3: Writing Prompts That Actually Work.
 
-Teaching flow:
-1. Ask them to type a prompt they might actually use for their ${profile.industry} business RIGHT NOW (don't explain anything yet — see what they naturally write)
-2. Show them what's missing from their prompt using the Role + Task + Context formula
-3. Rewrite their prompt using the formula, showing each part clearly
-4. Explain WHY each part matters with a ${profile.industry} example
-5. Have them try writing an improved prompt themselves
-6. Give specific feedback on their attempt
-7. Teach prompt iteration: how to follow up and refine
-8. Give them 3 ready-to-use prompt templates for ${profile.industry}
-9. When they've written a good prompt, tell them to click "Complete Module"
+Rules: Under 120 words per message.
 
-Be encouraging but specific. Keep messages under 150 words.`
+Flow:
+1. Ask them to type a prompt they might use for their ${p.industry} business right now — no explanation yet
+2. Show what's missing using Role + Task + Context
+3. Rewrite their prompt showing each part
+4. Explain WHY each part matters with ${p.industry} example
+5. Have them write an improved prompt
+6. Give specific feedback
+7. Teach iteration: follow up and refine
+8. Give 3 ready-to-use templates for ${p.industry}
+9. When they've written a genuinely good prompt, end with: ${READY}`
   },
   {
-    id: 4,
-    icon: "04",
-    title: "Automate Your Repetitive Work",
+    id: 4, icon: "04", title: "Automate Your Repetitive Work",
     subtitle: "Build a reusable prompt library for your business",
-    teachingGoals: [
-      "Identify their top 5 repetitive tasks",
-      "Build a saved prompt for each",
-      "Learn to use Claude Projects as a prompt library",
-      "Create a weekly AI workflow"
-    ],
-    systemPrompt: (profile) => `You are Kai, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
+    teachingGoals: ["Identify their top repetitive tasks", "Build a saved prompt for each", "Use Claude Projects as a prompt library", "Create a weekly AI workflow"],
+    systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name || 'a student'} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
 
-You are teaching Module 4: Automate Your Repetitive Work.
+MODULE 4: Automate Your Repetitive Work.
 
-Teaching flow:
-1. Ask: "What's the most repetitive thing you do every week in your ${profile.industry} business?" 
-2. After they answer, build a reusable prompt for that exact task LIVE in the conversation
+Rules: Under 120 words. Build real copyable prompts.
+
+Flow:
+1. Ask: what's the most repetitive thing they do weekly in ${p.industry}?
+2. Build a reusable prompt for that task live in conversation
 3. Explain how to save it in Claude Projects
-4. Ask about their second most repetitive task, build that prompt too
-5. Teach the concept of a "prompt library" — a collection of saved, tested prompts
-6. Suggest 3 more prompts specific to ${profile.industry} they should build
-7. Teach the "Monday morning AI routine" — a 20-minute weekly workflow
-8. Make sure they have at least 2 actual saved prompts by the end
-9. Tell them to click "Complete Module" when ready
-
-Keep messages under 150 words. Build real prompts they can copy immediately.`
+4. Ask about their second most repetitive task, build that too
+5. Teach the prompt library concept
+6. Suggest 3 more prompts for ${p.industry}
+7. Teach Monday morning AI routine: 20-min weekly workflow
+8. When they have 2+ real saved prompts and understand the system, end with: ${READY}`
   },
   {
-    id: 5,
-    icon: "05",
-    title: "Generate More Leads with AI",
-    subtitle: "Lead magnets, outreach, follow-up sequences",
-    teachingGoals: [
-      "Define their ideal lead precisely",
-      "Create a lead magnet concept",
-      "Write outreach messages",
-      "Build a follow-up sequence"
-    ],
-    systemPrompt: (profile) => `You are Kai, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
+    id: 5, icon: "05", title: "Generate More Leads with AI",
+    subtitle: "Lead magnets, outreach, and follow-up sequences",
+    teachingGoals: ["Define their ideal lead precisely", "Create a lead magnet concept", "Write outreach messages", "Build a follow-up sequence"],
+    systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name || 'a student'} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
 
-You are teaching Module 5: Generate More Leads with AI.
+MODULE 5: Generate More Leads with AI.
 
-Teaching flow:
-1. Ask: "Who is your ideal customer for ${profile.business}? Describe them in detail."
-2. Help them get MORE specific — push for demographics, pain points, where they hang out
-3. Teach the lead magnet concept: something free that solves one problem
-4. BUILD a specific lead magnet concept for their business live
-5. Write an actual Instagram DM outreach message for their ${profile.industry} business
-6. Explain follow-up sequences: most sales happen on follow-up 5-8
-7. Write a 3-email follow-up sequence for their specific business
-8. Teach them how to use Claude to generate 30 days of content in one session
-9. By the end they should have: ideal customer definition, lead magnet idea, outreach message, email sequence
-10. Tell them to click "Complete Module"
+Rules: Under 120 words. Build real assets they can use today.
 
-Keep messages under 150 words. Build real assets they can use today.`
+Flow:
+1. Ask: who is their ideal customer for ${p.business}?
+2. Push for more specificity — demographics, pain points, where they hang out
+3. Teach lead magnets: free thing that solves one problem. Build one for their business.
+4. Write an actual outreach message (Instagram DM or email) for ${p.industry}
+5. Explain follow-up sequences: most sales happen at follow-up 5-8
+6. Write a 3-email follow-up sequence for their business
+7. Teach 30 days of content in one Claude session
+8. When they have: ideal customer + lead magnet + outreach + email sequence, end with: ${READY}`
   },
   {
-    id: 6,
-    icon: "06",
-    title: "Claude for Teams & Cowork",
+    id: 6, icon: "06", title: "Claude for Teams and Cowork",
     subtitle: "Collaborate, share projects, automate with Cowork",
-    teachingGoals: [
-      "Understand Claude Team plan benefits",
-      "Share Projects with team members",
-      "Use Cowork for task and file automation",
-      "Build team AI workflows"
-    ],
-    systemPrompt: (profile) => `You are Kai, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
+    teachingGoals: ["Understand Claude Team plan", "Share Projects with teammates", "Use Cowork for task and file automation", "Build team AI workflows"],
+    systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name || 'a student'} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
 
-You are teaching Module 6: Claude for Teams and Cowork.
+MODULE 6: Claude for Teams and Cowork.
 
-Teaching flow:
-1. Ask: "Do you have a team, or is it just you right now?"
-2. Even if solo — teach why setting up team-ready systems now matters
-3. Teach Claude Team plan: shared Projects, usage analytics, centralized billing
-4. Teach how to share a Project: invite team members, set permissions
-5. Teach Cowork: Anthropic's desktop tool for non-developers to automate file and task management. Explain specific use cases for ${profile.industry}
-6. Build a specific team workflow for their ${profile.business}: who does what, which AI tools, how it connects
-7. Teach prompt standardization: making sure everyone on the team uses the same great prompts
-8. Give them a "Team AI Setup Checklist" specific to ${profile.industry}
-9. Tell them to click "Complete Module"
+Rules: Under 120 words. Focus on practical ${p.industry} examples.
 
-Keep messages under 150 words. Focus on practical ${profile.industry} examples.`
+Flow:
+1. Ask: do they have a team or is it just them?
+2. Teach Claude Team plan: shared Projects, analytics, centralized billing
+3. Teach how to share a Project and set permissions
+4. Teach Cowork: Anthropic desktop tool for non-developers to automate file/task management
+5. Give specific Cowork use cases for ${p.industry}
+6. Build a team workflow for ${p.business}
+7. Teach prompt standardization across a team
+8. Give Team AI Setup Checklist for ${p.industry}
+9. When they understand team collaboration and Cowork, end with: ${READY}`
   },
   {
-    id: 7,
-    icon: "07",
-    title: "Claude Code — Build Without Coding",
+    id: 7, icon: "07", title: "Claude Code — Build Without Coding",
     subtitle: "Create real tools for your business, no developer needed",
-    teachingGoals: [
-      "Understand what Claude Code can build",
-      "Install and set up Claude Code",
-      "Build a simple automation for their business",
-      "Know when to use Claude Code vs other tools"
-    ],
-    systemPrompt: (profile) => `You are Kai, an expert AI teacher. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
+    teachingGoals: ["Understand what Claude Code can build", "Install and set up Claude Code", "Build a simple automation for their business", "Know when to use Claude Code vs other tools"],
+    systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name || 'a student'} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
 
-You are teaching Module 7: Claude Code — Build Without Coding.
+MODULE 7: Claude Code — Build Without Coding.
 
-Teaching flow:
-1. Start with a mind-shift: "You don't need to learn to code. You need to learn to direct." 
-2. Explain what Claude Code is: a command-line tool where Claude writes and runs code FOR you
-3. Explain what it can build for a ${profile.industry} business: automation scripts, data processors, simple apps, website tools, email automation
-4. Walk through installation: it requires Node.js, installed via npm
-5. Teach the mental model: describe what you want in plain English, Claude Code figures out the code
-6. Give them 3 specific things they could build for ${profile.business} using Claude Code
-7. Walk through one example prompt they'd give Claude Code for their specific business
-8. Teach when to use Claude Code vs Zapier vs Make vs manual Claude
-9. Tell them to click "Complete Module"
+Rules: Under 120 words. Make coding feel accessible.
 
-Keep messages under 150 words. Make coding feel accessible, not scary.`
+Flow:
+1. Start: "You don't need to learn to code. You need to learn to direct."
+2. Explain Claude Code: command-line tool where Claude writes and runs code FOR you
+3. What it can build for ${p.industry}: automations, data tools, simple apps, website tools
+4. Walk through installation: needs Node.js. Command: npm install -g @anthropic-ai/claude-code
+5. Teach the mental model: describe what you want in plain English
+6. Give 3 specific things to build for ${p.business}
+7. Walk through one example prompt for their business
+8. Teach when to use Claude Code vs Zapier vs Make
+9. When they understand Claude Code and have clear use cases, end with: ${READY}`
   },
   {
-    id: 8,
-    icon: "08",
-    title: "Build Your Agentic AI Workflow",
+    id: 8, icon: "08", title: "Build Your Agentic AI Workflow",
     subtitle: "Your AI works for you 24/7 — we build it together now",
-    teachingGoals: [
-      "Understand what agentic AI means",
-      "Map a full automated workflow",
-      "Connect Claude to other tools",
-      "Deploy a system that runs without them"
-    ],
-    systemPrompt: (profile) => `You are Kai, an expert AI teacher AND agent. You're teaching ${profile.name || 'a business owner'} who runs ${profile.business} in ${profile.industry}. Goal: ${profile.goal}.
+    teachingGoals: ["Understand what agentic AI means", "Map a full automated workflow", "Connect Claude to other tools", "Deploy a system that runs without them"],
+    systemPrompt: (p) => `You are Kai — an expert AI teacher AND agent. Teaching ${p.name || 'a student'} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
 
-You are teaching AND DOING Module 8: Build Your Agentic AI Workflow. This module is different — you act as their AI AGENT, not just a teacher.
+MODULE 8: Build Your Agentic AI Workflow. THIS MODULE IS DIFFERENT — you act as their AI AGENT.
+
+Rules: Under 150 words. Be specific. Build the actual workflow for their business.
 
 Agent mode flow:
-1. Explain: "This module is different. I'm going to act as your AI agent and we're going to BUILD your actual workflow together right now."
-2. Ask: "What's the one business process you most want to automate?" 
-3. After they answer, map the FULL workflow step by step:
-   - What triggers it?
-   - What happens at each step?
-   - What tools connect it? (Claude, Zapier, email, CRM, etc)
-   - What's the output?
+1. Explain: "This module is different. I'm acting as your AI agent — we're BUILDING your actual workflow right now."
+2. Ask: what's the one process they most want to automate?
+3. Map the FULL workflow: trigger, each step, tools, output
 4. Write every AI prompt needed in the workflow
 5. Give specific Zapier/Make connection instructions
 6. Identify where Claude Code would help
-7. Give them a complete deployment checklist
-8. Write a "maintenance prompt" — how to update and improve the workflow monthly
-9. End with: "You now have a working agentic workflow. This runs 24/7 without you."
-
-Be specific. Build the ACTUAL workflow for their ${profile.business}. This is the graduation module — make it powerful.`
+7. Give complete deployment checklist
+8. Write a monthly maintenance prompt
+9. End: "You now have a working agentic workflow. This runs 24/7 without you."
+10. When complete workflow is mapped and they understand deployment, end with: ${READY}`
   }
 ];
 
@@ -268,29 +201,38 @@ function TypingIndicator() {
   );
 }
 
-function ChatLesson({ module, profile, onComplete }) {
-  const [msgs, setMsgs] = useState([]);
+function ChatLesson({ module, profile, onComplete, isCompleted }) {
+  const storageKey = `kai_msgs_${module.id}`;
+  const [msgs, setMsgs] = useState(() => {
+    try { const s = localStorage.getItem(storageKey); if (s) return JSON.parse(s); } catch(e) {}
+    return [];
+  });
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [started, setStarted] = useState(false);
+  const [started, setStarted] = useState(() => {
+    try { return !!localStorage.getItem(storageKey); } catch(e) { return false; }
+  });
+  const [readyToAdvance, setReadyToAdvance] = useState(isCompleted || false);
   const listRef = useRef(null);
 
   useEffect(() => {
     if (listRef.current) listRef.current.scrollTop = listRef.current.scrollHeight;
   }, [msgs, loading]);
 
+  const save = (m) => { try { localStorage.setItem(storageKey, JSON.stringify(m)); } catch(e) {} };
+
+  const sys = module.systemPrompt(profile) + `\n\nCRITICAL: When the student has clearly demonstrated understanding of ALL teaching goals, end your message with this exact token on its own line: ${READY}\nDo NOT include this token until they genuinely understand everything. It unlocks the Complete button.`;
+
   const startLesson = async () => {
-    setStarted(true);
-    setLoading(true);
+    setStarted(true); setLoading(true);
     try {
-      const reply = await askAI(
-        [{ role: 'user', content: 'Start the lesson.' }],
-        module.systemPrompt(profile)
-      );
-      setMsgs([{ role: 'assistant', content: reply }]);
-    } catch (e) {
-      setMsgs([{ role: 'assistant', content: 'Something went wrong. Please refresh and try again.' }]);
-    }
+      const reply = await askAI([{ role: 'user', content: 'Start the lesson.' }], sys);
+      const hasSignal = reply.includes(READY);
+      const cleaned = reply.replace(READY, '').trim();
+      const newMsgs = [{ role: 'assistant', content: cleaned }];
+      setMsgs(newMsgs); save(newMsgs);
+      if (hasSignal) setReadyToAdvance(true);
+    } catch(e) { setMsgs([{ role: 'assistant', content: 'Something went wrong. Please try again.' }]); }
     setLoading(false);
   };
 
@@ -298,31 +240,36 @@ function ChatLesson({ module, profile, onComplete }) {
     const text = input.trim();
     if (!text || loading) return;
     const updated = [...msgs, { role: 'user', content: text }];
-    setMsgs(updated);
-    setInput('');
-    setLoading(true);
+    setMsgs(updated); save(updated); setInput(''); setLoading(true);
     try {
-      const reply = await askAI(
-        updated.map(m => ({ role: m.role, content: m.content })),
-        module.systemPrompt(profile)
-      );
-      setMsgs(p => [...p, { role: 'assistant', content: reply }]);
-    } catch (e) {
-      setMsgs(p => [...p, { role: 'assistant', content: 'Connection error. Please try again.' }]);
+      const reply = await askAI(updated, sys);
+      const hasSignal = reply.includes(READY);
+      const cleaned = reply.replace(READY, '').trim();
+      const final = [...updated, { role: 'assistant', content: cleaned }];
+      setMsgs(final); save(final);
+      if (hasSignal) setReadyToAdvance(true);
+    } catch(e) {
+      const err = [...updated, { role: 'assistant', content: 'Connection error. Please try again.' }];
+      setMsgs(err); save(err);
     }
     setLoading(false);
   };
 
+  const restart = () => {
+    try { localStorage.removeItem(storageKey); } catch(e) {}
+    setMsgs([]); setStarted(false); setReadyToAdvance(false);
+  };
+
   if (!started) return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 1, padding: '40px 24px', textAlign: 'center' }}>
-      <div style={{ width: '64px', height: '64px', borderRadius: '16px', background: G2, border: `1px solid ${G3}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '18px', fontWeight: '900', color: Y, marginBottom: '24px' }}>{module.icon}</div>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 1, padding: '40px 24px', textAlign: 'center', animation: 'up 0.3s ease' }}>
+      <div style={{ width: '64px', height: '64px', borderRadius: '16px', background: G2, border: `1px solid ${G3}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '20px', fontWeight: '900', color: Y, marginBottom: '24px' }}>{module.icon}</div>
       <h2 style={{ fontSize: '22px', fontWeight: '800', marginBottom: '8px', letterSpacing: '-0.5px' }}>{module.title}</h2>
       <p style={{ color: GM, fontSize: '14px', marginBottom: '32px', lineHeight: '1.6' }}>{module.subtitle}</p>
       <div style={{ background: G1, border: `1px solid ${G2}`, borderRadius: '12px', padding: '20px', marginBottom: '32px', textAlign: 'left', width: '100%', maxWidth: '400px' }}>
         <div style={{ color: Y, fontSize: '9px', letterSpacing: '2px', fontFamily: 'monospace', fontWeight: '800', marginBottom: '12px' }}>YOU'LL LEARN</div>
         {module.teachingGoals.map((g, i) => (
           <div key={i} style={{ display: 'flex', gap: '10px', marginBottom: '8px', alignItems: 'flex-start' }}>
-            <div style={{ width: '16px', height: '16px', borderRadius: '50%', background: '#0f0f00', border: `1px solid ${Y}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '1px' }}>
+            <div style={{ width: '16px', height: '16px', borderRadius: '50%', background: '#0f0f00', border: `1px solid ${Y}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
               <span style={{ color: Y, fontSize: '8px' }}>✓</span>
             </div>
             <span style={{ color: '#bbb', fontSize: '13px', lineHeight: '1.5' }}>{g}</span>
@@ -330,7 +277,7 @@ function ChatLesson({ module, profile, onComplete }) {
         ))}
       </div>
       <button onClick={startLesson} style={{ background: Y, color: BG, border: 'none', padding: '16px 40px', borderRadius: '12px', fontSize: '15px', fontWeight: '800', cursor: 'pointer' }}>
-        Start Lesson →
+        {isCompleted ? 'Review This Module →' : 'Start Lesson →'}
       </button>
     </div>
   );
@@ -341,7 +288,7 @@ function ChatLesson({ module, profile, onComplete }) {
         {msgs.map((m, i) => (
           <div key={i} style={{ display: 'flex', justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start', animation: 'up 0.2s ease' }}>
             {m.role === 'assistant' && (
-              <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: G2, border: `1px solid ${G3}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '9px', fontWeight: '900', color: Y, flexShrink: 0, marginRight: '8px', marginTop: '2px' }}>N</div>
+              <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: G2, border: `1px solid ${G3}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '9px', fontWeight: '900', color: Y, flexShrink: 0, marginRight: '8px', marginTop: '2px' }}>K</div>
             )}
             <div style={{ maxWidth: '80%', padding: '12px 16px', background: m.role === 'user' ? Y : G2, color: m.role === 'user' ? BG : W, borderRadius: m.role === 'user' ? '16px 16px 4px 16px' : '16px 16px 16px 4px', fontSize: '14px', lineHeight: '1.65', whiteSpace: 'pre-wrap', wordBreak: 'break-word', fontWeight: m.role === 'user' ? '600' : '400' }}>
               {m.content}
@@ -350,23 +297,42 @@ function ChatLesson({ module, profile, onComplete }) {
         ))}
         {loading && (
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
-            <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: G2, border: `1px solid ${G3}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '9px', fontWeight: '900', color: Y, flexShrink: 0 }}>N</div>
+            <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: G2, border: `1px solid ${G3}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '9px', fontWeight: '900', color: Y, flexShrink: 0 }}>K</div>
             <TypingIndicator />
           </div>
         )}
       </div>
 
       <div style={{ borderTop: `1px solid ${G2}`, padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '8px', background: G1, flexShrink: 0 }}>
+        {!isCompleted && (
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <textarea value={input} onChange={e => setInput(e.target.value)}
+              onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }}
+              placeholder="Reply to Kai..." rows={2}
+              style={{ flex: 1, background: G2, border: `1px solid ${G3}`, borderRadius: '10px', color: W, padding: '10px 14px', fontSize: '16px', resize: 'none', lineHeight: '1.5', fontFamily: '-apple-system,sans-serif', outline: 'none' }} />
+            <button onClick={send} disabled={loading || !input.trim()}
+              style={{ background: loading || !input.trim() ? G3 : Y, color: loading || !input.trim() ? GM : BG, border: 'none', borderRadius: '10px', padding: '0 16px', cursor: loading || !input.trim() ? 'not-allowed' : 'pointer', fontWeight: '800', fontSize: '13px', flexShrink: 0 }}>
+              Send
+            </button>
+          </div>
+        )}
         <div style={{ display: 'flex', gap: '8px' }}>
-          <textarea value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }} placeholder="Reply to Kai..." rows={2}
-            style={{ flex: 1, background: G2, border: `1px solid ${G3}`, borderRadius: '10px', color: W, padding: '10px 14px', fontSize: '16px', resize: 'none', lineHeight: '1.5', fontFamily: '-apple-system,sans-serif', outline: 'none' }} />
-          <button onClick={send} disabled={loading || !input.trim()} style={{ background: loading || !input.trim() ? G3 : Y, color: loading || !input.trim() ? GM : BG, border: 'none', borderRadius: '10px', padding: '0 16px', cursor: loading || !input.trim() ? 'not-allowed' : 'pointer', fontWeight: '800', fontSize: '13px', flexShrink: 0 }}>
-            Send
+          <button onClick={restart}
+            style={{ background: 'transparent', color: GM, border: `1px solid ${G3}`, padding: '12px 14px', borderRadius: '8px', fontSize: '11px', cursor: 'pointer', fontFamily: 'monospace', letterSpacing: '1px', flexShrink: 0 }}>
+            ↺ RESTART
           </button>
+          {isCompleted ? (
+            <button onClick={onComplete}
+              style={{ flex: 1, padding: '12px', borderRadius: '10px', fontSize: '13px', fontWeight: '800', fontFamily: 'monospace', cursor: 'pointer', border: 'none', background: Y, color: BG }}>
+              NEXT MODULE →
+            </button>
+          ) : (
+            <button onClick={readyToAdvance ? onComplete : undefined} disabled={!readyToAdvance}
+              style={{ flex: 1, padding: '12px', borderRadius: '10px', fontSize: '12px', fontWeight: '800', fontFamily: 'monospace', letterSpacing: '0.5px', cursor: readyToAdvance ? 'pointer' : 'not-allowed', border: 'none', background: readyToAdvance ? Y : G3, color: readyToAdvance ? BG : GM, transition: 'all 0.4s', animation: readyToAdvance ? 'glow 2s ease-in-out infinite' : 'none' }}>
+              {readyToAdvance ? '✓ COMPLETE & CONTINUE →' : 'KAI WILL UNLOCK WHEN READY'}
+            </button>
+          )}
         </div>
-        <button onClick={onComplete} style={{ background: 'transparent', color: GM, border: `1px solid ${G3}`, padding: '10px', borderRadius: '8px', fontSize: '12px', cursor: 'pointer', fontFamily: 'monospace', letterSpacing: '1px' }}>
-          MARK COMPLETE & CONTINUE →
-        </button>
       </div>
     </div>
   );
@@ -376,56 +342,47 @@ function Onboarding({ onComplete }) {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({ name: '', business: '', industry: '', goal: '' });
   const [input, setInput] = useState('');
-
   const questions = [
     { key: 'name', q: "First — what's your name?", placeholder: 'David' },
-    { key: 'business', q: `Nice to meet you! What's your business? Describe it in one sentence.`, placeholder: 'I run a dental office in Miami Beach specializing in cosmetic dentistry' },
-    { key: 'industry', q: `Got it. What industry would you say you're in?`, placeholder: 'Healthcare / Dental' },
-    { key: 'goal', q: `Last one — what's your #1 business goal right now?`, placeholder: 'Double my revenue from $45k to $100k/month' }
+    { key: 'business', q: "Nice to meet you! What's your business? One sentence.", placeholder: 'I run a dental office in Miami Beach specializing in cosmetic dentistry' },
+    { key: 'industry', q: "What industry are you in?", placeholder: 'Healthcare / Dental' },
+    { key: 'goal', q: "What's your #1 business goal right now?", placeholder: 'Double my revenue from $45k to $100k/month' }
   ];
-
   const next = () => {
     if (!input.trim()) return;
     const updated = { ...answers, [questions[step].key]: input.trim() };
-    setAnswers(updated);
-    setInput('');
-    if (step < questions.length - 1) {
-      setStep(s => s + 1);
-    } else {
-      onComplete(updated);
-    }
+    setAnswers(updated); setInput('');
+    if (step < questions.length - 1) { setStep(s => s + 1); } else { onComplete(updated); }
   };
-
   return (
     <div style={{ minHeight: '100dvh', background: BG, color: W, fontFamily: "-apple-system,'Helvetica Neue',sans-serif", display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
       <style>{CSS}</style>
       <div style={{ maxWidth: '440px', width: '100%', animation: 'up 0.4s ease' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '48px' }}>
-          <div style={{ width: '32px', height: '32px', background: Y, borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '13px', color: BG, fontFamily: 'monospace' }}>K</div>
-          <span style={{ fontWeight: '700', fontSize: '16px' }}>Kai — Your AI Teacher</span>
-        </div>
-
-        <div style={{ marginBottom: '8px' }}>
-          {step > 0 && Object.entries(answers).slice(0, step).map(([k, v]) => v && (
-            <div key={k} style={{ marginBottom: '8px', display: 'flex', justifyContent: 'flex-end' }}>
-              <div style={{ background: Y, color: BG, padding: '10px 14px', borderRadius: '14px 14px 4px 14px', fontSize: '14px', fontWeight: '600', maxWidth: '80%' }}>{v}</div>
-            </div>
-          ))}
-        </div>
-
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', marginBottom: '32px' }}>
-          <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: G2, border: `1px solid ${G3}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '9px', fontWeight: '900', color: Y, flexShrink: 0, marginTop: '2px' }}>N</div>
-          <div style={{ background: G2, padding: '14px 16px', borderRadius: '14px 14px 14px 4px', fontSize: '15px', lineHeight: '1.6', flex: 1 }}>
-            {step === 0 ? `Hey! I'm Kai, your AI teacher. I'm going to teach you everything about AI and how to use it to grow your business. Before we start — ${questions[step].q}` : questions[step].q}
+          <div style={{ width: '34px', height: '34px', background: Y, borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '14px', color: BG, fontFamily: 'monospace' }}>K</div>
+          <div>
+            <div style={{ fontWeight: '800', fontSize: '16px' }}>Kai</div>
+            <div style={{ color: GM, fontSize: '11px' }}>Your AI Teacher</div>
           </div>
         </div>
-
-        <div style={{ display: 'flex', gap: '8px' }}>
-          <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') next(); }} placeholder={questions[step].placeholder}
-            style={{ flex: 1, background: G2, border: `1px solid ${G3}`, borderRadius: '10px', color: W, padding: '14px 16px', fontSize: '16px', fontFamily: '-apple-system,sans-serif', outline: 'none' }} autoFocus />
-          <button onClick={next} disabled={!input.trim()} style={{ background: !input.trim() ? G3 : Y, color: !input.trim() ? GM : BG, border: 'none', borderRadius: '10px', padding: '0 20px', cursor: !input.trim() ? 'not-allowed' : 'pointer', fontWeight: '800', fontSize: '14px', flexShrink: 0 }}>→</button>
+        {step > 0 && Object.entries(answers).slice(0, step).map(([k, v]) => v && (
+          <div key={k} style={{ marginBottom: '8px', display: 'flex', justifyContent: 'flex-end' }}>
+            <div style={{ background: Y, color: BG, padding: '10px 14px', borderRadius: '14px 14px 4px 14px', fontSize: '14px', fontWeight: '600', maxWidth: '80%' }}>{v}</div>
+          </div>
+        ))}
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', marginBottom: '28px' }}>
+          <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: G2, border: `1px solid ${G3}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '9px', fontWeight: '900', color: Y, flexShrink: 0, marginTop: '2px' }}>K</div>
+          <div style={{ background: G2, padding: '14px 16px', borderRadius: '14px 14px 14px 4px', fontSize: '15px', lineHeight: '1.6', flex: 1 }}>
+            {step === 0 ? `Hey! I'm Kai, your AI teacher. I'll teach you everything about AI and how to use it to grow your business — personalized just for you. ${questions[0].q}` : questions[step].q}
+          </div>
         </div>
-
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') next(); }}
+            placeholder={questions[step].placeholder}
+            style={{ flex: 1, background: G2, border: `1px solid ${G3}`, borderRadius: '10px', color: W, padding: '14px 16px', fontSize: '16px', fontFamily: '-apple-system,sans-serif', outline: 'none' }} autoFocus />
+          <button onClick={next} disabled={!input.trim()}
+            style={{ background: !input.trim() ? G3 : Y, color: !input.trim() ? GM : BG, border: 'none', borderRadius: '10px', padding: '0 20px', cursor: !input.trim() ? 'not-allowed' : 'pointer', fontWeight: '800', fontSize: '16px', flexShrink: 0 }}>→</button>
+        </div>
         <div style={{ display: 'flex', gap: '6px', marginTop: '24px', justifyContent: 'center' }}>
           {questions.map((_, i) => <div key={i} style={{ width: i === step ? '20px' : '6px', height: '6px', borderRadius: '3px', background: i === step ? Y : G3, transition: 'all 0.3s' }} />)}
         </div>
@@ -441,7 +398,6 @@ export default function App() {
   const [completed, setCompleted] = useState({});
   const totalDone = Object.values(completed).filter(Boolean).length;
 
-  // Load saved progress on mount
   useEffect(() => {
     try {
       const savedProfile = localStorage.getItem('kai_profile');
@@ -455,15 +411,13 @@ export default function App() {
   }, []);
 
   const completeOnboarding = (p) => {
-    setProfile(p);
-    setPhase('course');
+    setProfile(p); setPhase('course');
     try { localStorage.setItem('kai_profile', JSON.stringify(p)); } catch(e) {}
   };
 
   const openModule = (idx) => {
     if (idx > 0 && !completed[idx - 1]) return;
-    setActiveIdx(idx);
-    setPhase('lesson');
+    setActiveIdx(idx); setPhase('lesson');
   };
 
   const completeModule = () => {
@@ -471,12 +425,20 @@ export default function App() {
     setCompleted(updated);
     try { localStorage.setItem('kai_completed', JSON.stringify(updated)); } catch(e) {}
     const next = activeIdx + 1;
-    if (next < MODULES.length) { setActiveIdx(next); } else { setPhase('course'); }
+    if (next < MODULES.length) {
+      setActiveIdx(next); // auto-advance, stay in lesson phase
+    } else {
+      setPhase('course');
+    }
   };
 
-  const resetProgress = () => {
-    try { localStorage.removeItem('kai_profile'); localStorage.removeItem('kai_completed'); } catch(e) {}
-    setProfile(null); setCompleted({}); setPhase('onboarding');
+  const resetAll = () => {
+    try {
+      localStorage.removeItem('kai_profile');
+      localStorage.removeItem('kai_completed');
+      MODULES.forEach(m => localStorage.removeItem(`kai_msgs_${m.id}`));
+    } catch(e) {}
+    setProfile(null); setCompleted({}); setActiveIdx(null); setPhase('onboarding');
   };
 
   const base = { minHeight: '100dvh', background: BG, color: W, fontFamily: "-apple-system,'Helvetica Neue',sans-serif" };
@@ -494,26 +456,22 @@ export default function App() {
             <div style={{ color: Y, fontSize: '9px', letterSpacing: '2px', fontFamily: 'monospace', fontWeight: '800', marginBottom: '1px' }}>MODULE {mod.id} OF {MODULES.length}</div>
             <div style={{ color: W, fontWeight: '700', fontSize: '14px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{mod.title}</div>
           </div>
-          <div style={{ color: GM, fontSize: '11px', fontFamily: 'monospace' }}>{profile?.name}</div>
+          <div style={{ color: GM, fontSize: '12px', fontWeight: '600' }}>{profile?.name}</div>
         </div>
-        <ChatLesson module={mod} profile={profile} onComplete={completeModule} />
+        <ChatLesson module={mod} profile={profile} onComplete={completeModule} isCompleted={!!completed[activeIdx]} />
       </div>
     );
   }
 
-  // COURSE LIST
   return (
     <div style={base}>
       <style>{CSS}</style>
       <div style={{ background: G1, borderBottom: `1px solid ${G2}`, padding: '14px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 10 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '9px' }}>
-          <div style={{ width: '28px', height: '28px', background: Y, borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '11px', color: BG, fontFamily: 'monospace' }}>K</div>
-          <div>
-            <div style={{ fontWeight: '700', fontSize: '14px' }}>AI Mastery</div>
-            <div style={{ color: GM, fontSize: '11px' }}>with Kai</div>
-          </div>
+          <div style={{ width: '28px', height: '28px', background: Y, borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '12px', color: BG, fontFamily: 'monospace' }}>K</div>
+          <div style={{ fontWeight: '700', fontSize: '14px' }}>AI Mastery with Kai</div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <div style={{ width: '80px', height: '4px', background: G2, borderRadius: '2px' }}>
             <div style={{ width: `${(totalDone / MODULES.length) * 100}%`, height: '100%', background: Y, borderRadius: '2px', transition: 'width 0.4s' }} />
           </div>
@@ -521,17 +479,14 @@ export default function App() {
         </div>
       </div>
 
-      <div style={{ maxWidth: '480px', margin: '0 auto', padding: '20px 16px 60px' }}>
-        <div style={{ marginBottom: '24px', padding: '16px', background: G1, borderRadius: '12px', border: `1px solid ${G2}` }}>
-          <div style={{ color: Y, fontSize: '9px', letterSpacing: '2px', fontFamily: 'monospace', fontWeight: '800', marginBottom: '8px' }}>YOUR PROFILE</div>
+      <div style={{ maxWidth: '480px', margin: '0 auto', padding: '20px 16px 80px' }}>
+        <div style={{ marginBottom: '20px', padding: '14px 16px', background: G1, borderRadius: '12px', border: `1px solid ${G2}` }}>
+          <div style={{ color: Y, fontSize: '9px', letterSpacing: '2px', fontFamily: 'monospace', fontWeight: '800', marginBottom: '6px' }}>YOUR PROFILE</div>
           <div style={{ color: W, fontSize: '14px', fontWeight: '700', marginBottom: '2px' }}>{profile?.name} · {profile?.business}</div>
           <div style={{ color: GM, fontSize: '12px' }}>Goal: {profile?.goal}</div>
         </div>
 
-        <h2 style={{ fontSize: '18px', fontWeight: '800', marginBottom: '4px' }}>Your Modules</h2>
-        <p style={{ color: GM, fontSize: '12px', marginBottom: '16px' }}>Kai teaches each module through conversation — personalized to your business.</p>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '24px' }}>
           {MODULES.map((mod, idx) => {
             const locked = idx > 0 && !completed[idx - 1];
             const isDone = completed[idx];
@@ -543,7 +498,7 @@ export default function App() {
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '2px' }}>
-                    <div style={{ color: isDone ? '#666' : W, fontWeight: '700', fontSize: '14px' }}>{mod.title}</div>
+                    <div style={{ color: isDone ? GM : W, fontWeight: '700', fontSize: '14px' }}>{mod.title}</div>
                     {isNext && <div style={{ background: Y, color: BG, fontSize: '8px', fontWeight: '900', padding: '2px 6px', borderRadius: '4px', fontFamily: 'monospace', flexShrink: 0 }}>UP NEXT</div>}
                   </div>
                   <div style={{ color: GM, fontSize: '11px' }}>{mod.subtitle}</div>
@@ -555,12 +510,16 @@ export default function App() {
         </div>
 
         {totalDone === MODULES.length && (
-          <div style={{ marginTop: '24px', padding: '24px', background: '#0a1a00', border: '1px solid #4a8a00', borderRadius: '12px', textAlign: 'center' }}>
+          <div style={{ padding: '24px', background: '#0a1a00', border: '1px solid #4a8a00', borderRadius: '12px', textAlign: 'center', marginBottom: '24px' }}>
             <div style={{ fontSize: '32px', marginBottom: '12px' }}>🎓</div>
             <div style={{ color: '#7aff00', fontWeight: '800', fontSize: '18px', marginBottom: '8px' }}>Course Complete!</div>
-            <div style={{ color: GM, fontSize: '13px' }}>You've mastered AI for your business. Your agentic workflow is ready to deploy.</div>
+            <div style={{ color: GM, fontSize: '13px' }}>You've mastered AI for your business.</div>
           </div>
         )}
+
+        <button onClick={resetAll} style={{ width: '100%', background: 'transparent', color: G3, border: `1px solid ${G2}`, padding: '12px', borderRadius: '8px', fontSize: '11px', cursor: 'pointer', fontFamily: 'monospace', letterSpacing: '1px' }}>
+          RESET ALL PROGRESS
+        </button>
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ const MODULES = [
     id: 1, icon: "01", title: "What AI Actually Is",
     subtitle: "How it thinks, what it can't do, why it matters now",
     teachingGoals: ["Understand AI is a prediction engine, not magic", "Know the difference between AI types", "Understand why now is the right time to learn this", "Clear up the biggest misconceptions"],
-    systemPrompt: (p) => `You are Kai, an expert AI teacher. You are teaching ${p.name || 'a business owner'} who runs ${p.business} in the ${p.industry} industry. Their goal: ${p.goal}.
+    systemPrompt: (p) => `You are Kai, an expert AI teacher. You are teaching ${p.name} who runs ${p.business} in the ${p.industry} industry. Their goal: ${p.goal}.
 
 MODULE 1: What AI Actually Is.
 
@@ -29,7 +29,7 @@ Flow:
 4. Explain difference between AI tools
 5. Explain why NOW is critical for ${p.industry} business owners
 6. Check understanding with a question
-7. When they demonstrate solid understanding of all concepts, end your message with exactly: ${READY}
+7. When they demonstrate solid understanding of all concepts, end your message with exactly this on its own line: ${READY}
 
 Start: briefly introduce yourself and ask what they currently think AI is.`
   },
@@ -37,7 +37,7 @@ Start: briefly introduce yourself and ask what they currently think AI is.`
     id: 2, icon: "02", title: "Setting Up Claude Properly",
     subtitle: "Account, plans, Projects, memory, and custom instructions",
     teachingGoals: ["Choose the right Claude plan", "Set up a Project for their business", "Configure custom instructions", "Understand memory and artifacts", "Upload files and use Claude's full interface"],
-    systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name || 'a student'} who runs ${p.business} in ${p.industry}.
+    systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name} who runs ${p.business} in ${p.industry}.
 
 MODULE 2: Setting Up Claude the Right Way.
 
@@ -45,7 +45,7 @@ Rules: Under 120 words per message. Use ${p.industry} examples throughout.
 
 Flow:
 1. Ask if they have a Claude account
-2. Explain plans: Free (limited), Pro ($20/mo best for most), Team (for teams)
+2. Explain plans: Free (limited), Pro ($20/mo best for most), Team (for teams). Recommend Pro.
 3. Teach Projects: dedicated workspace. Walk through creating one for ${p.industry}
 4. Teach Custom Instructions: tell Claude about yourself once. Help them write their own for ${p.business}
 5. Teach Memory: Claude remembers across conversations in Projects
@@ -58,7 +58,7 @@ Flow:
     id: 3, icon: "03", title: "Writing Prompts That Actually Work",
     subtitle: "The Role + Task + Context formula with live practice",
     teachingGoals: ["Understand the 3-part prompt formula", "Know why vague prompts give bad results", "Write a great prompt for their own business", "Learn to iterate and improve prompts"],
-    systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name || 'a student'} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
+    systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
 
 MODULE 3: Writing Prompts That Actually Work.
 
@@ -79,7 +79,7 @@ Flow:
     id: 4, icon: "04", title: "Automate Your Repetitive Work",
     subtitle: "Build a reusable prompt library for your business",
     teachingGoals: ["Identify their top repetitive tasks", "Build a saved prompt for each", "Use Claude Projects as a prompt library", "Create a weekly AI workflow"],
-    systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name || 'a student'} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
+    systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
 
 MODULE 4: Automate Your Repetitive Work.
 
@@ -99,7 +99,7 @@ Flow:
     id: 5, icon: "05", title: "Generate More Leads with AI",
     subtitle: "Lead magnets, outreach, and follow-up sequences",
     teachingGoals: ["Define their ideal lead precisely", "Create a lead magnet concept", "Write outreach messages", "Build a follow-up sequence"],
-    systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name || 'a student'} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
+    systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
 
 MODULE 5: Generate More Leads with AI.
 
@@ -107,9 +107,9 @@ Rules: Under 120 words. Build real assets they can use today.
 
 Flow:
 1. Ask: who is their ideal customer for ${p.business}?
-2. Push for more specificity — demographics, pain points, where they hang out
+2. Push for specificity — demographics, pain points, where they hang out
 3. Teach lead magnets: free thing that solves one problem. Build one for their business.
-4. Write an actual outreach message (Instagram DM or email) for ${p.industry}
+4. Write an actual outreach message for ${p.industry}
 5. Explain follow-up sequences: most sales happen at follow-up 5-8
 6. Write a 3-email follow-up sequence for their business
 7. Teach 30 days of content in one Claude session
@@ -119,7 +119,7 @@ Flow:
     id: 6, icon: "06", title: "Claude for Teams and Cowork",
     subtitle: "Collaborate, share projects, automate with Cowork",
     teachingGoals: ["Understand Claude Team plan", "Share Projects with teammates", "Use Cowork for task and file automation", "Build team AI workflows"],
-    systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name || 'a student'} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
+    systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
 
 MODULE 6: Claude for Teams and Cowork.
 
@@ -140,7 +140,7 @@ Flow:
     id: 7, icon: "07", title: "Claude Code — Build Without Coding",
     subtitle: "Create real tools for your business, no developer needed",
     teachingGoals: ["Understand what Claude Code can build", "Install and set up Claude Code", "Build a simple automation for their business", "Know when to use Claude Code vs other tools"],
-    systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name || 'a student'} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
+    systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
 
 MODULE 7: Claude Code — Build Without Coding.
 
@@ -161,13 +161,13 @@ Flow:
     id: 8, icon: "08", title: "Build Your Agentic AI Workflow",
     subtitle: "Your AI works for you 24/7 — we build it together now",
     teachingGoals: ["Understand what agentic AI means", "Map a full automated workflow", "Connect Claude to other tools", "Deploy a system that runs without them"],
-    systemPrompt: (p) => `You are Kai — an expert AI teacher AND agent. Teaching ${p.name || 'a student'} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
+    systemPrompt: (p) => `You are Kai — expert AI teacher AND agent. Teaching ${p.name} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
 
-MODULE 8: Build Your Agentic AI Workflow. THIS MODULE IS DIFFERENT — you act as their AI AGENT.
+MODULE 8: Build Your Agentic AI Workflow. THIS MODULE IS DIFFERENT — you act as their AI AGENT, not just a teacher.
 
 Rules: Under 150 words. Be specific. Build the actual workflow for their business.
 
-Agent mode flow:
+Agent mode:
 1. Explain: "This module is different. I'm acting as your AI agent — we're BUILDING your actual workflow right now."
 2. Ask: what's the one process they most want to automate?
 3. Map the FULL workflow: trigger, each step, tools, output
@@ -177,7 +177,7 @@ Agent mode flow:
 7. Give complete deployment checklist
 8. Write a monthly maintenance prompt
 9. End: "You now have a working agentic workflow. This runs 24/7 without you."
-10. When complete workflow is mapped and they understand deployment, end with: ${READY}`
+10. When the complete workflow is mapped and they understand deployment, end with: ${READY}`
   }
 ];
 
@@ -201,7 +201,36 @@ function TypingIndicator() {
   );
 }
 
-function ChatLesson({ module, profile, onComplete, isCompleted }) {
+function OptionsMenu({ onRestart, onBack }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const handler = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
+  return (
+    <div ref={ref} style={{ position: 'relative' }}>
+      <button onClick={() => setOpen(o => !o)} style={{ background: G2, border: `1px solid ${G3}`, color: W, width: '36px', height: '36px', borderRadius: '8px', cursor: 'pointer', fontSize: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        ⋯
+      </button>
+      {open && (
+        <div style={{ position: 'absolute', bottom: '44px', right: 0, background: G1, border: `1px solid ${G3}`, borderRadius: '10px', overflow: 'hidden', minWidth: '180px', zIndex: 50, boxShadow: '0 4px 20px rgba(0,0,0,0.6)' }}>
+          <button onClick={() => { setOpen(false); onBack(); }} style={{ width: '100%', padding: '13px 16px', background: 'none', border: 'none', color: W, fontSize: '14px', cursor: 'pointer', textAlign: 'left', borderBottom: `1px solid ${G3}` }}>
+            ← Back to Modules
+          </button>
+          <button onClick={() => { setOpen(false); onRestart(); }} style={{ width: '100%', padding: '13px 16px', background: 'none', border: 'none', color: '#ff6b6b', fontSize: '14px', cursor: 'pointer', textAlign: 'left' }}>
+            ↺ Restart This Module
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ChatLesson({ module, profile, onComplete, isCompleted, onBack }) {
   const storageKey = `kai_msgs_${module.id}`;
   const [msgs, setMsgs] = useState(() => {
     try { const s = localStorage.getItem(storageKey); if (s) return JSON.parse(s); } catch(e) {}
@@ -214,14 +243,19 @@ function ChatLesson({ module, profile, onComplete, isCompleted }) {
   });
   const [readyToAdvance, setReadyToAdvance] = useState(isCompleted || false);
   const listRef = useRef(null);
+  const inputRef = useRef(null);
 
   useEffect(() => {
     if (listRef.current) listRef.current.scrollTop = listRef.current.scrollHeight;
   }, [msgs, loading]);
 
+  useEffect(() => {
+    if (started && inputRef.current) inputRef.current.focus();
+  }, [started]);
+
   const save = (m) => { try { localStorage.setItem(storageKey, JSON.stringify(m)); } catch(e) {} };
 
-  const sys = module.systemPrompt(profile) + `\n\nCRITICAL: When the student has clearly demonstrated understanding of ALL teaching goals, end your message with this exact token on its own line: ${READY}\nDo NOT include this token until they genuinely understand everything. It unlocks the Complete button.`;
+  const sys = module.systemPrompt(profile) + `\n\nCRITICAL INSTRUCTION: When the student has clearly demonstrated understanding of ALL teaching goals for this module, end your message with this exact token on its own line: ${READY}\nDo NOT include this token prematurely. It unlocks the Complete Module button for the student.`;
 
   const startLesson = async () => {
     setStarted(true); setLoading(true);
@@ -232,7 +266,9 @@ function ChatLesson({ module, profile, onComplete, isCompleted }) {
       const newMsgs = [{ role: 'assistant', content: cleaned }];
       setMsgs(newMsgs); save(newMsgs);
       if (hasSignal) setReadyToAdvance(true);
-    } catch(e) { setMsgs([{ role: 'assistant', content: 'Something went wrong. Please try again.' }]); }
+    } catch(e) {
+      setMsgs([{ role: 'assistant', content: 'Something went wrong. Please try again.' }]);
+    }
     setLoading(false);
   };
 
@@ -260,30 +296,35 @@ function ChatLesson({ module, profile, onComplete, isCompleted }) {
     setMsgs([]); setStarted(false); setReadyToAdvance(false);
   };
 
+  // Pre-lesson screen
   if (!started) return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 1, padding: '40px 24px', textAlign: 'center', animation: 'up 0.3s ease' }}>
-      <div style={{ width: '64px', height: '64px', borderRadius: '16px', background: G2, border: `1px solid ${G3}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '20px', fontWeight: '900', color: Y, marginBottom: '24px' }}>{module.icon}</div>
-      <h2 style={{ fontSize: '22px', fontWeight: '800', marginBottom: '8px', letterSpacing: '-0.5px' }}>{module.title}</h2>
-      <p style={{ color: GM, fontSize: '14px', marginBottom: '32px', lineHeight: '1.6' }}>{module.subtitle}</p>
-      <div style={{ background: G1, border: `1px solid ${G2}`, borderRadius: '12px', padding: '20px', marginBottom: '32px', textAlign: 'left', width: '100%', maxWidth: '400px' }}>
-        <div style={{ color: Y, fontSize: '9px', letterSpacing: '2px', fontFamily: 'monospace', fontWeight: '800', marginBottom: '12px' }}>YOU'LL LEARN</div>
-        {module.teachingGoals.map((g, i) => (
-          <div key={i} style={{ display: 'flex', gap: '10px', marginBottom: '8px', alignItems: 'flex-start' }}>
-            <div style={{ width: '16px', height: '16px', borderRadius: '50%', background: '#0f0f00', border: `1px solid ${Y}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
-              <span style={{ color: Y, fontSize: '8px' }}>✓</span>
+    <div style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '32px 24px', textAlign: 'center', animation: 'up 0.3s ease', overflowY: 'auto' }}>
+        <div style={{ width: '64px', height: '64px', borderRadius: '16px', background: G2, border: `1px solid ${G3}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '20px', fontWeight: '900', color: Y, marginBottom: '20px' }}>{module.icon}</div>
+        <h2 style={{ fontSize: '22px', fontWeight: '800', marginBottom: '8px', letterSpacing: '-0.5px' }}>{module.title}</h2>
+        <p style={{ color: GM, fontSize: '14px', marginBottom: '28px', lineHeight: '1.6' }}>{module.subtitle}</p>
+        <div style={{ background: G1, border: `1px solid ${G2}`, borderRadius: '12px', padding: '18px 20px', marginBottom: '28px', textAlign: 'left', width: '100%', maxWidth: '400px' }}>
+          <div style={{ color: Y, fontSize: '9px', letterSpacing: '2px', fontFamily: 'monospace', fontWeight: '800', marginBottom: '12px' }}>IN THIS LESSON</div>
+          {module.teachingGoals.map((g, i) => (
+            <div key={i} style={{ display: 'flex', gap: '10px', marginBottom: '8px', alignItems: 'flex-start' }}>
+              <div style={{ width: '16px', height: '16px', borderRadius: '50%', background: '#0f0f00', border: `1px solid ${Y}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                <span style={{ color: Y, fontSize: '8px' }}>✓</span>
+              </div>
+              <span style={{ color: '#bbb', fontSize: '13px', lineHeight: '1.5' }}>{g}</span>
             </div>
-            <span style={{ color: '#bbb', fontSize: '13px', lineHeight: '1.5' }}>{g}</span>
-          </div>
-        ))}
+          ))}
+        </div>
+        <button onClick={startLesson} style={{ background: Y, color: BG, border: 'none', padding: '16px 48px', borderRadius: '12px', fontSize: '16px', fontWeight: '800', cursor: 'pointer', width: '100%', maxWidth: '400px' }}>
+          {isCompleted ? 'Review This Lesson →' : 'Start Lesson →'}
+        </button>
       </div>
-      <button onClick={startLesson} style={{ background: Y, color: BG, border: 'none', padding: '16px 40px', borderRadius: '12px', fontSize: '15px', fontWeight: '800', cursor: 'pointer' }}>
-        {isCompleted ? 'Review This Module →' : 'Start Lesson →'}
-      </button>
     </div>
   );
 
+  // Active lesson
   return (
     <div style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
+      {/* Messages */}
       <div ref={listRef} style={{ flex: 1, overflowY: 'auto', padding: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
         {msgs.map((m, i) => (
           <div key={i} style={{ display: 'flex', justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start', animation: 'up 0.2s ease' }}>
@@ -303,33 +344,54 @@ function ChatLesson({ module, profile, onComplete, isCompleted }) {
         )}
       </div>
 
-      <div style={{ borderTop: `1px solid ${G2}`, padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '8px', background: G1, flexShrink: 0 }}>
-        {!isCompleted && (
-          <div style={{ display: 'flex', gap: '8px' }}>
-            <textarea value={input} onChange={e => setInput(e.target.value)}
-              onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }}
-              placeholder="Reply to Kai..." rows={2}
-              style={{ flex: 1, background: G2, border: `1px solid ${G3}`, borderRadius: '10px', color: W, padding: '10px 14px', fontSize: '16px', resize: 'none', lineHeight: '1.5', fontFamily: '-apple-system,sans-serif', outline: 'none' }} />
-            <button onClick={send} disabled={loading || !input.trim()}
-              style={{ background: loading || !input.trim() ? G3 : Y, color: loading || !input.trim() ? GM : BG, border: 'none', borderRadius: '10px', padding: '0 16px', cursor: loading || !input.trim() ? 'not-allowed' : 'pointer', fontWeight: '800', fontSize: '13px', flexShrink: 0 }}>
-              Send
-            </button>
-          </div>
-        )}
-        <div style={{ display: 'flex', gap: '8px' }}>
-          <button onClick={restart}
-            style={{ background: 'transparent', color: GM, border: `1px solid ${G3}`, padding: '12px 14px', borderRadius: '8px', fontSize: '11px', cursor: 'pointer', fontFamily: 'monospace', letterSpacing: '1px', flexShrink: 0 }}>
-            ↺ RESTART
+      {/* Bottom bar — always visible */}
+      <div style={{ borderTop: `1px solid ${G2}`, padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '10px', background: G1, flexShrink: 0 }}>
+
+        {/* Input row — always shown */}
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-end' }}>
+          <textarea
+            ref={inputRef}
+            value={input}
+            onChange={e => setInput(e.target.value)}
+            onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }}
+            placeholder="Type your answer here..."
+            rows={2}
+            style={{ flex: 1, background: G2, border: `1px solid ${G3}`, borderRadius: '10px', color: W, padding: '10px 14px', fontSize: '16px', resize: 'none', lineHeight: '1.5', fontFamily: '-apple-system,sans-serif', outline: 'none' }}
+          />
+          <button onClick={send} disabled={loading || !input.trim()}
+            style={{ background: loading || !input.trim() ? G3 : Y, color: loading || !input.trim() ? GM : BG, border: 'none', borderRadius: '10px', padding: '0 16px', height: '52px', cursor: loading || !input.trim() ? 'not-allowed' : 'pointer', fontWeight: '800', fontSize: '13px', flexShrink: 0 }}>
+            Send
           </button>
-          {isCompleted ? (
-            <button onClick={onComplete}
-              style={{ flex: 1, padding: '12px', borderRadius: '10px', fontSize: '13px', fontWeight: '800', fontFamily: 'monospace', cursor: 'pointer', border: 'none', background: Y, color: BG }}>
-              NEXT MODULE →
+        </div>
+
+        {/* Action row */}
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+          <OptionsMenu onRestart={restart} onBack={onBack} />
+
+          {/* Complete button — locked until Kai unlocks, hidden if already completed */}
+          {!isCompleted && (
+            <button
+              onClick={readyToAdvance ? onComplete : undefined}
+              disabled={!readyToAdvance}
+              style={{
+                flex: 1, padding: '13px', borderRadius: '10px', fontSize: '13px',
+                fontWeight: '800', fontFamily: 'monospace', letterSpacing: '0.5px',
+                cursor: readyToAdvance ? 'pointer' : 'not-allowed',
+                border: readyToAdvance ? 'none' : `1px solid ${G3}`,
+                background: readyToAdvance ? Y : 'transparent',
+                color: readyToAdvance ? BG : GM,
+                transition: 'all 0.4s',
+                animation: readyToAdvance ? 'glow 2s ease-in-out infinite' : 'none'
+              }}>
+              {readyToAdvance ? '✓ COMPLETE & CONTINUE →' : 'Kai will unlock this when you\'re ready'}
             </button>
-          ) : (
-            <button onClick={readyToAdvance ? onComplete : undefined} disabled={!readyToAdvance}
-              style={{ flex: 1, padding: '12px', borderRadius: '10px', fontSize: '12px', fontWeight: '800', fontFamily: 'monospace', letterSpacing: '0.5px', cursor: readyToAdvance ? 'pointer' : 'not-allowed', border: 'none', background: readyToAdvance ? Y : G3, color: readyToAdvance ? BG : GM, transition: 'all 0.4s', animation: readyToAdvance ? 'glow 2s ease-in-out infinite' : 'none' }}>
-              {readyToAdvance ? '✓ COMPLETE & CONTINUE →' : 'KAI WILL UNLOCK WHEN READY'}
+          )}
+
+          {/* Next module button — only shown on already-completed modules */}
+          {isCompleted && (
+            <button onClick={onComplete}
+              style={{ flex: 1, padding: '13px', borderRadius: '10px', fontSize: '13px', fontWeight: '800', fontFamily: 'monospace', cursor: 'pointer', border: 'none', background: Y, color: BG }}>
+              NEXT MODULE →
             </button>
           )}
         </div>
@@ -426,9 +488,9 @@ export default function App() {
     try { localStorage.setItem('kai_completed', JSON.stringify(updated)); } catch(e) {}
     const next = activeIdx + 1;
     if (next < MODULES.length) {
-      setActiveIdx(next); // auto-advance, stay in lesson phase
+      setActiveIdx(next); // auto-advance to next module, stay in lesson phase
     } else {
-      setPhase('course');
+      setPhase('course'); // finished all modules
     }
   };
 
@@ -458,11 +520,18 @@ export default function App() {
           </div>
           <div style={{ color: GM, fontSize: '12px', fontWeight: '600' }}>{profile?.name}</div>
         </div>
-        <ChatLesson module={mod} profile={profile} onComplete={completeModule} isCompleted={!!completed[activeIdx]} />
+        <ChatLesson
+          module={mod}
+          profile={profile}
+          onComplete={completeModule}
+          isCompleted={!!completed[activeIdx]}
+          onBack={() => setPhase('course')}
+        />
       </div>
     );
   }
 
+  // Course list
   return (
     <div style={base}>
       <style>{CSS}</style>

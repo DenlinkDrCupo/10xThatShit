@@ -11,17 +11,15 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-5',
-        max_tokens: 1024,
-        system: system || 'You are a helpful assistant.',
-        messages: messages
+        max_tokens: 600,
+        system: system || 'You are a helpful AI teacher.',
+        messages
       })
     });
     const data = await response.json();
-    console.log('API response:', JSON.stringify(data));
-    const text = data?.content?.[0]?.text || 'No response received';
+    const text = data?.content?.[0]?.text || '';
     return res.status(200).json({ text });
   } catch (e) {
-    console.error('Error:', e);
-    return res.status(500).json({ error: e.message, text: 'Error: ' + e.message });
+    return res.status(500).json({ error: e.message });
   }
 }

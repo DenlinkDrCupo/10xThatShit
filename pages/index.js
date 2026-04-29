@@ -568,6 +568,14 @@ function Onboarding({ onComplete }) {
       onComplete(updated);
     }
   };
+
+  const back = () => {
+    if (step === 0) return;
+    const prevKey = questions[step - 1].key;
+    setInput(answers[prevKey] || '');
+    setStep(s => s - 1);
+    setTimeout(() => inputRef.current?.focus(), 50);
+  };
   return (
     <div style={{ height: '100dvh', background: BG, color: W, fontFamily: "-apple-system,'Helvetica Neue',sans-serif", display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       <style>{CSS}</style>
@@ -601,6 +609,13 @@ function Onboarding({ onComplete }) {
       <div style={{ background: G1, borderTop: `1px solid ${G2}`, padding: '12px 16px 24px', flexShrink: 0 }}>
         <div style={{ maxWidth: '440px', margin: '0 auto' }}>
           <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
+            {step > 0 && (
+              <button
+                onMouseDown={e => e.preventDefault()}
+                onTouchStart={e => e.preventDefault()}
+                onClick={back}
+                style={{ background: G2, border: `1px solid ${G3}`, color: W, borderRadius: '10px', padding: '0 16px', cursor: 'pointer', fontWeight: '800', fontSize: '16px', flexShrink: 0 }}>←</button>
+            )}
             <input value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); next(); } }}

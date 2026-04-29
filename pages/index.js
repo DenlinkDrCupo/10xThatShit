@@ -640,11 +640,44 @@ function Onboarding({ onComplete }) {
   );
 }
 
+function EditProfileModal({ profile, onSave, onClose }) {
+  const [vals, setVals] = useState({ ...profile });
+  const fields = [
+    { key: 'name', label: 'Your Name', placeholder: 'David' },
+    { key: 'business', label: 'Your Business', placeholder: 'I run a dental office in Miami Beach' },
+    { key: 'industry', label: 'Your Industry', placeholder: 'Healthcare / Dental' },
+    { key: 'goal', label: 'Your #1 Goal', placeholder: 'Double my revenue from $45k to $100k/month' }
+  ];
+  return (
+    <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)', zIndex: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
+      <div style={{ background: G1, border: `1px solid ${G3}`, borderRadius: '16px', padding: '24px', width: '100%', maxWidth: '440px', maxHeight: '90dvh', overflowY: 'auto' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
+          <div style={{ color: Y, fontSize: '11px', letterSpacing: '2px', fontFamily: 'monospace', fontWeight: '800' }}>EDIT YOUR PROFILE</div>
+          <button onClick={onClose} style={{ background: G2, border: 'none', color: '#aaa', width: '30px', height: '30px', borderRadius: '6px', cursor: 'pointer', fontSize: '16px' }}>×</button>
+        </div>
+        {fields.map(f => (
+          <div key={f.key} style={{ marginBottom: '16px' }}>
+            <div style={{ color: GM, fontSize: '12px', fontFamily: 'monospace', letterSpacing: '1px', marginBottom: '6px' }}>{f.label.toUpperCase()}</div>
+            <input value={vals[f.key] || ''} onChange={e => setVals(p => ({ ...p, [f.key]: e.target.value }))}
+              placeholder={f.placeholder}
+              style={{ width: '100%', background: G2, border: `1px solid ${G3}`, borderRadius: '10px', color: W, padding: '12px 14px', fontSize: '16px', fontFamily: '-apple-system,sans-serif', outline: 'none' }} />
+          </div>
+        ))}
+        <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
+          <button onClick={onClose} style={{ flex: 1, padding: '13px', background: 'transparent', color: GM, border: `1px solid ${G3}`, borderRadius: '10px', fontSize: '14px', cursor: 'pointer' }}>Cancel</button>
+          <button onClick={() => onSave(vals)} style={{ flex: 1, padding: '13px', background: Y, color: BG, border: 'none', borderRadius: '10px', fontSize: '14px', fontWeight: '800', cursor: 'pointer' }}>Save Changes</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const [phase, setPhase] = useState('landing');
   const [profile, setProfile] = useState(null);
   const [activeIdx, setActiveIdx] = useState(null);
   const [completed, setCompleted] = useState({});
+  const [showEditProfile, setShowEditProfile] = useState(false);
   const totalDone = Object.values(completed).filter(Boolean).length;
 
   useEffect(() => {
@@ -684,6 +717,12 @@ export default function App() {
     const updated = { ...profile, goal: newGoal };
     setProfile(updated);
     try { localStorage.setItem('kai_profile', JSON.stringify(updated)); } catch(e) {}
+  };
+
+  const saveProfile = (vals) => {
+    setProfile(vals);
+    try { localStorage.setItem('kai_profile', JSON.stringify(vals)); } catch(e) {}
+    setShowEditProfile(false);
   };
 
   const resetAll = () => {
@@ -738,10 +777,13 @@ export default function App() {
       </div>
 
       <div style={{ maxWidth: '480px', margin: '0 auto', padding: '20px 16px 80px' }}>
-        <div style={{ marginBottom: '20px', padding: '16px 18px', background: G1, borderRadius: '12px', border: `1px solid ${G2}` }}>
-          <div style={{ color: Y, fontSize: '10px', letterSpacing: '2px', fontFamily: 'monospace', fontWeight: '800', marginBottom: '8px' }}>YOUR PROFILE</div>
-          <div style={{ color: W, fontSize: '17px', fontWeight: '700', marginBottom: '4px' }}>{profile?.name} · {profile?.business}</div>
-          <div style={{ color: GM, fontSize: '14px' }}>Goal: {profile?.goal}</div>
+        <div onClick={() => setShowEditProfile(true)} style={{ marginBottom: '20px', padding: '16px 18px', background: G1, borderRadius: '12px', border: `1px solid ${G2}`, cursor: 'pointer', transition: 'border-color 0.2s' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+            <div style={{ color: Y, fontSize: '11px', letterSpacing: '2px', fontFamily: 'monospace', fontWeight: '800' }}>YOUR PROFILE</div>
+            <div style={{ color: GM, fontSize: '12px', fontFamily: 'monospace' }}>TAP TO EDIT ✎</div>
+          </div>
+          <div style={{ color: W, fontSize: '18px', fontWeight: '700', marginBottom: '5px' }}>{profile?.name} · {profile?.business}</div>
+          <div style={{ color: GM, fontSize: '15px' }}>Goal: {profile?.goal}</div>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '24px' }}>
@@ -779,6 +821,8 @@ export default function App() {
           RESET ALL PROGRESS
         </button>
       </div>
+      {showEditProfile && <EditProfileModal profile={profile} onSave={saveProfile} onClose={() => setShowEditProfile(false)} />}
     </div>
   );
 }
+

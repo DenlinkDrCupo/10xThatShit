@@ -467,8 +467,10 @@ function Landing({ onEnter }) {
       {/* Top bar */}
       <div style={{ padding: '24px 32px', display: 'flex', alignItems: 'center', position: 'relative', zIndex: 1 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div style={{ width: '48px', height: '48px', background: Y, borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '24px', color: BG, fontFamily: 'monospace' }}>K</div>
-          <span style={{ fontWeight: '700', fontSize: '17px', color: W }}>10xThatSh*t</span>
+          <div style={{ width: '44px', height: '44px', background: Y, borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '22px', color: BG, fontFamily: 'monospace' }}>K</div>
+          <div>
+            <div style={{ fontWeight: '800', fontSize: '16px', color: W }}>Powered by Kai AI</div>
+          </div>
         </div>
       </div>
 
@@ -476,9 +478,9 @@ function Landing({ onEnter }) {
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px 24px 40px', textAlign: 'center', position: 'relative', zIndex: 1, opacity: visible ? 1 : 0, transition: 'opacity 0.5s ease' }}>
 
         {/* Badge */}
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#0f0f00', border: `1px solid ${Y}`, borderRadius: '20px', padding: '7px 18px', marginBottom: '36px', animation: 'slideUp 0.5s ease 0.1s both' }}>
-          <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: Y, animation: 'pulse 2s ease-in-out infinite' }} />
-          <span style={{ color: Y, fontSize: '12px', fontWeight: '800', fontFamily: 'monospace', letterSpacing: '2px' }}>10xThatSh*t · 8 MODULES</span>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: '#0f0f00', border: `1px solid ${Y}`, borderRadius: '20px', padding: '9px 22px', marginBottom: '36px', animation: 'slideUp 0.5s ease 0.1s both' }}>
+          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: Y, animation: 'pulse 2s ease-in-out infinite' }} />
+          <span style={{ color: Y, fontSize: '15px', fontWeight: '800', fontFamily: 'monospace', letterSpacing: '2px' }}>AI MASTERY COURSE · 8 MODULES</span>
         </div>
 
         {/* Title */}
@@ -714,7 +716,7 @@ export default function App() {
       <style>{CSS}</style>
       <div style={{ background: G1, borderBottom: `1px solid ${G2}`, padding: '14px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 10 }}>
         <div style={{ width: '60px' }} />
-        <div style={{ fontWeight: '900', fontSize: '16px', letterSpacing: '-0.5px', textAlign: 'center' }}>10xThatSh*t</div>
+        <div style={{ fontWeight: '900', fontSize: '19px', letterSpacing: '-0.5px', textAlign: 'center', color: Y }}>10xThatSh*t</div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '60px', justifyContent: 'flex-end' }}>
           <span style={{ color: GM, fontSize: '12px', fontFamily: 'monospace', fontWeight: '700' }}>{totalDone}/{MODULES.length}</span>
         </div>

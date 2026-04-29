@@ -347,7 +347,7 @@ function ChatLesson({ module, profile, onComplete, isCompleted, onBack, onChange
         {msgs.map((m, i) => (
           <div key={i} style={{ display: 'flex', justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start', animation: 'up 0.2s ease' }}>
             {m.role === 'assistant' && (
-              <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: G2, border: `1px solid ${G3}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '9px', fontWeight: '900', color: Y, flexShrink: 0, marginRight: '8px', marginTop: '2px' }}>K</div>
+              <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: G2, border: `1px solid ${Y}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '14px', fontWeight: '900', color: Y, flexShrink: 0, marginRight: '10px', marginTop: '2px' }}>K</div>
             )}
             <div style={{ maxWidth: '80%', padding: '12px 16px', background: m.role === 'user' ? Y : G2, color: m.role === 'user' ? BG : W, borderRadius: m.role === 'user' ? '16px 16px 4px 16px' : '16px 16px 16px 4px', fontSize: '14px', lineHeight: '1.65', whiteSpace: 'pre-wrap', wordBreak: 'break-word', fontWeight: m.role === 'user' ? '600' : '400' }}>
               {m.content}
@@ -356,7 +356,7 @@ function ChatLesson({ module, profile, onComplete, isCompleted, onBack, onChange
         ))}
         {loading && (
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
-            <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: G2, border: `1px solid ${G3}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '9px', fontWeight: '900', color: Y, flexShrink: 0 }}>K</div>
+            <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: G2, border: `1px solid ${Y}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '14px', fontWeight: '900', color: Y, flexShrink: 0 }}>K</div>
             <TypingIndicator />
           </div>
         )}
@@ -520,7 +520,7 @@ function Landing({ onEnter }) {
       {/* What you'll learn strip */}
       <div style={{ borderTop: `1px solid ${G2}`, padding: '28px 32px', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-          <div style={{ color: GM, fontSize: '11px', fontFamily: 'monospace', letterSpacing: '2px', marginBottom: '20px', textAlign: 'center' }}>WHAT YOU'LL LEARN</div>
+          <div style={{ color: W, fontSize: '13px', fontFamily: 'monospace', letterSpacing: '3px', marginBottom: '20px', textAlign: 'center', fontWeight: '700' }}>WHAT YOU'LL LEARN</div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px 24px' }}>
             {[
               'What AI actually is',
@@ -534,7 +534,7 @@ function Landing({ onEnter }) {
             ].map((item, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: Y, flexShrink: 0 }} />
-                <span style={{ color: '#bbb', fontSize: '14px' }}>{item}</span>
+                <span style={{ color: W, fontSize: '15px' }}>{item}</span>
               </div>
             ))}
           </div>
@@ -564,11 +564,11 @@ function Onboarding({ onComplete }) {
     <div style={{ minHeight: '100dvh', background: BG, color: W, fontFamily: "-apple-system,'Helvetica Neue',sans-serif", display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
       <style>{CSS}</style>
       <div style={{ maxWidth: '440px', width: '100%', animation: 'up 0.4s ease' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '48px' }}>
-          <div style={{ width: '34px', height: '34px', background: Y, borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '14px', color: BG, fontFamily: 'monospace' }}>K</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '32px' }}>
+          <div style={{ width: '44px', height: '44px', background: Y, borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '22px', color: BG, fontFamily: 'monospace', flexShrink: 0 }}>K</div>
           <div>
-            <div style={{ fontWeight: '800', fontSize: '16px' }}>Kai</div>
-            <div style={{ color: GM, fontSize: '11px' }}>Your AI Teacher</div>
+            <div style={{ fontWeight: '800', fontSize: '18px' }}>Kai</div>
+            <div style={{ color: GM, fontSize: '13px' }}>Your AI Teacher</div>
           </div>
         </div>
         {step > 0 && Object.entries(answers).slice(0, step).map(([k, v]) => v && (
@@ -577,7 +577,7 @@ function Onboarding({ onComplete }) {
           </div>
         ))}
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', marginBottom: '28px' }}>
-          <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: G2, border: `1px solid ${G3}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '9px', fontWeight: '900', color: Y, flexShrink: 0, marginTop: '2px' }}>K</div>
+          <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: G2, border: `1px solid ${Y}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '14px', fontWeight: '900', color: Y, flexShrink: 0, marginTop: '2px' }}>K</div>
           <div style={{ background: G2, padding: '14px 16px', borderRadius: '14px 14px 14px 4px', fontSize: '15px', lineHeight: '1.6', flex: 1 }}>
             {step === 0 ? `Hey! I'm Kai, your AI teacher. I'll teach you everything about AI and how to use it to grow your business — personalized just for you. ${questions[0].q}` : questions[step].q}
           </div>

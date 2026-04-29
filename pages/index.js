@@ -599,10 +599,19 @@ function Onboarding({ onComplete }) {
       <div style={{ background: G1, borderTop: `1px solid ${G2}`, padding: '12px 16px 24px', flexShrink: 0 }}>
         <div style={{ maxWidth: '440px', margin: '0 auto' }}>
           <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
-            <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') next(); }}
+            <input value={input}
+              onChange={e => setInput(e.target.value)}
+              onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); next(); } }}
               placeholder={questions[step].placeholder}
-              style={{ flex: 1, background: G2, border: `1px solid ${G3}`, borderRadius: '10px', color: W, padding: '14px 16px', fontSize: '16px', fontFamily: '-apple-system,sans-serif', outline: 'none' }} ref={inputRef} autoFocus />
-            <button onClick={next} disabled={!input.trim()}
+              style={{ flex: 1, background: G2, border: `1px solid ${G3}`, borderRadius: '10px', color: W, padding: '14px 16px', fontSize: '16px', fontFamily: '-apple-system,sans-serif', outline: 'none' }}
+              ref={inputRef}
+              autoFocus
+            />
+            <button
+              onMouseDown={e => e.preventDefault()}
+              onTouchStart={e => e.preventDefault()}
+              onClick={next}
+              disabled={!input.trim()}
               style={{ background: !input.trim() ? G3 : Y, color: !input.trim() ? GM : BG, border: 'none', borderRadius: '10px', padding: '0 20px', cursor: !input.trim() ? 'not-allowed' : 'pointer', fontWeight: '800', fontSize: '16px', flexShrink: 0 }}>→</button>
           </div>
           <div style={{ display: 'flex', gap: '6px', justifyContent: 'center' }}>

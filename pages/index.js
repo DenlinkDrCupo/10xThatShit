@@ -480,7 +480,7 @@ function Landing({ onEnter }) {
         {/* Badge */}
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: '#0f0f00', border: `1px solid ${Y}`, borderRadius: '20px', padding: '9px 22px', marginBottom: '36px', animation: 'slideUp 0.5s ease 0.1s both' }}>
           <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: Y, animation: 'pulse 2s ease-in-out infinite' }} />
-          <span style={{ color: Y, fontSize: '15px', fontWeight: '800', fontFamily: 'monospace', letterSpacing: '2px' }}>AI MASTERY COURSE · 8 MODULES</span>
+          <span style={{ color: Y, fontSize: '15px', fontWeight: '800', fontFamily: 'monospace', letterSpacing: '2px' }}>AI MASTERY COURSE</span>
         </div>
 
         {/* Title */}
@@ -825,4 +825,3 @@ export default function App() {
     </div>
   );
 }
-

@@ -500,11 +500,11 @@ function Landing({ onEnter }) {
         </p>
 
         {/* Stats row */}
-        <div style={{ display: 'flex', gap: '32px', marginBottom: '48px', animation: 'slideUp 0.5s ease 0.35s both', flexWrap: 'nowrap', justifyContent: 'center', alignItems: 'flex-end' }}>
+        <div style={{ display: 'flex', gap: '0', marginBottom: '48px', animation: 'slideUp 0.5s ease 0.35s both', flexWrap: 'nowrap', justifyContent: 'center', alignItems: 'center', width: '100%', maxWidth: '420px' }}>
           {[['8', 'Modules'], ['~2hrs', 'Total Time'], ['1', 'AI Teacher'], ['∞', 'Replays']].map(([val, label]) => (
-            <div key={label} style={{ textAlign: 'center', minWidth: '64px' }}>
-              <div style={{ fontSize: '34px', fontWeight: '900', color: W, letterSpacing: '-1px', lineHeight: 1 }}>{val}</div>
-              <div style={{ color: GM, fontSize: '13px', fontFamily: 'monospace', letterSpacing: '1px', marginTop: '6px' }}>{label.toUpperCase()}</div>
+            <div key={label} style={{ textAlign: 'center', flex: 1 }}>
+              <div style={{ fontSize: '32px', fontWeight: '900', color: W, letterSpacing: '-1px', lineHeight: 1 }}>{val}</div>
+              <div style={{ color: GM, fontSize: '12px', fontFamily: 'monospace', letterSpacing: '0.5px', marginTop: '6px' }}>{label.toUpperCase()}</div>
             </div>
           ))}
         </div>
@@ -512,7 +512,7 @@ function Landing({ onEnter }) {
         {/* CTA */}
         <button onClick={onEnter}
           style={{ background: Y, color: BG, border: 'none', padding: '22px 0', borderRadius: '14px', fontSize: '20px', fontWeight: '900', cursor: 'pointer', letterSpacing: '-0.3px', animation: 'glow 2s ease-in-out infinite', marginBottom: '20px', width: '100%', maxWidth: '420px' }}>
-          Buy Now — $99
+          Buy Now $99
         </button>
         <p style={{ color: GM, fontSize: '15px', animation: 'slideUp 0.5s ease 0.45s both', letterSpacing: '0.2px' }}>
           Self-paced · Personalized to your business · Yours forever

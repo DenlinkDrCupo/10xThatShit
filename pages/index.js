@@ -520,7 +520,7 @@ function Landing({ onEnter }) {
       {/* What you'll learn strip */}
       <div style={{ borderTop: `1px solid ${G2}`, padding: '28px 32px', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-          <div style={{ color: W, fontSize: '13px', fontFamily: 'monospace', letterSpacing: '3px', marginBottom: '20px', textAlign: 'center', fontWeight: '700' }}>WHAT YOU'LL LEARN</div>
+          <div style={{ color: Y, fontSize: '11px', fontFamily: 'monospace', letterSpacing: '4px', marginBottom: '24px', textAlign: 'center', fontWeight: '900', borderBottom: `1px solid ${G2}`, paddingBottom: '16px' }}>— WHAT YOU'LL LEARN —</div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px 24px' }}>
             {[
               'What AI actually is',
@@ -561,36 +561,47 @@ function Onboarding({ onComplete }) {
     if (step < questions.length - 1) { setStep(s => s + 1); } else { onComplete(updated); }
   };
   return (
-    <div style={{ minHeight: '100dvh', background: BG, color: W, fontFamily: "-apple-system,'Helvetica Neue',sans-serif", display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
+    <div style={{ height: '100dvh', background: BG, color: W, fontFamily: "-apple-system,'Helvetica Neue',sans-serif", display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       <style>{CSS}</style>
-      <div style={{ maxWidth: '440px', width: '100%', animation: 'up 0.4s ease' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '32px' }}>
-          <div style={{ width: '44px', height: '44px', background: Y, borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '22px', color: BG, fontFamily: 'monospace', flexShrink: 0 }}>K</div>
-          <div>
-            <div style={{ fontWeight: '800', fontSize: '18px' }}>Kai</div>
-            <div style={{ color: GM, fontSize: '13px' }}>Your AI Teacher</div>
+      {/* Scrollable content area - scrolls up when keyboard opens */}
+      <div style={{ flex: 1, overflowY: 'auto', WebkitOverflowScrolling: 'touch', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '24px 24px 0' }}>
+        <div style={{ maxWidth: '440px', width: '100%', margin: '0 auto', animation: 'up 0.4s ease' }}>
+          {/* Header */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '32px', paddingTop: '40px' }}>
+            <div style={{ width: '44px', height: '44px', background: Y, borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '22px', color: BG, fontFamily: 'monospace', flexShrink: 0 }}>K</div>
+            <div>
+              <div style={{ fontWeight: '800', fontSize: '18px' }}>Kai</div>
+              <div style={{ color: GM, fontSize: '13px' }}>Your AI Teacher</div>
+            </div>
+          </div>
+          {/* Previous answers */}
+          {step > 0 && Object.entries(answers).slice(0, step).map(([k, v]) => v && (
+            <div key={k} style={{ marginBottom: '8px', display: 'flex', justifyContent: 'flex-end' }}>
+              <div style={{ background: Y, color: BG, padding: '10px 14px', borderRadius: '14px 14px 4px 14px', fontSize: '14px', fontWeight: '600', maxWidth: '80%' }}>{v}</div>
+            </div>
+          ))}
+          {/* Kai message */}
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', marginBottom: '16px' }}>
+            <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: G2, border: `1px solid ${Y}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '14px', fontWeight: '900', color: Y, flexShrink: 0, marginTop: '2px' }}>K</div>
+            <div style={{ background: G2, padding: '14px 16px', borderRadius: '14px 14px 14px 4px', fontSize: '15px', lineHeight: '1.6', flex: 1 }}>
+              {step === 0 ? `Hey! I'm Kai, your AI teacher. I'll teach you everything about AI and how to use it to grow your business — personalized just for you. ${questions[0].q}` : questions[step].q}
+            </div>
           </div>
         </div>
-        {step > 0 && Object.entries(answers).slice(0, step).map(([k, v]) => v && (
-          <div key={k} style={{ marginBottom: '8px', display: 'flex', justifyContent: 'flex-end' }}>
-            <div style={{ background: Y, color: BG, padding: '10px 14px', borderRadius: '14px 14px 4px 14px', fontSize: '14px', fontWeight: '600', maxWidth: '80%' }}>{v}</div>
+      </div>
+      {/* Input - fixed at bottom, always above keyboard */}
+      <div style={{ background: G1, borderTop: `1px solid ${G2}`, padding: '12px 16px 24px', flexShrink: 0 }}>
+        <div style={{ maxWidth: '440px', margin: '0 auto' }}>
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
+            <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') next(); }}
+              placeholder={questions[step].placeholder}
+              style={{ flex: 1, background: G2, border: `1px solid ${G3}`, borderRadius: '10px', color: W, padding: '14px 16px', fontSize: '16px', fontFamily: '-apple-system,sans-serif', outline: 'none' }} autoFocus />
+            <button onClick={next} disabled={!input.trim()}
+              style={{ background: !input.trim() ? G3 : Y, color: !input.trim() ? GM : BG, border: 'none', borderRadius: '10px', padding: '0 20px', cursor: !input.trim() ? 'not-allowed' : 'pointer', fontWeight: '800', fontSize: '16px', flexShrink: 0 }}>→</button>
           </div>
-        ))}
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', marginBottom: '28px' }}>
-          <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: G2, border: `1px solid ${Y}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: '14px', fontWeight: '900', color: Y, flexShrink: 0, marginTop: '2px' }}>K</div>
-          <div style={{ background: G2, padding: '14px 16px', borderRadius: '14px 14px 14px 4px', fontSize: '15px', lineHeight: '1.6', flex: 1 }}>
-            {step === 0 ? `Hey! I'm Kai, your AI teacher. I'll teach you everything about AI and how to use it to grow your business — personalized just for you. ${questions[0].q}` : questions[step].q}
+          <div style={{ display: 'flex', gap: '6px', justifyContent: 'center' }}>
+            {questions.map((_, i) => <div key={i} style={{ width: i === step ? '20px' : '6px', height: '6px', borderRadius: '3px', background: i === step ? Y : G3, transition: 'all 0.3s' }} />)}
           </div>
-        </div>
-        <div style={{ display: 'flex', gap: '8px' }}>
-          <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') next(); }}
-            placeholder={questions[step].placeholder}
-            style={{ flex: 1, background: G2, border: `1px solid ${G3}`, borderRadius: '10px', color: W, padding: '14px 16px', fontSize: '16px', fontFamily: '-apple-system,sans-serif', outline: 'none' }} autoFocus />
-          <button onClick={next} disabled={!input.trim()}
-            style={{ background: !input.trim() ? G3 : Y, color: !input.trim() ? GM : BG, border: 'none', borderRadius: '10px', padding: '0 20px', cursor: !input.trim() ? 'not-allowed' : 'pointer', fontWeight: '800', fontSize: '16px', flexShrink: 0 }}>→</button>
-        </div>
-        <div style={{ display: 'flex', gap: '6px', marginTop: '24px', justifyContent: 'center' }}>
-          {questions.map((_, i) => <div key={i} style={{ width: i === step ? '20px' : '6px', height: '6px', borderRadius: '3px', background: i === step ? Y : G3, transition: 'all 0.3s' }} />)}
         </div>
       </div>
     </div>

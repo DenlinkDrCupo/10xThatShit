@@ -468,7 +468,7 @@ function Landing({ onEnter }) {
       <div style={{ padding: '24px 32px', display: 'flex', alignItems: 'center', position: 'relative', zIndex: 1 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <div style={{ width: '48px', height: '48px', background: Y, borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '24px', color: BG, fontFamily: 'monospace' }}>K</div>
-          <span style={{ fontWeight: '700', fontSize: '17px', color: W }}>Powered by Kai AI</span>
+          <span style={{ fontWeight: '700', fontSize: '17px', color: W }}>10xThatSh*t</span>
         </div>
       </div>
 
@@ -478,7 +478,7 @@ function Landing({ onEnter }) {
         {/* Badge */}
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#0f0f00', border: `1px solid ${Y}`, borderRadius: '20px', padding: '7px 18px', marginBottom: '36px', animation: 'slideUp 0.5s ease 0.1s both' }}>
           <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: Y, animation: 'pulse 2s ease-in-out infinite' }} />
-          <span style={{ color: Y, fontSize: '12px', fontWeight: '800', fontFamily: 'monospace', letterSpacing: '2px' }}>AI MASTERY COURSE · 8 MODULES</span>
+          <span style={{ color: Y, fontSize: '12px', fontWeight: '800', fontFamily: 'monospace', letterSpacing: '2px' }}>10xThatSh*t · 8 MODULES</span>
         </div>
 
         {/* Title */}
@@ -713,23 +713,18 @@ export default function App() {
     <div style={base}>
       <style>{CSS}</style>
       <div style={{ background: G1, borderBottom: `1px solid ${G2}`, padding: '14px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 10 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '9px' }}>
-          <div style={{ width: '28px', height: '28px', background: Y, borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '12px', color: BG, fontFamily: 'monospace' }}>K</div>
-          <div style={{ fontWeight: '700', fontSize: '14px' }}>AI Mastery with Kai</div>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <div style={{ width: '80px', height: '4px', background: G2, borderRadius: '2px' }}>
-            <div style={{ width: `${(totalDone / MODULES.length) * 100}%`, height: '100%', background: Y, borderRadius: '2px', transition: 'width 0.4s' }} />
-          </div>
-          <span style={{ color: GM, fontSize: '11px', fontFamily: 'monospace' }}>{totalDone}/{MODULES.length}</span>
+        <div style={{ width: '60px' }} />
+        <div style={{ fontWeight: '900', fontSize: '16px', letterSpacing: '-0.5px', textAlign: 'center' }}>10xThatSh*t</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '60px', justifyContent: 'flex-end' }}>
+          <span style={{ color: GM, fontSize: '12px', fontFamily: 'monospace', fontWeight: '700' }}>{totalDone}/{MODULES.length}</span>
         </div>
       </div>
 
       <div style={{ maxWidth: '480px', margin: '0 auto', padding: '20px 16px 80px' }}>
-        <div style={{ marginBottom: '20px', padding: '14px 16px', background: G1, borderRadius: '12px', border: `1px solid ${G2}` }}>
-          <div style={{ color: Y, fontSize: '9px', letterSpacing: '2px', fontFamily: 'monospace', fontWeight: '800', marginBottom: '6px' }}>YOUR PROFILE</div>
-          <div style={{ color: W, fontSize: '14px', fontWeight: '700', marginBottom: '2px' }}>{profile?.name} · {profile?.business}</div>
-          <div style={{ color: GM, fontSize: '12px' }}>Goal: {profile?.goal}</div>
+        <div style={{ marginBottom: '20px', padding: '16px 18px', background: G1, borderRadius: '12px', border: `1px solid ${G2}` }}>
+          <div style={{ color: Y, fontSize: '10px', letterSpacing: '2px', fontFamily: 'monospace', fontWeight: '800', marginBottom: '8px' }}>YOUR PROFILE</div>
+          <div style={{ color: W, fontSize: '17px', fontWeight: '700', marginBottom: '4px' }}>{profile?.name} · {profile?.business}</div>
+          <div style={{ color: GM, fontSize: '14px' }}>Goal: {profile?.goal}</div>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '24px' }}>
@@ -738,18 +733,18 @@ export default function App() {
             const isDone = completed[idx];
             const isNext = !isDone && (idx === 0 || completed[idx - 1]);
             return (
-              <div key={mod.id} onClick={() => openModule(idx)} style={{ background: G1, border: `1px solid ${isNext ? Y : isDone ? '#1a2a00' : locked ? G1 : G2}`, borderRadius: '12px', padding: '14px 16px', display: 'flex', gap: '12px', alignItems: 'center', cursor: locked ? 'not-allowed' : 'pointer', opacity: locked ? 0.35 : 1, transition: 'border-color 0.2s' }}>
-                <div style={{ width: '42px', height: '42px', borderRadius: '10px', background: isDone ? '#1a2a00' : isNext ? '#1a1400' : G2, border: `1px solid ${isDone ? '#4a8a00' : isNext ? Y : G3}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: isDone ? '16px' : '12px', fontWeight: '900', color: isDone ? '#7aff00' : isNext ? Y : GM, flexShrink: 0 }}>
+              <div key={mod.id} onClick={() => openModule(idx)} style={{ background: G1, border: `1px solid ${isNext ? Y : isDone ? '#1a2a00' : locked ? G1 : G2}`, borderRadius: '14px', padding: '16px 18px', display: 'flex', gap: '14px', alignItems: 'center', cursor: locked ? 'not-allowed' : 'pointer', opacity: locked ? 0.3 : 1, transition: 'border-color 0.2s' }}>
+                <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: isDone ? '#1a2a00' : isNext ? '#1a1400' : G2, border: `1px solid ${isDone ? '#4a8a00' : isNext ? Y : G3}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'monospace', fontSize: isDone ? '18px' : '14px', fontWeight: '900', color: isDone ? '#7aff00' : isNext ? Y : GM, flexShrink: 0 }}>
                   {isDone ? '✓' : mod.icon}
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '2px' }}>
-                    <div style={{ color: isDone ? GM : W, fontWeight: '700', fontSize: '14px' }}>{mod.title}</div>
-                    {isNext && <div style={{ background: Y, color: BG, fontSize: '8px', fontWeight: '900', padding: '2px 6px', borderRadius: '4px', fontFamily: 'monospace', flexShrink: 0 }}>UP NEXT</div>}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: locked ? 0 : '4px' }}>
+                    <div style={{ color: isDone ? GM : W, fontWeight: '700', fontSize: '17px' }}>{mod.title}</div>
+                    {isNext && <div style={{ background: Y, color: BG, fontSize: '9px', fontWeight: '900', padding: '3px 7px', borderRadius: '4px', fontFamily: 'monospace', flexShrink: 0 }}>UP NEXT</div>}
                   </div>
-                  <div style={{ color: GM, fontSize: '11px' }}>{mod.subtitle}</div>
+                  {!locked && <div style={{ color: GM, fontSize: '13px', lineHeight: '1.4' }}>{mod.subtitle}</div>}
                 </div>
-                <div style={{ color: locked ? G3 : GM, fontSize: '18px', flexShrink: 0 }}>{locked ? '—' : '›'}</div>
+                <div style={{ color: locked ? G3 : GM, fontSize: '20px', flexShrink: 0 }}>{locked ? '' : '›'}</div>
               </div>
             );
           })}
@@ -770,4 +765,3 @@ export default function App() {
     </div>
   );
 }
-

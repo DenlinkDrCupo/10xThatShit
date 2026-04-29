@@ -503,8 +503,8 @@ function Landing({ onEnter }) {
         <div style={{ display: 'flex', gap: '32px', marginBottom: '48px', animation: 'slideUp 0.5s ease 0.35s both', flexWrap: 'nowrap', justifyContent: 'center', alignItems: 'flex-end' }}>
           {[['8', 'Modules'], ['~2hrs', 'Total Time'], ['1', 'AI Teacher'], ['∞', 'Replays']].map(([val, label]) => (
             <div key={label} style={{ textAlign: 'center', minWidth: '64px' }}>
-              <div style={{ fontSize: '30px', fontWeight: '900', color: W, letterSpacing: '-1px', lineHeight: 1 }}>{val}</div>
-              <div style={{ color: GM, fontSize: '10px', fontFamily: 'monospace', letterSpacing: '1px', marginTop: '4px' }}>{label.toUpperCase()}</div>
+              <div style={{ fontSize: '34px', fontWeight: '900', color: W, letterSpacing: '-1px', lineHeight: 1 }}>{val}</div>
+              <div style={{ color: GM, fontSize: '13px', fontFamily: 'monospace', letterSpacing: '1px', marginTop: '6px' }}>{label.toUpperCase()}</div>
             </div>
           ))}
         </div>
@@ -552,10 +552,10 @@ function Onboarding({ onComplete }) {
   const [input, setInput] = useState('');
   const inputRef = useRef(null);
   const questions = [
-    { key: 'name', q: "First — what's your name?", placeholder: 'David' },
-    { key: 'business', q: "Nice to meet you! What's your business? One sentence.", placeholder: 'I run a dental office in Miami Beach specializing in cosmetic dentistry' },
-    { key: 'industry', q: "What industry are you in?", placeholder: 'Healthcare / Dental' },
-    { key: 'goal', q: "What's your #1 business goal right now?", placeholder: 'Double my revenue from $45k to $100k/month' }
+    { key: 'name', q: "First — what's your name?", placeholder: '' },
+    { key: 'business', q: "Nice to meet you! What's your business? One sentence.", placeholder: '' },
+    { key: 'industry', q: "What industry are you in?", placeholder: '' },
+    { key: 'goal', q: "What's your #1 business goal right now?", placeholder: '' }
   ];
   const next = () => {
     if (!input.trim()) return;
@@ -825,4 +825,3 @@ export default function App() {
     </div>
   );
 }
-

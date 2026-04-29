@@ -491,7 +491,7 @@ function Landing({ onEnter }) {
           THAT
         </h1>
         <h1 style={{ fontSize: 'clamp(72px, 14vw, 140px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-4px', marginBottom: '40px', animation: 'slideUp 0.5s ease 0.25s both' }}>
-          SHIT.
+          SH*T.
         </h1>
 
         {/* Subtitle */}

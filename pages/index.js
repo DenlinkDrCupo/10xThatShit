@@ -450,6 +450,101 @@ function ChatLesson({ module, profile, onComplete, isCompleted, onBack, onChange
   );
 }
 
+function Landing({ onEnter }) {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => { setTimeout(() => setVisible(true), 100); }, []);
+
+  return (
+    <div style={{ minHeight: '100dvh', background: BG, color: W, fontFamily: "-apple-system,'Helvetica Neue',sans-serif", display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
+      <style>{CSS + `
+        @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+        @keyframes slideUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes shimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
+      `}</style>
+
+      {/* Background grid */}
+      <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,229,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,229,0,0.03) 1px, transparent 1px)', backgroundSize: '40px 40px', pointerEvents: 'none' }} />
+
+      {/* Top bar */}
+      <div style={{ padding: '20px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative', zIndex: 1 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div style={{ width: '32px', height: '32px', background: Y, borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '13px', color: BG, fontFamily: 'monospace' }}>K</div>
+          <span style={{ fontWeight: '700', fontSize: '14px', color: GM }}>Powered by Kai AI</span>
+        </div>
+        <div style={{ background: '#0f0f00', border: `1px solid ${Y}`, borderRadius: '20px', padding: '5px 14px' }}>
+          <span style={{ color: Y, fontSize: '11px', fontWeight: '800', fontFamily: 'monospace', letterSpacing: '1px' }}>$99 COURSE</span>
+        </div>
+      </div>
+
+      {/* Hero */}
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 24px', textAlign: 'center', position: 'relative', zIndex: 1, opacity: visible ? 1 : 0, transition: 'opacity 0.6s ease' }}>
+
+        {/* Badge */}
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#0f0f00', border: `1px solid ${Y}`, borderRadius: '20px', padding: '6px 16px', marginBottom: '32px', animation: 'slideUp 0.6s ease 0.1s both' }}>
+          <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: Y, animation: 'pulse 2s ease-in-out infinite' }} />
+          <span style={{ color: Y, fontSize: '11px', fontWeight: '800', fontFamily: 'monospace', letterSpacing: '2px' }}>AI MASTERY COURSE · 8 MODULES</span>
+        </div>
+
+        {/* Title */}
+        <h1 style={{ fontSize: 'clamp(48px, 10vw, 96px)', fontWeight: '900', lineHeight: '0.95', letterSpacing: '-3px', marginBottom: '8px', animation: 'slideUp 0.6s ease 0.2s both' }}>
+          10x
+        </h1>
+        <h1 style={{ fontSize: 'clamp(48px, 10vw, 96px)', fontWeight: '900', lineHeight: '0.95', letterSpacing: '-3px', marginBottom: '8px', color: Y, animation: 'slideUp 0.6s ease 0.25s both', backgroundImage: `linear-gradient(90deg, ${Y}, #fff, ${Y})`, backgroundSize: '200% auto', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', animation: 'shimmer 3s linear infinite' }}>
+          THAT
+        </h1>
+        <h1 style={{ fontSize: 'clamp(48px, 10vw, 96px)', fontWeight: '900', lineHeight: '0.95', letterSpacing: '-3px', marginBottom: '40px', animation: 'slideUp 0.6s ease 0.3s both' }}>
+          SHIT.
+        </h1>
+
+        {/* Subtitle */}
+        <p style={{ color: GM, fontSize: 'clamp(15px, 2.5vw, 18px)', lineHeight: '1.6', maxWidth: '480px', marginBottom: '48px', animation: 'slideUp 0.6s ease 0.35s both' }}>
+          The complete AI course for business owners. Learn to automate your work, generate more leads, and build systems that run without you — taught by Kai, your personal AI teacher.
+        </p>
+
+        {/* Stats row */}
+        <div style={{ display: 'flex', gap: '32px', marginBottom: '48px', animation: 'slideUp 0.6s ease 0.4s both', flexWrap: 'wrap', justifyContent: 'center' }}>
+          {[['8', 'Modules'], ['~2hrs', 'Total Time'], ['1', 'AI Teacher'], ['∞', 'Replays']].map(([val, label]) => (
+            <div key={label} style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '28px', fontWeight: '900', color: W, letterSpacing: '-1px' }}>{val}</div>
+              <div style={{ color: GM, fontSize: '11px', fontFamily: 'monospace', letterSpacing: '1px' }}>{label.toUpperCase()}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <button onClick={onEnter}
+          style={{ background: Y, color: BG, border: 'none', padding: '20px 56px', borderRadius: '14px', fontSize: '18px', fontWeight: '900', cursor: 'pointer', letterSpacing: '-0.3px', animation: 'slideUp 0.6s ease 0.45s both, glow 2s ease-in-out infinite', marginBottom: '16px', width: '100%', maxWidth: '400px' }}>
+          Start the Course →
+        </button>
+        <p style={{ color: GM, fontSize: '12px', fontFamily: 'monospace', animation: 'slideUp 0.6s ease 0.5s both' }}>
+          Self-paced · Personalized to your business · Yours forever
+        </p>
+      </div>
+
+      {/* What you'll learn strip */}
+      <div style={{ borderTop: `1px solid ${G2}`, padding: '24px 32px', position: 'relative', zIndex: 1, animation: 'slideUp 0.6s ease 0.55s both' }}>
+        <div style={{ maxWidth: '800px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '16px' }}>
+          {[
+            '🧠 What AI actually is',
+            '⚙️ Set up Claude like a pro',
+            '✍️ Write prompts that work',
+            '⚡ Automate repetitive work',
+            '🎯 Generate more leads',
+            '👥 Claude for teams',
+            '🛠️ Build tools without coding',
+            '🤖 Deploy agentic workflows'
+          ].map((item, i) => (
+            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ fontSize: '14px' }}>{item.split(' ')[0]}</span>
+              <span style={{ color: '#aaa', fontSize: '13px' }}>{item.split(' ').slice(1).join(' ')}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Onboarding({ onComplete }) {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({ name: '', business: '', industry: '', goal: '' });
@@ -504,7 +599,7 @@ function Onboarding({ onComplete }) {
 }
 
 export default function App() {
-  const [phase, setPhase] = useState('onboarding');
+  const [phase, setPhase] = useState('landing');
   const [profile, setProfile] = useState(null);
   const [activeIdx, setActiveIdx] = useState(null);
   const [completed, setCompleted] = useState({});
@@ -518,6 +613,8 @@ export default function App() {
         setProfile(JSON.parse(savedProfile));
         setCompleted(savedCompleted ? JSON.parse(savedCompleted) : {});
         setPhase('course');
+      } else {
+        setPhase('landing');
       }
     } catch(e) {}
   }, []);
@@ -558,6 +655,7 @@ export default function App() {
 
   const base = { minHeight: '100dvh', background: BG, color: W, fontFamily: "-apple-system,'Helvetica Neue',sans-serif" };
 
+  if (phase === 'landing') return <Landing onEnter={() => setPhase('onboarding')} />;
   if (phase === 'onboarding') return <Onboarding onComplete={completeOnboarding} />;
 
   if (phase === 'lesson' && activeIdx !== null) {

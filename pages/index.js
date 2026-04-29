@@ -274,7 +274,7 @@ function ChatLesson({ module, profile, onComplete, isCompleted, onBack, onChange
 
   const save = (m) => { try { localStorage.setItem(storageKey, JSON.stringify(m)); } catch(e) {} };
 
-  const sys = module.systemPrompt(profile) + `\n\nCRITICAL: INSTRUCTION: Always refer to Claude specifically, never ChatGPT or other AI tools unless directly comparing them. This is a Claude course. When telling students to practice, always say "in Claude" not "in ChatGPT".\n\nWhen the student has clearly demonstrated understanding of ALL teaching goals, end your message with this exact token on its own line: ${READY}\nDo NOT include this token until they genuinely understand everything. It unlocks the Complete button.`;
+  const sys = module.systemPrompt(profile) + `\n\nCRITICAL INSTRUCTION: Always refer to Claude specifically, never ChatGPT or other AI tools unless directly comparing them. This is a Claude course. When telling students to practice, always say "in Claude" not "in ChatGPT".\n\nWhen the student has clearly demonstrated understanding of ALL teaching goals, end your message with this exact token on its own line: ${READY}\nDo NOT include this token until they genuinely understand everything. It unlocks the Complete button.`;
 
   const startLesson = async () => {
     setStarted(true); setLoading(true);
@@ -467,7 +467,7 @@ function Landing({ onEnter }) {
       {/* Top bar */}
       <div style={{ padding: '24px 32px', display: 'flex', alignItems: 'center', position: 'relative', zIndex: 1 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div style={{ width: '44px', height: '44px', background: Y, borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '20px', color: BG, fontFamily: 'monospace' }}>K</div>
+          <div style={{ width: '48px', height: '48px', background: Y, borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '24px', color: BG, fontFamily: 'monospace' }}>K</div>
           <span style={{ fontWeight: '700', fontSize: '17px', color: W }}>Powered by Kai AI</span>
         </div>
       </div>
@@ -498,11 +498,11 @@ function Landing({ onEnter }) {
         </p>
 
         {/* Stats row */}
-        <div style={{ display: 'flex', gap: '40px', marginBottom: '48px', animation: 'slideUp 0.5s ease 0.35s both', flexWrap: 'wrap', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', gap: '32px', marginBottom: '48px', animation: 'slideUp 0.5s ease 0.35s both', flexWrap: 'nowrap', justifyContent: 'center', alignItems: 'flex-end' }}>
           {[['8', 'Modules'], ['~2hrs', 'Total Time'], ['1', 'AI Teacher'], ['∞', 'Replays']].map(([val, label]) => (
-            <div key={label} style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '32px', fontWeight: '900', color: W, letterSpacing: '-1px' }}>{val}</div>
-              <div style={{ color: GM, fontSize: '12px', fontFamily: 'monospace', letterSpacing: '1px', marginTop: '2px' }}>{label.toUpperCase()}</div>
+            <div key={label} style={{ textAlign: 'center', minWidth: '64px' }}>
+              <div style={{ fontSize: '30px', fontWeight: '900', color: W, letterSpacing: '-1px', lineHeight: 1 }}>{val}</div>
+              <div style={{ color: GM, fontSize: '10px', fontFamily: 'monospace', letterSpacing: '1px', marginTop: '4px' }}>{label.toUpperCase()}</div>
             </div>
           ))}
         </div>
@@ -519,9 +519,9 @@ function Landing({ onEnter }) {
 
       {/* What you'll learn strip */}
       <div style={{ borderTop: `1px solid ${G2}`, padding: '28px 32px', position: 'relative', zIndex: 1 }}>
-        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+        <div style={{ maxWidth: '600px', margin: '0 auto' }}>
           <div style={{ color: GM, fontSize: '11px', fontFamily: 'monospace', letterSpacing: '2px', marginBottom: '20px', textAlign: 'center' }}>WHAT YOU'LL LEARN</div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px 32px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px 24px' }}>
             {[
               'What AI actually is',
               'Set up Claude like a pro',
@@ -534,7 +534,7 @@ function Landing({ onEnter }) {
             ].map((item, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: Y, flexShrink: 0 }} />
-                <span style={{ color: '#bbb', fontSize: '15px' }}>{item}</span>
+                <span style={{ color: '#bbb', fontSize: '14px' }}>{item}</span>
               </div>
             ))}
           </div>

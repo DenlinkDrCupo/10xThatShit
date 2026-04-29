@@ -34,23 +34,30 @@ Start: briefly introduce yourself and ask what they think AI is.`
   },
   {
     id: 2, icon: "02", title: "Setting Up Claude Properly",
-    subtitle: "Account, plans, Projects, memory, and custom instructions",
-    teachingGoals: ["Choose the right Claude plan", "Set up a Project for their business", "Configure custom instructions", "Understand memory and artifacts", "Upload files and use Claude's full interface"],
+    subtitle: "Account, plans, Projects vs regular chat, usage, and custom instructions",
+    teachingGoals: ["Choose the right Claude plan", "Understand Projects vs regular chat and when to use each", "Know how usage works so you never get surprised", "Configure custom instructions", "Understand memory, artifacts, and file uploads"],
     systemPrompt: (p) => `You are Kai, an expert AI teacher. Teaching ${p.name} who runs ${p.business} in ${p.industry}. Goal: ${p.goal}.
 
 MODULE 2: Setting Up Claude the Right Way.
-Rules: Under 120 words. Use ${p.industry} examples.
+Rules: Under 120 words per message. Use ${p.industry} examples.
 
 Flow:
 1. Ask if they have a Claude account
-2. Explain plans: Free, Pro ($20/mo — best for most), Team. Recommend Pro.
-3. Teach Projects — walk through creating one for ${p.industry}
-4. Teach Custom Instructions — help them write their own for ${p.business}
-5. Teach Memory across conversations in Projects
-6. Teach Artifacts: documents, code, charts
-7. Teach file uploads: PDFs, images, documents
-8. Give setup checklist for ${p.industry}
-9. When they understand all setup steps, end with: ${READY}`
+2. Explain plans: Free (limited), Pro ($20/mo best for most), Team (for teams). Recommend Pro.
+3. Teach Custom Instructions: tell Claude about yourself once. Help them write their own for ${p.business}.
+4. CRITICAL — Teach Projects vs Regular Chat BEFORE they create a Project:
+   - Regular chat = just your prompt. Fast, lightweight, low token usage.
+   - Projects = your prompt + ALL uploaded docs + custom instructions loaded into EVERY message. Uses 3-5x more tokens per message.
+   - USE PROJECTS FOR: ongoing work needing business context — writing, strategy, consistent tone.
+   - USE REGULAR CHAT FOR: one-off tasks, quick questions, testing prompts, anything not needing context.
+   - PRO RULE: Keep Projects lean. Only upload what Claude truly needs. Every document gets read with EVERY message.
+   - SMART HABIT: Test prompts in regular chat first, then bring the best ones into your Project.
+5. Teach usage dashboard: Go to claude.ai, click profile icon, then Usage. Shows monthly limit used. Check it weekly. If burning through usage fast, you are probably over-using Projects for tasks that do not need them.
+6. Now walk them through creating a lean Project for ${p.business}
+7. Teach Memory across conversations in Projects
+8. Teach Artifacts: documents, code, charts Claude creates directly
+9. Teach file uploads: PDFs, images, documents
+10. When they understand all of this especially Projects vs regular chat, end with: ${READY}`
   },
   {
     id: 3, icon: "03", title: "Writing Prompts That Actually Work",
@@ -267,7 +274,8 @@ function ChatLesson({ module, profile, onComplete, isCompleted, onBack, onChange
 
   const save = (m) => { try { localStorage.setItem(storageKey, JSON.stringify(m)); } catch(e) {} };
 
-  const sys = module.systemPrompt(profile) + `\n\nCRITICAL INSTRUCTION: Always refer to Claude specifically, never ChatGPT or other AI tools unless directly comparing them. This is a Claude course. When telling students to practice, always say "in Claude" not "in ChatGPT".\n\nWhen the student has clearly demonstrated understanding of ALL teaching goals, end your message with this exact token on its own line: ${READY}\nDo NOT include this token until they genuinely understand everything. It unlocks the Complete button.`;
+  const sys = module.systemPrompt(profile) + `\n\nCRITICAL: INSTRUCTION: Always refer to Claude specifically, never ChatGPT or other AI tools unless directly comparing them. This is a Claude course. When telling students to practice, always say "in Claude" not "in ChatGPT".\n\nWhen the student has clearly demonstrated understanding of ALL teaching goals, end your message with this exact token on its own line: ${READY}\nDo NOT include this token until they genuinely understand everything. It unlocks the Complete button.`;
+
   const startLesson = async () => {
     setStarted(true); setLoading(true);
     try {
@@ -566,7 +574,6 @@ export default function App() {
           <div style={{ color: GM, fontSize: '12px', fontWeight: '600' }}>{profile?.name}</div>
         </div>
         <ChatLesson
-          key={activeIdx}
           module={mod}
           profile={profile}
           onComplete={completeModule}

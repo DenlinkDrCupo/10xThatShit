@@ -520,7 +520,7 @@ function Landing({ onEnter }) {
       {/* What you'll learn strip */}
       <div style={{ borderTop: `1px solid ${G2}`, padding: '28px 32px', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-          <div style={{ color: Y, fontSize: '11px', fontFamily: 'monospace', letterSpacing: '4px', marginBottom: '24px', textAlign: 'center', fontWeight: '900', borderBottom: `1px solid ${G2}`, paddingBottom: '16px' }}>— WHAT YOU'LL LEARN —</div>
+          <div style={{ color: Y, fontSize: '16px', fontFamily: 'monospace', letterSpacing: '3px', marginBottom: '24px', textAlign: 'center', fontWeight: '900', borderBottom: `1px solid ${G2}`, paddingBottom: '16px' }}>— WHAT YOU'LL LEARN —</div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px 24px' }}>
             {[
               'What AI actually is',
@@ -548,6 +548,7 @@ function Onboarding({ onComplete }) {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({ name: '', business: '', industry: '', goal: '' });
   const [input, setInput] = useState('');
+  const inputRef = useRef(null);
   const questions = [
     { key: 'name', q: "First — what's your name?", placeholder: 'David' },
     { key: 'business', q: "Nice to meet you! What's your business? One sentence.", placeholder: 'I run a dental office in Miami Beach specializing in cosmetic dentistry' },
@@ -558,7 +559,12 @@ function Onboarding({ onComplete }) {
     if (!input.trim()) return;
     const updated = { ...answers, [questions[step].key]: input.trim() };
     setAnswers(updated); setInput('');
-    if (step < questions.length - 1) { setStep(s => s + 1); } else { onComplete(updated); }
+    if (step < questions.length - 1) {
+      setStep(s => s + 1);
+      setTimeout(() => inputRef.current?.focus(), 50);
+    } else {
+      onComplete(updated);
+    }
   };
   return (
     <div style={{ height: '100dvh', background: BG, color: W, fontFamily: "-apple-system,'Helvetica Neue',sans-serif", display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -595,7 +601,7 @@ function Onboarding({ onComplete }) {
           <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
             <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') next(); }}
               placeholder={questions[step].placeholder}
-              style={{ flex: 1, background: G2, border: `1px solid ${G3}`, borderRadius: '10px', color: W, padding: '14px 16px', fontSize: '16px', fontFamily: '-apple-system,sans-serif', outline: 'none' }} autoFocus />
+              style={{ flex: 1, background: G2, border: `1px solid ${G3}`, borderRadius: '10px', color: W, padding: '14px 16px', fontSize: '16px', fontFamily: '-apple-system,sans-serif', outline: 'none' }} ref={inputRef} autoFocus />
             <button onClick={next} disabled={!input.trim()}
               style={{ background: !input.trim() ? G3 : Y, color: !input.trim() ? GM : BG, border: 'none', borderRadius: '10px', padding: '0 20px', cursor: !input.trim() ? 'not-allowed' : 'pointer', fontWeight: '800', fontSize: '16px', flexShrink: 0 }}>→</button>
           </div>
@@ -755,3 +761,4 @@ export default function App() {
     </div>
   );
 }
+

@@ -515,7 +515,7 @@ function Landing({ onEnter }) {
           Buy Now $99
         </button>
         <p style={{ color: GM, fontSize: '15px', animation: 'slideUp 0.5s ease 0.45s both', letterSpacing: '0.2px' }}>
-          Self-paced · Personalized to your business · Yours forever
+          Self-Paced · Personalized to Your Business
         </p>
       </div>
 
@@ -825,3 +825,4 @@ export default function App() {
     </div>
   );
 }
+
